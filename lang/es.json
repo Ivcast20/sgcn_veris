@@ -51,5 +51,7 @@
     "Verify Your Email Address": "Verifique su dirección de correo electrónico",
     "Whoops!": "¡Ups!",
     "You are logged in!": "¡Usted está conectado!",
-    "You are receiving this email because we received a password reset request for your account.": "Ha recibido este mensaje porque se solicitó un restablecimiento de contraseña para su cuenta."
+    "You are receiving this email because we received a password reset request for your account.": "Ha recibido este mensaje porque se solicitó un restablecimiento de contraseña para su cuenta.",
+    "Users": "Usuarios",
+    "All Columns" : "Todas"
 }

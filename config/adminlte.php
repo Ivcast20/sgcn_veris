@@ -321,7 +321,7 @@ return [
         [
             'text' => 'profile',
             'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'far fa-fw fa-user',
         ],
         [
             'text' => 'change_password',
@@ -381,6 +381,14 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
+        ],
+        [
+            'header' => 'Configuración'
+        ],
+        [
+            'text' => 'Usuarios',
+            'route' => 'users.index',
+            'icon' => 'fas fw fa-users'
         ],
     ],
 
