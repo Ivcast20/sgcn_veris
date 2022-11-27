@@ -390,6 +390,11 @@ return [
             'route' => 'users.index',
             'icon' => 'fas fw fa-users'
         ],
+        [
+            'text' => 'Departamentos',
+            'route' => 'departments.index',
+            'icon' => 'far fw fa-phone-office'
+        ]
     ],
 
     /*

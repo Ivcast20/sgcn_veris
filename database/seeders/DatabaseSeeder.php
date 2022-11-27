@@ -14,13 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(DepartmentsSeeder::class);
         \App\Models\User::factory(10)->create();
 
         \App\Models\User::factory()->create([
             'name' => 'Test',
             'last_name' => 'Test',
             'email' => 'test@example.com',
-            'status' => 1
+            'status' => 1,
+            'department_id' => 1
         ]);
     }
 }
