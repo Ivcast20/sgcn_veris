@@ -2,13 +2,18 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\DepartmentsExport;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Department;
+use Carbon\Carbon;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DepartmentTable extends DataTableComponent
 {
@@ -27,9 +32,9 @@ class DepartmentTable extends DataTableComponent
             Column::make("Id", "id")
                 ->sortable(),
             Column::make("Nombre", "name")
-                ->sortable(),
-            Column::make("Descripción", "description")
-                ->sortable(),
+                ->sortable()
+                ->searchable(),
+            Column::make("Descripción", "description"),
             Column::make("Fecha de creación", "created_at")
                 ->sortable(),
             BooleanColumn::make("Estado", "status")
@@ -38,11 +43,7 @@ class DepartmentTable extends DataTableComponent
                 ->title(fn ($row) => 'Editar')
                 ->location(fn ($row) => route('departments.edit', $row->id))
                 ->attributes(function ($row) {
-                    if (2 === 1) {
-                        return ['class' => 'btn btn-success'];
-                    } else {
-                        return ['class' => 'd-none'];
-                    }
+                    return ['class' => 'btn btn-success'];
                 }),
         ];
     }
@@ -75,11 +76,24 @@ class DepartmentTable extends DataTableComponent
 
     public function exportPDF()
     {
-        dd($this->getSelected());
+        $departamentos = Department::findMany($this->getSelected());
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->toTimeString();
+        $pdf = PDF::loadView('pdf.departments', compact('nombreCompleto','fecha','hora','departamentos'))->output();
+        return response()->streamDownload(
+            fn() => print($pdf), Carbon::now()->toDateTimeString() . ' Modulo Departamentos.pdf'
+        );
     }
 
     public function exportExcel()
     {
-        dd($this->getSelected());
+        $departamentos = $this->getSelected();
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->lastname . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->toTimeString();
+        return Excel::download(new DepartmentsExport($departamentos), $fecha . ' ' . $hora . ' ' . $nombreCompleto . '.xlsx');
     }
 }
