@@ -393,7 +393,7 @@ return [
         [
             'text' => 'Departamentos',
             'route' => 'departments.index',
-            'icon' => 'far fw fa-phone-office'
+            'icon' => 'fas fa-fw fa-building'
         ]
     ],
 
