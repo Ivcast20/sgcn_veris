@@ -386,15 +386,32 @@ return [
             'header' => 'Configuración'
         ],
         [
-            'text' => 'Usuarios',
-            'route' => 'users.index',
-            'icon' => 'fas fw fa-users'
+            'text'    => 'Seguridad',
+            'icon'    => 'fas fa-fw fa-lock',
+            'submenu' => [
+                [
+                    'text' => 'Usuarios',
+                    'route' => 'users.index',
+                    'icon' => 'fas fw fa-users'
+                ],
+                [
+                    'text' => 'Roles',
+                    'route' => 'roles.index',
+                    'icon' => 'fas fa-user-tag'
+                ]
+            ]
         ],
         [
-            'text' => 'Departamentos',
-            'route' => 'departments.index',
-            'icon' => 'fas fa-fw fa-building'
-        ]
+            'text' => 'Configuración',
+            'icon' => 'fas fa-cogs',
+            'submenu' => [
+                [
+                    'text' => 'Departamentos',
+                    'route' => 'departments.index',
+                    'icon' => 'fas fa-fw fa-building'
+                ]
+            ]
+        ],
     ],
 
     /*
@@ -486,6 +503,21 @@ return [
                     'location' => '//cdn.jsdelivr.net/npm/sweetalert2@11',
                 ],
             ],
+        ],
+        'Bootstrap4 Dual Listbox' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/bootstrap4-duallistbox/bootstrap-duallistbox.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js',
+                ],
+            ]
         ],
         'Pace' => [
             'active' => false,

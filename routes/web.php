@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,5 +31,7 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 
 //Rutas para gestionar departamentos
 Route::resource('departments', DepartmentController::class)->names('departments');
+//Rutas para gestionar roles
+Route::resource('roles',RoleController::class)->names('roles');
 
 Route::get('/users', [UserController::class,'index'])->name('users.index');
