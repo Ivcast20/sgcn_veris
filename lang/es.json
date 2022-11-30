@@ -57,5 +57,6 @@
     "Created at" : "Fecha creación",
     "Updated at" : "Fecha actualización",
     "Departments" : "Departamentos",
-    "New Department" : "Nuevo Departamento"
+    "New Department" : "Nuevo Departamento",
+    "permissions": "permisos"
 }
