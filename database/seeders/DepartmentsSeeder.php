@@ -22,7 +22,12 @@ class DepartmentsSeeder extends Seeder
 
         Department::create([
             'name' => 'Ventas',
-            'description' => 'Esta es la descripcion del departamento 2'
+            'description' => 'Esta es la descripción del departamento 2'
+        ]);
+
+        Department::create([
+            'name' => 'Medicina General',
+            'description' => 'Esta es la descripción de medicina general'
         ]);
     }
 }

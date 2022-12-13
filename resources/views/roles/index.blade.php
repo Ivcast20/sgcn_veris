@@ -7,9 +7,9 @@
 @stop
 
 @section('content')
-    <div class="d-flex justify-content-end mb-2">
+    {{-- <div class="d-flex justify-content-end mb-2">
         <a class="btn btn-primary" href="{{ route('roles.create') }}">Nuevo Rol</a>
-    </div>
+    </div> --}}
 
     <livewire:role-table />
 @stop

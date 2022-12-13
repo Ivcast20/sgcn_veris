@@ -64,7 +64,9 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request);
+        // $rol = Role::withTrashed()->with('permissions')->where('id',$id)->first();
+        // $activo_checked = $request->has('status');
+        // if ($activo_checked && $rol->status)
     }
 
     /**

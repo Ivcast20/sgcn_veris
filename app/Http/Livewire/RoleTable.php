@@ -37,12 +37,12 @@ class RoleTable extends DataTableComponent
             Column::make("Fecha de creación", "created_at")
                 ->sortable(),
             BooleanColumn::make('Estado', 'status'),
-            LinkColumn::make('Acciones')
-                ->title(fn ($row) => 'Editar')
-                ->location(fn ($row) => route('roles.edit', $row->id))
-                ->attributes(function ($row) {
-                    return ['class' => 'btn btn-success'];
-                }),
+            // LinkColumn::make('Acciones')
+            //     ->title(fn ($row) => 'Editar')
+            //     ->location(fn ($row) => route('roles.edit', $row->id))
+            //     ->attributes(function ($row) {
+            //         return ['class' => 'btn btn-success'];
+            //     }),
         ];
     }
 
