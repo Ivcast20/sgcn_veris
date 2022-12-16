@@ -45,7 +45,7 @@
                     <label for="department_id">Departamento</label>
                     <select class="form-control" id="department_id" name="department_id">
                         @foreach ($departamentos as $depart)
-                            <option value="{{ $depart->id }}" @selected(old('department_id'))>{{ $depart->name }}</option>
+                            <option value="{{ $depart->id }}" @selected(old('department_id') == $depart->id)>{{ $depart->name }}</option>
                         @endforeach
                     </select>
                     @error('department_id')
@@ -54,7 +54,7 @@
                 </div>
                 <!-- ROLES -->
                 <div class="text-bold mb-2">
-                    Permisos
+                    Roles
                 </div>
                 <select name="roles[]" id="multipleselect" multiple class="form-control">
                     @foreach ($roles as $key => $rol)
@@ -62,7 +62,7 @@
                         </option>
                     @endforeach
                 </select>
-                @error('permissions')
+                @error('roles')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
                 <!-- FIN -->

@@ -18,4 +18,17 @@
 
 @section('js')
     <script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script>
+    <script>
+        let mensaje = '{{ Session::has('message') }}';
+        if (mensaje) {
+            Swal.fire({
+                title: '{{ Session::get('message') }}',
+                toast: true,
+                icon: 'success',
+                position: 'top-end',
+                timer: 3000,
+                showConfirmButton: false,
+            });
+        }
+    </script>
 @stop

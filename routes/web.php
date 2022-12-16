@@ -27,12 +27,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-
-//Rutas para gestionar departamentos
-Route::resource('/departments', DepartmentController::class)->names('departments');
-//Rutas para gestionar roles
-Route::resource('/roles',RoleController::class)->names('roles');
-//Rutas para gestionar Usuarios
-Route::resource('users',UserController::class)->names('users');
-//Route::get('/users', [UserController::class,'index'])->name('users.index');
+Route::middleware([
+    'auth'
+])->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+    //Rutas para gestionar departamentos
+    Route::resource('/departments', DepartmentController::class)->names('departments');
+    //Rutas para gestionar roles
+    Route::resource('/roles', RoleController::class)->names('roles');
+    //Rutas para gestionar Usuarios
+    Route::resource('users', UserController::class)->names('users');
+    //Route::get('/users', [UserController::class,'index'])->name('users.index');
+});
