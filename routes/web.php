@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -32,10 +33,12 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
     //Rutas para gestionar departamentos
-    Route::resource('/departments', DepartmentController::class)->names('departments');
+    Route::resource('departments', DepartmentController::class)->names('departments');
     //Rutas para gestionar roles
-    Route::resource('/roles', RoleController::class)->names('roles');
+    Route::resource('roles', RoleController::class)->names('roles');
     //Rutas para gestionar Usuarios
     Route::resource('users', UserController::class)->names('users');
     //Route::get('/users', [UserController::class,'index'])->name('users.index');
+    //Rutas para gestionar categorías de productos/servicios
+    Route::resource('categories',CategoryController::class)->names('categories');
 });

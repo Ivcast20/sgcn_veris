@@ -58,5 +58,7 @@
     "Updated at" : "Fecha actualización",
     "Departments" : "Departamentos",
     "New Department" : "Nuevo Departamento",
-    "permissions": "permisos"
+    "permissions": "permisos",
+    "Categories":"Categorías",
+    "New Category" : "Nueva Categoría"
 }

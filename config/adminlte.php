@@ -409,6 +409,19 @@ return [
                     'text' => 'Departamentos',
                     'route' => 'departments.index',
                     'icon' => 'fas fa-fw fa-building'
+                ],
+                [
+                    'text' => 'Productos/Servicios',
+                    'submenu' => [
+                        [
+                            'text' => 'Categorías',
+                            'route' => 'categories.index'
+                        ],
+                        [
+                            'text' => 'Productos/Servicios',
+                            'url' => '#'
+                        ]
+                    ]
                 ]
             ]
         ],
