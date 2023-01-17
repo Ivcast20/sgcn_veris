@@ -2,13 +2,18 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\CategoriesExport;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Category;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CategoryTable extends DataTableComponent
 {
@@ -31,10 +36,11 @@ class CategoryTable extends DataTableComponent
                 ->searchable(),
             BooleanColumn::make("Estado", "status")
                 ->sortable(),
-            Column::make("Created at", "created_at")
+            Column::make("Fecha de creación", "created_at")
                 ->sortable(),
-            Column::make("Updated at", "updated_at")
-                ->sortable(),
+            Column::make("Fecha de actualización", "updated_at")
+                ->sortable()
+                ->deselected(),
             LinkColumn::make('Acciones')
                 ->title(fn ($row) => 'Editar')
                 ->location(fn ($row) => route('categories.edit', $row->id))
@@ -62,4 +68,36 @@ class CategoryTable extends DataTableComponent
                 }),
         ];
     }
+
+    public function bulkActions(): array
+    {
+        return [
+            'exportPDF' => 'exportar PDF',
+            'exportExcel' => 'exportar EXCEL'
+        ];
+    }
+
+    public function exportPDF()
+    {
+        $categorias = Category::findMany($this->getSelected());
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->toTimeString();
+        $pdf = PDF::loadView('pdf.categories', compact('nombreCompleto','fecha','hora','categorias'))->output();
+        return response()->streamDownload(
+            fn() => print($pdf), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Categorías.pdf'
+        );
+    }
+
+    public function exportExcel()
+    {
+        $categorias = $this->getSelected();
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->toTimeString();
+        return Excel::download(new CategoriesExport($categorias), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Categorías.xlsx');
+    }
+
 }

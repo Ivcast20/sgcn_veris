@@ -37,6 +37,9 @@ class DepartmentTable extends DataTableComponent
             Column::make("Descripción", "description"),
             Column::make("Fecha de creación", "created_at")
                 ->sortable(),
+            Column::make("Fecha de actualización", "updated_at")
+                ->sortable()
+                ->deselected(),
             BooleanColumn::make("Estado", "status")
                 ->sortable(),
             LinkColumn::make('Acciones')
@@ -83,7 +86,7 @@ class DepartmentTable extends DataTableComponent
         $hora = Carbon::now()->toTimeString();
         $pdf = PDF::loadView('pdf.departments', compact('nombreCompleto','fecha','hora','departamentos'))->output();
         return response()->streamDownload(
-            fn() => print($pdf), Carbon::now()->toDateTimeString() . ' Modulo Departamentos.pdf'
+            fn() => print($pdf), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Departamentos.pdf'
         );
     }
 
@@ -91,9 +94,9 @@ class DepartmentTable extends DataTableComponent
     {
         $departamentos = $this->getSelected();
         $usuario = Auth::user();
-        $nombreCompleto = $usuario->lastname . ' ' . $usuario->name;
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
         $fecha = Carbon::now()->format('d-m-Y');
         $hora = Carbon::now()->toTimeString();
-        return Excel::download(new DepartmentsExport($departamentos), $fecha . ' ' . $hora . ' ' . $nombreCompleto . '.xlsx');
+        return Excel::download(new DepartmentsExport($departamentos), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Departamentos.xlsx');
     }
 }

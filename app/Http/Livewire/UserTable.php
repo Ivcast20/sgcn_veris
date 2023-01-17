@@ -18,12 +18,14 @@ class UserTable extends DataTableComponent
         $this->setPrimaryKey('id');
         $this->setHideBulkActionsWhenEmptyEnabled();
         $this->setFilterLayout('slide-down');
+        $this->setDefaultSort('id', 'desc');
     }
 
     public function bulkActions(): array
     {
         return [
-            'exportSelected' => 'Export',
+            'exportPDF' => 'exportar PDF',
+            'exportExcel' => 'exportar EXCEL'
         ];
     }
 
@@ -33,7 +35,11 @@ class UserTable extends DataTableComponent
             Column::make("Id", "id")
                 ->sortable(),
             Column::make(__('Name'), "name")
-                ->sortable(),
+                ->sortable()
+                ->searchable(),
+            column::make('Apellido',"last_name")
+                ->sortable()
+                ->searchable(),
             Column::make(__('Email'), "email")
                 ->sortable(),
             Column::make(__('Created at'), "created_at")
@@ -62,7 +68,12 @@ class UserTable extends DataTableComponent
         ];
     }
 
-    public function exportSelected()
+    public function exportPDF()
+    {
+        dd($this->getSelected());
+    }
+
+    public function exportExcel()
     {
         dd($this->getSelected());
     }

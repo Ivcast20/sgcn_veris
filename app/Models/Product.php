@@ -19,4 +19,9 @@ class Product extends Model
         'status' => 'boolean'
     ];
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
 }

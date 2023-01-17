@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Reporte de departamentos</title>
+    <title>Reporte de categorías</title>
     <style>
         .clearfix:after {
             content: "";
@@ -117,7 +117,7 @@
         </div>
         <div>
             <h1>Módulo</h1>
-            <h2>Departamentos</h2>
+            <h2>Categorías</h2>
         </div>
 
         <div id="datosR">
@@ -127,7 +127,7 @@
         </div>
 
         <div id="TotalR">
-            <div><span>Total de registros: </span>{{ $departamentos->count() }}</div>
+            <div><span>Total de registros: </span>{{ $categorias->count() }}</div>
         </div>
 
     </header>
@@ -136,21 +136,19 @@
         <table>
             <thead>
                 <tr>
-                    <th class="idUser">ID</th>
-                    <th class="fecIni">Nombre</th>
-                    <th class="fecFin">Descripción</th>
-                    <th class="fecCreac">Creación</th>
-                    <th class="UserEstado">Estado</th>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Creación</th>
+                    <th>Estado</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($departamentos as $depart)   
+                @foreach ($categorias as $category)   
                 <tr>
-                    <th class="idUser">{{ $depart->id }}</th>
-                    <th class="fecIni">{{ $depart->name }}</th>
-                    <th class="fecFin">{{ $depart->description }}</th>
-                    <th class="fecCreac">{{ $depart->created_at }}</th>
-                    <th class="UserEstado">{{ $depart->status == 1 ? 'Activo' : 'Inactivo' }}</th>
+                    <th>{{ $category->id }}</th>
+                    <th>{{ $category->name }}</th>
+                    <th>{{ $category->created_at }}</th>
+                    <th>{{ $category->status == 1 ? 'Activo' : 'Inactivo' }}</th>
                 </tr>
                 @endforeach
             </tbody>

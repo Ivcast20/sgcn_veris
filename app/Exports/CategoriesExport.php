@@ -2,13 +2,13 @@
 
 namespace App\Exports;
 
-use App\Models\Department;
+use App\Models\Category;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class DepartmentsExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
+class CategoriesExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
 {
     public $ids;
     /**
@@ -24,7 +24,6 @@ class DepartmentsExport implements FromCollection, WithHeadings, ShouldAutoSize,
         return [
             'ID',
             'Nombre',
-            'Descripción',
             'Estado',
             'Fecha de creación',
             'Fecha de actualización'
@@ -36,7 +35,6 @@ class DepartmentsExport implements FromCollection, WithHeadings, ShouldAutoSize,
         return [
             $row->id,
             $row->name,
-            $row->description,
             $row->status == 1 ? 'Activo' : 'Inactivo',
             $row->created_at,
             $row->updated_at
@@ -45,6 +43,6 @@ class DepartmentsExport implements FromCollection, WithHeadings, ShouldAutoSize,
 
     public function collection()
     {
-        return Department::findMany($this->ids);
+        return Category::findMany($this->ids);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreDepartmentRequest extends FormRequest
 {
@@ -24,8 +25,15 @@ class StoreDepartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required','string','max:255'],
+            'name' => ['required','string','max:255', Rule::unique('departments','name')],
             'description' => ['required','string','max:255']
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.unique' => 'Ya existe un departamento con este nombre'
         ];
     }
 }

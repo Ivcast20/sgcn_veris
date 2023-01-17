@@ -3,6 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,7 +48,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    function adminlte_desc(){
+    function adminlte_desc()
+    {
         return 'Bienvenido ' . $this->name;
+    }
+
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn($name) => Str::title($name),
+            set: fn($name) => Str::upper($name),
+        );
+    }
+
+    protected function lastName(): Attribute
+    {
+        return Attribute::make(
+            get: fn($last_name) => Str::title($last_name),
+            set: fn($last_name) => Str::upper($last_name),
+        );
     }
 }

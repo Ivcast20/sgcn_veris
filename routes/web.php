@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -41,4 +42,6 @@ Route::middleware([
     //Route::get('/users', [UserController::class,'index'])->name('users.index');
     //Rutas para gestionar categorías de productos/servicios
     Route::resource('categories',CategoryController::class)->names('categories');
+    //Rutas para gestionar productos
+    Route::resource('products',ProductController::class)->names('products');
 });
