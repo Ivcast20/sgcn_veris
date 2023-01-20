@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Reporte de departamentos</title>
+    <title>Reporte de productos/servicios</title>
     <style>
         .clearfix:after {
             content: "";
@@ -117,7 +117,7 @@
         </div>
         <div>
             <h1>Módulo</h1>
-            <h2>Departamentos</h2>
+            <h2>Productos/Servicios</h2>
         </div>
 
         <div id="datosR">
@@ -127,7 +127,7 @@
         </div>
 
         <div id="TotalR">
-            <div><span>Total de registros: </span>{{ $departamentos->count() }}</div>
+            <div><span>Total de registros: </span>{{ $productos->count() }}</div>
         </div>
 
     </header>
@@ -136,21 +136,21 @@
         <table>
             <thead>
                 <tr>
-                    <th class="idUser">ID</th>
-                    <th class="fecIni">Nombre</th>
-                    <th class="fecFin">Descripción</th>
-                    <th class="fecCreac">Creación</th>
-                    <th class="UserEstado">Estado</th>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Creación</th>
+                    <th>Estado</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($departamentos as $depart)   
+                @foreach ($productos as $product)   
                 <tr>
-                    <th class="idUser">{{ $depart->id }}</th>
-                    <th class="fecIni">{{ $depart->name }}</th>
-                    <th class="fecFin">{{ $depart->description }}</th>
-                    <th class="fecCreac">{{ $depart->created_at_r }}</th>
-                    <th class="UserEstado">{{ $depart->status == 1 ? 'Activo' : 'Inactivo' }}</th>
+                    <th>{{ $product->id }}</th>
+                    <th>{{ $product->name }}</th>
+                    <th>{{ $product->category->name }}</th>
+                    <th>{{ $product->created_at }}</th>
+                    <th>{{ $product->status == 1 ? 'Activo' : 'Inactivo' }}</th>
                 </tr>
                 @endforeach
             </tbody>

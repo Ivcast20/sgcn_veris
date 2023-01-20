@@ -38,8 +38,8 @@ class DepartmentsExport implements FromCollection, WithHeadings, ShouldAutoSize,
             $row->name,
             $row->description,
             $row->status == 1 ? 'Activo' : 'Inactivo',
-            $row->created_at,
-            $row->updated_at
+            $row->created_at->format('d/m/Y'),
+            $row->updated_at->format('d/m/Y')
         ];
     }
 

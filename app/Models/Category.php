@@ -28,14 +28,14 @@ class Category extends Model
     protected function createdAt(): Attribute
     {
         return Attribute::make(
-            get: fn($fecha) => Carbon::createFromFormat('Y-m-d H:i:s',$fecha)->format('d/m/Y'),
+            get: fn($fecha) => Carbon::createFromFormat('Y-m-d H:i:s',$fecha)->format('d/m/Y')
         );
     }
 
     protected function updatedAt(): Attribute
     {
         return Attribute::make(
-            get: fn($fecha) => Carbon::createFromFormat('Y-m-d H:i:s',$fecha)->format('d/m/Y'),
+            get: fn($fecha) => Carbon::createFromFormat('Y-m-d H:i:s',$fecha)->format('d/m/Y')
         );
     }
 }

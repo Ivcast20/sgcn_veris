@@ -36,12 +36,15 @@ class DepartmentTable extends DataTableComponent
                 ->searchable(),
             Column::make("Descripción", "description"),
             Column::make("Fecha de creación", "created_at")
-                ->sortable(),
+                ->format(function ($value) {
+                    return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y H:i');
+                }),
             Column::make("Fecha de actualización", "updated_at")
-                ->sortable()
+                ->format(function ($value) {
+                    return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y H:i');
+                })
                 ->deselected(),
-            BooleanColumn::make("Estado", "status")
-                ->sortable(),
+            BooleanColumn::make("Estado", "status"),
             LinkColumn::make('Acciones')
                 ->title(fn ($row) => 'Editar')
                 ->location(fn ($row) => route('departments.edit', $row->id))
@@ -83,10 +86,11 @@ class DepartmentTable extends DataTableComponent
         $usuario = Auth::user();
         $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
         $fecha = Carbon::now()->format('d-m-Y');
-        $hora = Carbon::now()->toTimeString();
-        $pdf = PDF::loadView('pdf.departments', compact('nombreCompleto','fecha','hora','departamentos'))->output();
+        $hora = Carbon::now()->format('H:i');
+        $pdf = PDF::loadView('pdf.departments', compact('nombreCompleto', 'fecha', 'hora', 'departamentos'))->output();
         return response()->streamDownload(
-            fn() => print($pdf), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Departamentos.pdf'
+            fn () => print($pdf),
+            $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Departamentos.pdf'
         );
     }
 
@@ -96,7 +100,7 @@ class DepartmentTable extends DataTableComponent
         $usuario = Auth::user();
         $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
         $fecha = Carbon::now()->format('d-m-Y');
-        $hora = Carbon::now()->toTimeString();
+        $hora = Carbon::now()->format('H:i');
         return Excel::download(new DepartmentsExport($departamentos), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Departamentos.xlsx');
     }
 }
