@@ -5,28 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class BiaProcess extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
+        'alcance',
+        'estado_id',
         'status',
-        'category_id'
+        'fecha_inicio'
     ];
 
     protected $casts = [
         'status' => 'boolean'
     ];
 
-    public function category()
+    public function products()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Product::class,'bia_process_product','bia_id','product_id');
     }
-
-    public function bias()
-    {
-        return $this->belongsToMany(BiaProcess::class,'bia_process_product','bia_id','product_id');
-    }
-
 }

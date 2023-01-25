@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BiaProcessController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProductController;
@@ -39,9 +40,10 @@ Route::middleware([
     Route::resource('roles', RoleController::class)->names('roles');
     //Rutas para gestionar Usuarios
     Route::resource('users', UserController::class)->names('users');
-    //Route::get('/users', [UserController::class,'index'])->name('users.index');
     //Rutas para gestionar categorías de productos/servicios
     Route::resource('categories',CategoryController::class)->names('categories');
     //Rutas para gestionar productos
     Route::resource('products',ProductController::class)->names('products');
+    //Rutas para gestionar BIAs
+    Route::resource('bias',BiaProcessController::class)->names('bias');
 });

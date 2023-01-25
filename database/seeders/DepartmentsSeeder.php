@@ -16,18 +16,60 @@ class DepartmentsSeeder extends Seeder
     public function run()
     {
         Department::create([
-            'name' => 'Sistemas',
-            'description' => 'Esta es una descripción de prueba 1'
+            'name' => 'Gerencia de Analítica e Inteligencia Empresarial',
+            'description' => 'Esta es una descripción del departamento Gerencia de Analítica e Inteligencia Empresarial'
         ]);
 
         Department::create([
-            'name' => 'Ventas',
-            'description' => 'Esta es la descripción del departamento 2'
+            'name' => 'Finanzas',
+            'description' => 'Esta es una descripción del departamento Finanzas'
         ]);
 
         Department::create([
-            'name' => 'Medicina General',
-            'description' => 'Esta es la descripción de medicina general'
+            'name' => 'Control Interno',
+            'description' => 'Esta es una descripción del departamento Control Interno'
         ]);
+
+        Department::create([
+            'name' => 'Customer Experience',
+            'description' => 'Esta es una descripción del departamento Customer Experience'
+        ]);
+
+        Department::create([
+            'name' => 'Marketing',
+            'description' => 'Esta es una descripción del departamento Marketing'
+        ]);
+
+        Department::create([
+            'name' => 'Gestión Clínica y Operaciones',
+            'description' => 'Esta es una descripción del departamento Gestión Clínica y Operaciones'
+        ]);
+
+        Department::create([
+            'name' => 'Operaciones',
+            'description' => 'Esta es una descripción del departamento Operaciones'
+        ]);
+
+        Department::create([
+            'name' => 'Comercial',
+            'description' => 'Esta es una descripción del departamento Comercial'
+        ]);
+
+        Department::create([
+            'name' => 'Central Médica Virtual',
+            'description' => 'Esta es una descripción del departamento Central Médica Virtual'
+        ]);
+
+        Department::create([
+            'name' => 'Gestión Humana',
+            'description' => 'Esta es una descripción del departamento Gestión Humana'
+        ]);
+
+        Department::create([
+            'name' => 'Tecnología',
+            'description' => 'Esta es una descripción del departamento Tecnología'
+        ]);
+
+
     }
 }
