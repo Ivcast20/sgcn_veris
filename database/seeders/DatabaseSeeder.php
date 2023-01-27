@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductSeeder::class);
         $this->call(BiaEstadosSeeder::class);
         $this->call(BiaProcessSeeder::class);
+        $this->call(ParameterSeeder::class);
         
         \App\Models\User::factory(10)->create();
 

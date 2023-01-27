@@ -300,11 +300,11 @@ return [
             'submenu' => [
                 [
                     'text' => 'Lista de BIA',
-                    'url' => '#'
+                    'route' => 'bias.index'
                 ],
                 [
                     'text' => 'Parámetros',
-                    'url' => '#'
+                    'route' => 'parameters.index'
                 ],
                 [
                     'text' => 'Niveles',

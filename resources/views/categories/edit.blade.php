@@ -28,8 +28,7 @@
                         type="checkbox"
                         class="custom-control-input"
                         id="status" 
-                        name="status" 
-                        value="1"
+                        name="status"
                         @checked(old('status',$category->status))/>
                     <label class="custom-control-label" for="status">Activo</label>
                 </div>

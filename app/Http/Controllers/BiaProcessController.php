@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBiaRequest;
+use App\Http\Requests\UpdateBiaRequest;
 use App\Models\BiaProcess;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class BiaProcessController extends Controller
@@ -14,7 +17,7 @@ class BiaProcessController extends Controller
      */
     public function index()
     {
-        //
+        return view('bias.index');
     }
 
     /**
@@ -24,7 +27,9 @@ class BiaProcessController extends Controller
      */
     public function create()
     {
-        //
+        $productos = Product::with('category:id,name')->where('status',1)->get();
+        //return  json_encode($productos);
+        return view('bias.create', compact('productos'));
     }
 
     /**
@@ -33,21 +38,13 @@ class BiaProcessController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBiaRequest $request)
     {
-        //
+        $bia = BiaProcess::create($request->validated());
+        $bia->products()->sync($request->input('products',[]));
+        return view('bias.index')->with(['message' => 'BIA Creado', 'typo' => 'success']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\BiaProcess  $biaProcess
-     * @return \Illuminate\Http\Response
-     */
-    public function show(BiaProcess $biaProcess)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -55,9 +52,10 @@ class BiaProcessController extends Controller
      * @param  \App\Models\BiaProcess  $biaProcess
      * @return \Illuminate\Http\Response
      */
-    public function edit(BiaProcess $biaProcess)
+    public function edit(BiaProcess $bia)
     {
-        //
+        $productos = Product::with('category:id,name')->where('status',1)->get();
+        return view('bias.edit',compact('productos','bia'));
     }
 
     /**
@@ -67,19 +65,21 @@ class BiaProcessController extends Controller
      * @param  \App\Models\BiaProcess  $biaProcess
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BiaProcess $biaProcess)
+    public function update(UpdateBiaRequest $request, BiaProcess $bia)
     {
-        //
+        $bia->update($request->validated());
+        $bia->products()->sync($request->input('products',[]));
+        return view('bias.index')->with(['message' => 'BIA Actualizado', 'typo' => 'success']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\BiaProcess  $biaProcess
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(BiaProcess $biaProcess)
+    public function verProductos(Request $request, $id)
     {
-        //
+        $bia = BiaProcess::find($id);
+        $nombreBia = $bia->name;
+        $ids = $bia->products->pluck('id');
+        $productos = Product::with('category:id,name')->findMany($ids);
+        return view('bias.products',compact(['nombreBia','productos']));
+
     }
+
 }
