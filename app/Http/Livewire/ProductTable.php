@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\ProductsExport;
 use App\Models\Category;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -10,6 +11,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
@@ -35,9 +37,14 @@ class ProductTable extends DataTableComponent
                 ->searchable(),
             Column::make("Categoría", "category.name"),
             Column::make("Fecha de creación", "created_at")
-                ->sortable(),
+                ->format(function ($value) {
+                    return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
+                }),
             Column::make("Fecha de actualización", "updated_at")
-                ->sortable(),
+                ->format(function ($value) {
+                    return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
+                })
+                ->deselected(),
             BooleanColumn::make("Estado", "status")
                 ->sortable(),
             LinkColumn::make('Acciones')
@@ -93,22 +100,21 @@ class ProductTable extends DataTableComponent
         $usuario = Auth::user();
         $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
         $fecha = Carbon::now()->format('d-m-Y');
-        $hora = Carbon::now()->toTimeString();
-        $pdf = Pdf::loadView('pdf.products', compact('nombreCompleto','fecha','hora','productos'))->output();
+        $hora = Carbon::now()->format('H:i');
+        $pdf = Pdf::loadView('pdf.products', compact('nombreCompleto', 'fecha', 'hora', 'productos'))->output();
         return response()->streamDownload(
-            fn() => print($pdf), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Productos.pdf'
+            fn () => print($pdf),
+            $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Productos.pdf'
         );
     }
 
     public function exportExcel()
     {
-        dd('Hola');
-        // $categorias = $this->getSelected();
-        // $usuario = Auth::user();
-        // $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
-        // $fecha = Carbon::now()->format('d-m-Y');
-        // $hora = Carbon::now()->toTimeString();
-        // return Excel::download(new CategoriesExport($categorias), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Categorías.xlsx');
+         $productos = $this->getSelected();
+         $usuario = Auth::user();
+         $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+         $fecha = Carbon::now()->format('d-m-Y');
+         $hora = Carbon::now()->format('H:i');
+         return Excel::download(new ProductsExport($productos), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Productos.xlsx');
     }
-
 }

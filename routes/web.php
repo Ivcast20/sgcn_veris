@@ -3,6 +3,7 @@
 use App\Http\Controllers\BiaProcessController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\LevelController;
 use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
@@ -51,4 +52,6 @@ Route::middleware([
     Route::get('bia/{id}/products',[BiaProcessController::class,'verProductos'])->name('verproductos');
     //Rutas para gestionar Parametros
     Route::resource('parameters',ParameterController::class)->names('parameters');
+    //Rutas para gestionar Niveles
+    Route::resource('levels',LevelController::class)->names('levels');
 });

@@ -147,7 +147,7 @@
                 <tr>
                     <th>{{ $category->id }}</th>
                     <th>{{ $category->name }}</th>
-                    <th>{{ $category->created_at }}</th>
+                    <th>{{ $category->created_at_r }}</th>
                     <th>{{ $category->status == 1 ? 'Activo' : 'Inactivo' }}</th>
                 </tr>
                 @endforeach

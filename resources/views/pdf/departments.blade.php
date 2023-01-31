@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Reporte de departamentos</title>
     <style>
         .clearfix:after {
@@ -9,6 +10,7 @@
             display: table;
             clear: both;
         }
+
         body {
             margin: 0 auto;
             color: #001028;
@@ -17,16 +19,20 @@
             font-size: 14px;
             font-family: 'Times New Roman', Times, serif;
         }
+
         header {
             padding: 20px 0px;
             margin-bottom: 30px;
         }
+
         #logo {
             margin: right;
         }
+
         #logo img {
             width: 200px;
         }
+
         h1 {
             color: #5D6975;
             font-size: 2.4em;
@@ -34,6 +40,7 @@
             text-align: right;
             margin: 0 0 5px 0;
         }
+
         h2 {
             border-bottom: 1px solid #0087C3;
             color: #5D6975;
@@ -43,28 +50,29 @@
             text-align: right;
             margin: 0 0 5px 0;
         }
+
         #TotalR {
             text-align: right;
             font-weight: bold;
         }
+
         #datosR {
             float: left;
             font-weight: normal;
         }
+
         #datosR span {
             color: black;
-            /* text-align: left; */
             width: 52px;
-            /* margin-right: 5px; */
-            /* display: inline-block; */
-            /* font-size: 1em; */
             font-weight: bolder;
             padding-left: 6px;
             border-left: 6px solid #0087C3;
         }
+
         #project {
             float: left;
         }
+
         #project span {
             color: #5D6975;
             text-align: right;
@@ -73,30 +81,35 @@
             display: inline-block;
             font-size: 0.8em;
         }
+
+        table,
+        td,
+        th {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px
+        }
+
         table {
             width: 100%;
-            border-collapse: collapse;
-            border-spacing: 0;
-            margin-bottom: 20px;
+            table-layout: fixed;
         }
-        table tr:nth-child(2n-1) td {
-            background: #0087C3;
-        }
+
         table th,
         table td {
-            text-align: center;
+            text-align: justify;
+            vertical-align: baseline;
         }
+
         table th {
-            padding: 5px 20px;
-            /* color: #5D6975; */
-            border-bottom: 1px solid #0087C3;
-            white-space: nowrap;
-            font-weight: normal;
+            font-weight: bold;
+            background-color: #018bc2;
         }
+
         table td {
-            padding: 90px;
-            text-align: right;
+            padding: 20px 10px;
         }
+
         footer {
             color: #5D6975;
             width: 100%;
@@ -113,7 +126,8 @@
 <body>
     <header class="clearfix">
         <div id="logo">
-            <img src="https://bn1305files.storage.live.com/y4mbW5izh9Iaulp4_z_buxFABEm1ZOPX9iWaYpp_km5aQUqcn1EikH-0igcEaYyMzZ-cYGfR2QoStz9eiVZf6iiDy0DyM7Z7YolaksJ-LMUz8SoKAXmqkr_Rh8GqVxfpNQJA1-IoFld_xLPP31kSX_HfNP3OBS9u7CDlvvg-U2G1YRkzR3cr_IEFySigEyBIYrW?width=595&height=283&cropmode=none"/>
+            <img
+                src="https://bn1305files.storage.live.com/y4mbW5izh9Iaulp4_z_buxFABEm1ZOPX9iWaYpp_km5aQUqcn1EikH-0igcEaYyMzZ-cYGfR2QoStz9eiVZf6iiDy0DyM7Z7YolaksJ-LMUz8SoKAXmqkr_Rh8GqVxfpNQJA1-IoFld_xLPP31kSX_HfNP3OBS9u7CDlvvg-U2G1YRkzR3cr_IEFySigEyBIYrW?width=595&height=283&cropmode=none" />
         </div>
         <div>
             <h1>Módulo</h1>
@@ -136,22 +150,22 @@
         <table>
             <thead>
                 <tr>
-                    <th class="idUser">ID</th>
-                    <th class="fecIni">Nombre</th>
-                    <th class="fecFin">Descripción</th>
+                    <th class="idUser" style="width: auto">ID</th>
+                    <th class="fecIni" style="width: 20%">Nombre</th>
+                    <th class="fecFin" style="width: 40%">Descripción</th>
                     <th class="fecCreac">Creación</th>
                     <th class="UserEstado">Estado</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($departamentos as $depart)   
-                <tr>
-                    <th class="idUser">{{ $depart->id }}</th>
-                    <th class="fecIni">{{ $depart->name }}</th>
-                    <th class="fecFin">{{ $depart->description }}</th>
-                    <th class="fecCreac">{{ $depart->created_at_r }}</th>
-                    <th class="UserEstado">{{ $depart->status == 1 ? 'Activo' : 'Inactivo' }}</th>
-                </tr>
+                @foreach ($departamentos as $depart)
+                    <tr>
+                        <td class="idUser" style="width: auto">{{ $depart->id }}</td>
+                        <td class="fecIni" style="width: 20%">{{ $depart->name }}</td>
+                        <td class="fecFin" style="width: 40%">{{ $depart->description }}</td>
+                        <td class="fecCreac">{{ $depart->created_at_r }}</td>
+                        <td class="UserEstado">{{ $depart->status == 1 ? 'Activo' : 'Inactivo' }}</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

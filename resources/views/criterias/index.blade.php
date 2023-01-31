@@ -1,16 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', 'Parámetros')
+@section('title', 'Criterios')
 
 @section('content_header')
-    <h1>Lista de parámetros</h1>
+    <h1>{{ __('Criterios') }}</h1>
 @stop
 
 @section('content')
-    <div class="d-flex justify-content-end mb-2">
-        <a class="btn btn-primary" href="{{ route('parameters.create') }}">Nuevo Parámetro</a>
-    </div>
-    @livewire('parameter-table')
+    @can('admin.departments.create')    
+        <div class="d-flex justify-content-end mb-2">
+            <a class="btn btn-primary" href="{{ route('departments.create') }}">Nuevo Criterio</a>
+        </div>
+    @endcan
 @stop
 
 @section('css')

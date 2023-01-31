@@ -7,9 +7,11 @@
 @stop
 
 @section('content')
-    <div class="d-flex justify-content-end mb-2">
-        <a class="btn btn-primary" href="{{ route('departments.create') }}">Nuevo Departamento</a>
-    </div>
+    @can('admin.departments.create')    
+        <div class="d-flex justify-content-end mb-2">
+            <a class="btn btn-primary" href="{{ route('departments.create') }}">Nuevo Departamento</a>
+        </div>
+    @endcan
 
     <livewire:department-table />
 @stop

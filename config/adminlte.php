@@ -308,7 +308,7 @@ return [
                 ],
                 [
                     'text' => 'Niveles',
-                    'url' => '#'
+                    'route' => 'levels.index'
                 ],
                 [
                     'text' => 'Criterios',

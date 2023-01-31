@@ -25,17 +25,17 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
-    protected function createdAt(): Attribute
+    protected function createdAtR(): Attribute
     {
         return Attribute::make(
-            get: fn($fecha) => Carbon::createFromFormat('Y-m-d H:i:s',$fecha)->format('d/m/Y')
+            get: fn() => Carbon::createFromFormat('Y-m-d H:i:s',$this->created_at)->format('d/m/Y H:i')
         );
     }
 
-    protected function updatedAt(): Attribute
+    protected function updatedAtR(): Attribute
     {
         return Attribute::make(
-            get: fn($fecha) => Carbon::createFromFormat('Y-m-d H:i:s',$fecha)->format('d/m/Y')
+            get: fn() => Carbon::createFromFormat('Y-m-d H:i:s',$this->updated_at)->format('d/m/Y H:i')
         );
     }
 }

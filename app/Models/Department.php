@@ -34,4 +34,9 @@ class Department extends Model
             get: fn() => Carbon::createFromFormat('Y-m-d H:i:s',$this->updated_at)->format('d/m/Y H:i'),
         );
     }
+
+    public function users()
+    {
+        return $this->hasMany(User::class,'department_id','id');
+    }
 }

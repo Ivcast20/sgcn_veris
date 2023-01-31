@@ -28,7 +28,10 @@ class DepartmentTable extends DataTableComponent
 
     public function columns(): array
     {
-        return [
+        $usuario = Auth::user();
+        $puede_editar = $usuario->hasPermissionTo('admin.departments.edit');
+
+        $columnas = [
             Column::make("Id", "id")
                 ->sortable(),
             Column::make("Nombre", "name")
@@ -37,11 +40,42 @@ class DepartmentTable extends DataTableComponent
             Column::make("Descripción", "description"),
             Column::make("Fecha de creación", "created_at")
                 ->format(function ($value) {
-                    return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y H:i');
+                    return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
                 }),
             Column::make("Fecha de actualización", "updated_at")
                 ->format(function ($value) {
-                    return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y H:i');
+                    return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
+                })
+                ->deselected(),
+            BooleanColumn::make("Estado", "status")
+        ];
+
+        if($puede_editar){
+            $columnas = array_merge(
+                $columnas,
+                [LinkColumn::make('Acciones')
+                    ->title(fn ($row) => 'Editar')
+                    ->location(fn ($row) => route('departments.edit', $row->id))
+                    ->attributes(function ($row) {
+                        return ['class' => 'btn btn-success'];
+                    })]);
+        }
+
+        return $columnas;
+        /*return [
+            Column::make("Id", "id")
+                ->sortable(),
+            Column::make("Nombre", "name")
+                ->sortable()
+                ->searchable(),
+            Column::make("Descripción", "description"),
+            Column::make("Fecha de creación", "created_at")
+                ->format(function ($value) {
+                    return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
+                }),
+            Column::make("Fecha de actualización", "updated_at")
+                ->format(function ($value) {
+                    return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
                 })
                 ->deselected(),
             BooleanColumn::make("Estado", "status"),
@@ -51,7 +85,7 @@ class DepartmentTable extends DataTableComponent
                 ->attributes(function ($row) {
                     return ['class' => 'btn btn-success'];
                 }),
-        ];
+        ];*/
     }
 
     public function filters(): array

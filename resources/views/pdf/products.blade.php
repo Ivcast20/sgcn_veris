@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Reporte de productos/servicios</title>
     <style>
-        .clearfix:after {
+        /* .clearfix:after {
             content: "";
             display: table;
             clear: both;
         }
+
         body {
             margin: 0 auto;
             color: #001028;
@@ -17,16 +19,20 @@
             font-size: 14px;
             font-family: 'Times New Roman', Times, serif;
         }
+
         header {
             padding: 20px 0px;
             margin-bottom: 30px;
         }
+
         #logo {
             margin: right;
         }
+
         #logo img {
             width: 200px;
         }
+
         h1 {
             color: #5D6975;
             font-size: 2.4em;
@@ -34,6 +40,7 @@
             text-align: right;
             margin: 0 0 5px 0;
         }
+
         h2 {
             border-bottom: 1px solid #0087C3;
             color: #5D6975;
@@ -43,28 +50,29 @@
             text-align: right;
             margin: 0 0 5px 0;
         }
+
         #TotalR {
             text-align: right;
             font-weight: bold;
         }
+
         #datosR {
             float: left;
             font-weight: normal;
         }
+
         #datosR span {
             color: black;
-            /* text-align: left; */
             width: 52px;
-            /* margin-right: 5px; */
-            /* display: inline-block; */
-            /* font-size: 1em; */
             font-weight: bolder;
             padding-left: 6px;
             border-left: 6px solid #0087C3;
         }
+
         #project {
             float: left;
         }
+
         #project span {
             color: #5D6975;
             text-align: right;
@@ -73,30 +81,145 @@
             display: inline-block;
             font-size: 0.8em;
         }
+
         table {
             width: 100%;
-            border-collapse: collapse;
             border-spacing: 0;
             margin-bottom: 20px;
+            table-layout: fixed;
         }
+
         table tr:nth-child(2n-1) td {
             background: #0087C3;
         }
+
         table th,
         table td {
-            text-align: center;
+            text-align: justify;
+            vertical-align: baseline;
         }
+
         table th {
             padding: 5px 20px;
-            /* color: #5D6975; */
             border-bottom: 1px solid #0087C3;
-            white-space: nowrap;
             font-weight: normal;
         }
-        table td {
-            padding: 90px;
-            text-align: right;
+
+        footer {
+            color: #5D6975;
+            width: 100%;
+            height: 30px;
+            position: absolute;
+            bottom: 0;
+            border-top: 1px solid #0087C3;
+            padding: 8px 0;
+            text-align: center;
+        } */
+        .clearfix:after {
+            content: "";
+            display: table;
+            clear: both;
         }
+
+        body {
+            margin: 0 auto;
+            color: #001028;
+            background: #FFFFFF;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        header {
+            padding: 20px 0px;
+            margin-bottom: 30px;
+        }
+
+        #logo {
+            margin: right;
+        }
+
+        #logo img {
+            width: 200px;
+        }
+
+        h1 {
+            color: #5D6975;
+            font-size: 2.4em;
+            font-weight: bolt;
+            text-align: right;
+            margin: 0 0 5px 0;
+        }
+
+        h2 {
+            border-bottom: 1px solid #0087C3;
+            color: #5D6975;
+            font-size: 1.4em;
+            line-height: 1em;
+            font-weight: normal;
+            text-align: right;
+            margin: 0 0 5px 0;
+        }
+
+        #TotalR {
+            text-align: right;
+            font-weight: bold;
+        }
+
+        #datosR {
+            float: left;
+            font-weight: normal;
+        }
+
+        #datosR span {
+            color: black;
+            width: 52px;
+            font-weight: bolder;
+            padding-left: 6px;
+            border-left: 6px solid #0087C3;
+        }
+
+        #project {
+            float: left;
+        }
+
+        #project span {
+            color: #5D6975;
+            text-align: right;
+            width: 52px;
+            margin-right: 10px;
+            display: inline-block;
+            font-size: 0.8em;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        table th,
+        table td {
+            text-align: justify;
+            vertical-align: baseline;
+        }
+
+        table th {
+            font-weight: bold;
+            background-color: #0188c2;
+        }
+
+        table td {
+            padding: 20px 10px;
+        }
+
         footer {
             color: #5D6975;
             width: 100%;
@@ -113,7 +236,8 @@
 <body>
     <header class="clearfix">
         <div id="logo">
-            <img src="https://bn1305files.storage.live.com/y4mbW5izh9Iaulp4_z_buxFABEm1ZOPX9iWaYpp_km5aQUqcn1EikH-0igcEaYyMzZ-cYGfR2QoStz9eiVZf6iiDy0DyM7Z7YolaksJ-LMUz8SoKAXmqkr_Rh8GqVxfpNQJA1-IoFld_xLPP31kSX_HfNP3OBS9u7CDlvvg-U2G1YRkzR3cr_IEFySigEyBIYrW?width=595&height=283&cropmode=none"/>
+            <img
+                src="https://bn1305files.storage.live.com/y4mbW5izh9Iaulp4_z_buxFABEm1ZOPX9iWaYpp_km5aQUqcn1EikH-0igcEaYyMzZ-cYGfR2QoStz9eiVZf6iiDy0DyM7Z7YolaksJ-LMUz8SoKAXmqkr_Rh8GqVxfpNQJA1-IoFld_xLPP31kSX_HfNP3OBS9u7CDlvvg-U2G1YRkzR3cr_IEFySigEyBIYrW?width=595&height=283&cropmode=none" />
         </div>
         <div>
             <h1>Módulo</h1>
@@ -144,14 +268,14 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($productos as $product)   
-                <tr>
-                    <th>{{ $product->id }}</th>
-                    <th>{{ $product->name }}</th>
-                    <th>{{ $product->category->name }}</th>
-                    <th>{{ $product->created_at }}</th>
-                    <th>{{ $product->status == 1 ? 'Activo' : 'Inactivo' }}</th>
-                </tr>
+                @foreach ($productos as $product)
+                    <tr>
+                        <th>{{ $product->id }}</th>
+                        <th>{{ $product->name }}</th>
+                        <th>{{ $product->category->name }}</th>
+                        <th>{{ $product->created_at_r }}</th>
+                        <th>{{ $product->status == 1 ? 'Activo' : 'Inactivo' }}</th>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

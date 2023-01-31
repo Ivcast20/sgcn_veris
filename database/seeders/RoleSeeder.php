@@ -16,11 +16,23 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $admin = Role::create(['name' => 'Admin']);
-        $director = Role::create(['name' => 'Director']);
-        $comite = Role::create(['name' => 'Comite']);
+        $admin = Role::create(['name' => 'Admin']); //Cod 1
+        $director = Role::create(['name' => 'Director']); //Cod 2
+        $comite = Role::create(['name' => 'Comite']); //Cod 3
 
-        //Permission::create(['name' => 'ver dashboard'])->syncRoles([$admin, $director]);
+        //Permisos para gestionar departamentos
+        Permission::create([
+            'name' => 'admin.departments.index',
+            'description' => 'Ver departamentos'
+        ])->syncRoles([$admin, $director]);
+        Permission::create([
+            'name' => 'admin.departments.create',
+            'description' => 'Crear departamentos'
+        ])->syncRoles([$admin, $director]);
+        Permission::create([
+            'name' => 'admin.departments.edit',
+            'description' => 'Editar departamentos'
+        ])->syncRoles([$admin, $director]);
 
         //Permisos para gestionar usuarios
         Permission::create([
@@ -30,10 +42,6 @@ class RoleSeeder extends Seeder
         Permission::create([
             'name' => 'admin.users.edit',
             'description' => 'Editar usuarios'
-        ])->syncRoles([$admin, $director]);
-        Permission::create([
-            'name' => 'admin.users.destroy',
-            'description' => 'Eliminar usuarios'
         ])->syncRoles([$admin, $director]);
         Permission::create([
             'name' => 'admin.users.create',

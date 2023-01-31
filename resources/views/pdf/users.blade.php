@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Reporte de categorías</title>
+    <title>Reporte de Usuarios</title>
     <style>
         .clearfix:after {
             content: "";
@@ -86,18 +86,17 @@
             font-size: 0.8em;
         }
 
-        table,
-        td,
-        th {
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 10px
-        }
-
         table {
             width: 100%;
+            /*border-collapse: collapse;*/
+            border-spacing: 0;
+            margin-bottom: 20px;
             table-layout: fixed;
         }
+
+        /* table tr:nth-child(2n-1) td {
+            background: #0087C3;
+        } */
 
         table th,
         table td {
@@ -106,11 +105,14 @@
         }
 
         table th {
+            padding: 5px 20px;
+            border-bottom: 1px solid #014764;
+            /*white-space: nowrap;*/
             font-weight: bold;
-            background-color: #018bc2;
         }
 
         table td {
+            border-bottom: 1px solid #0188c2;
             padding: 20px 10px;
         }
 
@@ -135,7 +137,7 @@
         </div>
         <div>
             <h1>Módulo</h1>
-            <h2>Categorías</h2>
+            <h2>Usuarios</h2>
         </div>
 
         <div id="datosR">
@@ -145,7 +147,7 @@
         </div>
 
         <div id="TotalR">
-            <div><span>Total de registros: </span>{{ $bias->count() }}</div>
+            <div><span>Total de registros: </span>{{ $usuarios->count() }}</div>
         </div>
 
     </header>
@@ -156,21 +158,19 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th style="width: 40%">Alcance</th>
-                    <th>Fecha Creación</th>
-                    <th>Fecha Inicio</th>
+                    <th>Departamento</th>
+                    <th>Creación</th>
                     <th>Estado</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($bias as $bia)
+                @foreach ($usuarios as $user)
                     <tr>
-                        <td>{{ $bia->id }}</td>
-                        <td>{{ $bia->name }}</td>
-                        <td style="width: 40%">{{ $bia->alcance }}</td>
-                        <td>{{ $bia->created_at_r }}</td>
-                        <td>{{ $bia->fecha_inicio_r }}</td>
-                        <td>{{ $bia->status == 1 ? 'Activo' : 'Inactivo' }}</td>
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->full_name }}</td>
+                        <td>{{ $user->department->name }}</td>
+                        <td>{{ $user->created_at_r }}</td>
+                        <td>{{ $user->status == 1 ? 'Activo' : 'Inactivo' }}</td>
                     </tr>
                 @endforeach
             </tbody>

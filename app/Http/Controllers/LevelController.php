@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreLevelRequest;
+use App\Http\Requests\UpdateLevelRequest;
+use App\Models\BiaProcess;
 use App\Models\Level;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,7 @@ class LevelController extends Controller
      */
     public function index()
     {
-        //
+        return view('levels.index');
     }
 
     /**
@@ -24,7 +27,8 @@ class LevelController extends Controller
      */
     public function create()
     {
-        //
+        $bias = BiaProcess::where('status',true)->get();
+        return view('levels.create', compact('bias'));
     }
 
     /**
@@ -33,20 +37,10 @@ class LevelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreLevelRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Level  $level
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Level $level)
-    {
-        //
+        Level::create($request->validated());
+        return redirect()->route('levels.index')->with(['message' => 'Nivel Creado', 'typo' => 'success']);
     }
 
     /**
@@ -57,7 +51,8 @@ class LevelController extends Controller
      */
     public function edit(Level $level)
     {
-        //
+        $bias = BiaProcess::where('status',true)->get();
+        return view('levels.edit', compact(['bias','level']));
     }
 
     /**
@@ -67,19 +62,10 @@ class LevelController extends Controller
      * @param  \App\Models\Level  $level
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Level $level)
+    public function update(UpdateLevelRequest $request, Level $level)
     {
-        //
+        $level->update($request->validated());
+        return redirect()->route('levels.index')->with(['message' => 'Nivel Actualizado', 'typo' => 'success']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Level  $level
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Level $level)
-    {
-        //
-    }
 }

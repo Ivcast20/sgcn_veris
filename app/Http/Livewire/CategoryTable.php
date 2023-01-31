@@ -37,16 +37,21 @@ class CategoryTable extends DataTableComponent
             BooleanColumn::make("Estado", "status")
                 ->sortable(),
             Column::make("Fecha de creación", "created_at")
-                ->sortable(),
+                ->format(function ($value) {
+                    return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
+                }),
             Column::make("Fecha de actualización", "updated_at")
-                ->sortable()
+                ->format(function ($value) {
+                    return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
+                })
                 ->deselected(),
             LinkColumn::make('Acciones')
                 ->title(fn ($row) => 'Editar')
                 ->location(fn ($row) => route('categories.edit', $row->id))
                 ->attributes(function ($row) {
-                    return ['class' => 'btn btn-success'
-                ];
+                    return [
+                        'class' => 'btn btn-success'
+                    ];
                 }),
         ];
     }
@@ -83,10 +88,11 @@ class CategoryTable extends DataTableComponent
         $usuario = Auth::user();
         $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
         $fecha = Carbon::now()->format('d-m-Y');
-        $hora = Carbon::now()->toTimeString();
-        $pdf = PDF::loadView('pdf.categories', compact('nombreCompleto','fecha','hora','categorias'))->output();
+        $hora = Carbon::now()->format('H:i');
+        $pdf = PDF::loadView('pdf.categories', compact('nombreCompleto', 'fecha', 'hora', 'categorias'))->output();
         return response()->streamDownload(
-            fn() => print($pdf), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Categorías.pdf'
+            fn () => print($pdf),
+            $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Categorías.pdf'
         );
     }
 
@@ -96,8 +102,7 @@ class CategoryTable extends DataTableComponent
         $usuario = Auth::user();
         $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
         $fecha = Carbon::now()->format('d-m-Y');
-        $hora = Carbon::now()->toTimeString();
+        $hora = Carbon::now()->format('H:i');
         return Excel::download(new CategoriesExport($categorias), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Categorías.xlsx');
     }
-
 }

@@ -1,16 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Parámetros')
+@section('title', 'Niveles')
 
 @section('content_header')
-    <h1>Lista de parámetros</h1>
+    <h1>Lista de niveles</h1>
 @stop
 
 @section('content')
     <div class="d-flex justify-content-end mb-2">
-        <a class="btn btn-primary" href="{{ route('parameters.create') }}">Nuevo Parámetro</a>
+        <a class="btn btn-primary" href="{{ route('levels.create') }}">Nuevo Nivel</a>
     </div>
-    @livewire('parameter-table')
+    @livewire('level-table')
 @stop
 
 @section('css')

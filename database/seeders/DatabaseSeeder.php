@@ -22,15 +22,19 @@ class DatabaseSeeder extends Seeder
         $this->call(BiaEstadosSeeder::class);
         $this->call(BiaProcessSeeder::class);
         $this->call(ParameterSeeder::class);
+        $this->call(LevelSeeder::class);
+        $this->call(CriteriaSeeder::class);
         
         \App\Models\User::factory(10)->create();
 
-        \App\Models\User::factory()->create([
-            'name' => 'Test',
-            'last_name' => 'Test',
-            'email' => 'test@example.com',
+        $usuario = \App\Models\User::factory()->create([
+            'name' => 'Admin',
+            'last_name' => 'Admin',
+            'email' => 'ivan20cast@gmail.com',
             'status' => 1,
-            'department_id' => 1
+            'department_id' => 11
         ]);
+
+        $usuario->roles()->sync([1]);
     }
 }

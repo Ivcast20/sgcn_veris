@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreParameterRequest;
+use App\Http\Requests\UpdateParameterRequest;
+use App\Models\BiaProcess;
 use App\Models\Parameter;
 use Illuminate\Http\Request;
 
@@ -24,7 +27,8 @@ class ParameterController extends Controller
      */
     public function create()
     {
-        //
+        $bias = BiaProcess::where('status',true)->get();
+        return view('parameters.create', compact('bias'));
     }
 
     /**
@@ -33,20 +37,10 @@ class ParameterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreParameterRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Parameter  $parameter
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Parameter $parameter)
-    {
-        //
+        Parameter::create($request->validated());
+        return redirect()->route('parameters.index')->with(['message' => 'Parámetro Creado', 'typo' => 'success']);
     }
 
     /**
@@ -57,7 +51,8 @@ class ParameterController extends Controller
      */
     public function edit(Parameter $parameter)
     {
-        //
+        $bias = BiaProcess::where('status',true)->get();
+        return view('parameters.edit', compact('bias','parameter'));
     }
 
     /**
@@ -67,19 +62,9 @@ class ParameterController extends Controller
      * @param  \App\Models\Parameter  $parameter
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Parameter $parameter)
+    public function update(UpdateParameterRequest $request, Parameter $parameter)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Parameter  $parameter
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Parameter $parameter)
-    {
-        //
+        $parameter->update($request->validated());
+        return redirect()->route('parameters.index')->with(['message' => 'Parámetro Actualizado', 'typo' => 'success']);
     }
 }

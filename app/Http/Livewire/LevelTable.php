@@ -5,16 +5,16 @@ namespace App\Http\Livewire;
 use App\Models\BiaProcess;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\Parameter;
-use Carbon\Carbon;
+use App\Models\Level;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
-class ParameterTable extends DataTableComponent
+class LevelTable extends DataTableComponent
 {
-    protected $model = Parameter::class;
+    protected $model = Level::class;
 
     public function configure(): void
     {
@@ -25,12 +25,14 @@ class ParameterTable extends DataTableComponent
 
     public function columns(): array
     {
-        $columnas = [
+        $columnas =  [
             Column::make("Id", "id")
                 ->sortable(),
-            Column::make("Name", "name")
+            Column::make("Nombre", "name")
                 ->sortable()
                 ->searchable(),
+            Column::make("Valor", "value")
+                ->sortable(),
             Column::make("BIA", "bia.name")
                 ->sortable(),
             Column::make("Fecha de creación", "created_at")
@@ -48,13 +50,15 @@ class ParameterTable extends DataTableComponent
 
         $columnas = array_merge(
             $columnas,
-            [LinkColumn::make('Acciones')
-                ->title(fn ($row) => 'Editar')
-                ->location(fn ($row) => route('parameters.edit', $row->id))
-                ->attributes(function ($row) {
-                    return ['class' => 'btn btn-success'];
-                })
-            ]);
+            [
+                LinkColumn::make('Acciones')
+                    ->title(fn ($row) => 'Editar')
+                    ->location(fn ($row) => route('levels.edit', $row->id))
+                    ->attributes(function ($row) {
+                        return ['class' => 'btn btn-success'];
+                    })
+            ]
+        );
 
         return $columnas;
     }
@@ -62,6 +66,18 @@ class ParameterTable extends DataTableComponent
     public function filters(): array
     {
         return [
+            SelectFilter::make('Estado', 'status')
+                ->options([
+                    '' => 'Todos',
+                    '1' => 'Activo',
+                    '0' => 'Inactivo',
+                ])->filter(function (Builder $builder, string $value) {
+                    if ($value === '1') {
+                        $builder->where('levels.status', true);
+                    } elseif ($value === '0') {
+                        $builder->where('levels.status', false);
+                    }
+                }),
             SelectFilter::make('BIA')
                 ->options(
                     array_merge(['' => 'Todos'], BiaProcess::query()
@@ -78,6 +94,7 @@ class ParameterTable extends DataTableComponent
         ];
     }
 
+
     public function bulkActions(): array
     {
         return [
@@ -88,11 +105,25 @@ class ParameterTable extends DataTableComponent
 
     public function exportPDF()
     {
-        return 'Hola';
+        // $productos = Product::with(['category:id,name'])->findMany($this->getSelected());
+        // $usuario = Auth::user();
+        // $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        // $fecha = Carbon::now()->format('d-m-Y');
+        // $hora = Carbon::now()->format('H:i');
+        // $pdf = Pdf::loadView('pdf.products', compact('nombreCompleto', 'fecha', 'hora', 'productos'))->output();
+        // return response()->streamDownload(
+        //     fn () => print($pdf),
+        //     $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Productos.pdf'
+        // );
     }
 
     public function exportExcel()
     {
-        return 'Chao';
+        // $productos = $this->getSelected();
+        // $usuario = Auth::user();
+        // $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        // $fecha = Carbon::now()->format('d-m-Y');
+        // $hora = Carbon::now()->format('H:i');
+        // return Excel::download(new ProductsExport($productos), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Productos.xlsx');
     }
 }

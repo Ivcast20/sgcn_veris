@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -67,5 +68,31 @@ class User extends Authenticatable
             get: fn($last_name) => Str::title($last_name),
             set: fn($last_name) => Str::upper($last_name),
         );
+    }
+
+    protected function createdAtR(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => Carbon::createFromFormat('Y-m-d H:i:s',$this->created_at)->format('d/m/Y H:i')
+        );
+    }
+
+    protected function updatedAtR(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => Carbon::createFromFormat('Y-m-d H:i:s',$this->updated_at)->format('d/m/Y H:i')
+        );
+    }
+
+    protected function fullName(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->last_name . ' ' . $this->name,
+        );
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class,'department_id','id');
     }
 }

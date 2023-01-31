@@ -39,11 +39,19 @@ class BiaTable extends DataTableComponent
             BooleanColumn::make("Estado", "status")
                 ->sortable(),
             Column::make("Fecha inicio", "fecha_inicio")
+                ->format(function ($value) {
+                    return Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y');
+                })
                 ->sortable(),
             Column::make("Fecha de creación", "created_at")
-                ->sortable(),
+                ->format(function ($value) {
+                    return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
+                }),
             Column::make("Fecha de actualización", "updated_at")
-                ->sortable(),
+                ->format(function ($value) {
+                    return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
+                })
+                ->deselected(),
             ButtonGroupColumn::make('Acciones')
                 ->unclickable()
                 ->attributes(function ($row) {
@@ -113,15 +121,15 @@ class BiaTable extends DataTableComponent
         $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
         $fecha = Carbon::now()->format('d-m-Y');
         $hora = Carbon::now()->toTimeString();
-        $pdf = Pdf::loadView('pdf.bias', compact('nombreCompleto','fecha','hora','bias'))->output();
+        $pdf = Pdf::loadView('pdf.bias', compact('nombreCompleto', 'fecha', 'hora', 'bias'))->output();
         return response()->streamDownload(
-            fn() => print($pdf), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo BIA.pdf'
+            fn () => print($pdf),
+            $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo BIA.pdf'
         );
     }
 
     public function exportExcel()
     {
-        // $categorias = $this->getSelected();
         $bias = $this->getSelected();
         $usuario = Auth::user();
         $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;

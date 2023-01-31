@@ -36,8 +36,8 @@ class CategoriesExport implements FromCollection, WithHeadings, ShouldAutoSize, 
             $row->id,
             $row->name,
             $row->status == 1 ? 'Activo' : 'Inactivo',
-            $row->created_at,
-            $row->updated_at
+            $row->created_at_r,
+            $row->updated_at_r
         ];
     }
 
