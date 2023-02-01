@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\BiaProcessController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\ProductController;
@@ -46,12 +48,29 @@ Route::middleware([
     Route::resource('categories',CategoryController::class)->names('categories');
     //Rutas para gestionar productos
     Route::resource('products',ProductController::class)->names('products');
+
     //Rutas para gestionar BIAs
     Route::resource('bias',BiaProcessController::class)->names('bias');
     //Ver productos de BIA
     Route::get('bia/{id}/products',[BiaProcessController::class,'verProductos'])->name('verproductos');
+    //Gestionar BIA
+    Route::get('bia/{id}/gestionar',[BiaProcessController::class,'gestionar'])->name('gestbia');
+    //Empieza proceso de calificar Prod-Servicios
+    Route::get('bia/{id}/calific',[BiaProcessController::class,'calific'])->name('calific');
+    //Calificaciones de productos por usuario
+    Route::get('bia/{id}/productoscalificados',[BiaProcessController::class,'calificacionesComite'])->name('calificaciones.comite');
+    //Calificar Prod-Servicios COMITÉ
+    Route::get('bia/{id}/calificar', [BiaProcessController::class, 'calificar'])->name('calificar');
+    
     //Rutas para gestionar Parametros
     Route::resource('parameters',ParameterController::class)->names('parameters');
     //Rutas para gestionar Niveles
     Route::resource('levels',LevelController::class)->names('levels');
+    //Rutas para gestionar Criterios
+    Route::resource('criterias', CriteriaController::class)->names('criterias');
+
+
+
+    //Rutas para consultas del dashboard
+    Route::get('usuarios-rol', [HomeController::class,'get_usuarios_x_rol'])->name('usuario.x.rol');
 });

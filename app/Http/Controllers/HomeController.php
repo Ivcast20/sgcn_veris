@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,5 +25,11 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function get_usuarios_x_rol()
+    {
+        $respuesta = Role::withCount('users')->get();
+        return json_encode($respuesta);
     }
 }

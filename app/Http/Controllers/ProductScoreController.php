@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BiaProcess;
-use App\Models\Criteria;
+use App\Models\ProductScore;
 use Illuminate\Http\Request;
 
-class CriteriaController extends Controller
+class ProductScoreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class CriteriaController extends Controller
      */
     public function index()
     {
-        return view('criterias.index');
+        //
     }
 
     /**
@@ -25,7 +24,7 @@ class CriteriaController extends Controller
      */
     public function create()
     {
-        return view('criterias.create');
+        //
     }
 
     /**
@@ -42,10 +41,10 @@ class CriteriaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Criteria  $criteria
+     * @param  \App\Models\ProductScore  $productScore
      * @return \Illuminate\Http\Response
      */
-    public function show(Criteria $criteria)
+    public function show(ProductScore $productScore)
     {
         //
     }
@@ -53,10 +52,10 @@ class CriteriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Criteria  $criteria
+     * @param  \App\Models\ProductScore  $productScore
      * @return \Illuminate\Http\Response
      */
-    public function edit(Criteria $criteria)
+    public function edit(ProductScore $productScore)
     {
         //
     }
@@ -65,10 +64,10 @@ class CriteriaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Criteria  $criteria
+     * @param  \App\Models\ProductScore  $productScore
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Criteria $criteria)
+    public function update(Request $request, ProductScore $productScore)
     {
         //
     }
@@ -76,10 +75,10 @@ class CriteriaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Criteria  $criteria
+     * @param  \App\Models\ProductScore  $productScore
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Criteria $criteria)
+    public function destroy(ProductScore $productScore)
     {
         //
     }

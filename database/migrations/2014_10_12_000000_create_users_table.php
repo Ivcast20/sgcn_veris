@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('last_name');
+            $table->string('cargo');
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('status')->default(1);

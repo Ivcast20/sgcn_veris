@@ -19,4 +19,19 @@ class Criteria extends Model
     protected $casts = [
         'status' => 'boolean'
     ];
+
+    public function bia()
+    {
+        return $this->belongsTo(BiaProcess::class, 'bia_id', 'id');
+    }
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class, 'level_id', 'id');
+    }
+
+    public function parameter()
+    {
+        return $this->belongsTo(Parameter::class, 'parameter_id', 'id');
+    }
 }

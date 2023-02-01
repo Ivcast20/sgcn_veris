@@ -68,6 +68,14 @@ class BiaTable extends DataTableComponent
                                 'class' => 'btn btn-outline-primary'
                             ];
                         }),
+                    LinkColumn::make('Gestionar')
+                        ->title(fn ($row) => 'Gestionar')
+                        ->location(fn ($row) => route('gestbia', $row->id))
+                        ->attributes(function ($row) {
+                            return [
+                                'class' => 'btn btn-outline-primary'
+                            ];
+                        }),
                     LinkColumn::make('Ver Productos')
                         ->title(fn ($row) => 'Ver Productos')
                         ->location(fn ($row) => route('verproductos', $row->id))
@@ -78,12 +86,13 @@ class BiaTable extends DataTableComponent
                         }),
                     LinkColumn::make('Calificar Productos')
                         ->title(fn ($row) => 'Calificar Productos')
-                        ->location(fn ($row) => route('bias.edit', $row->id))
+                        ->location(fn ($row) => route('calificaciones.comite', $row->id))
                         ->attributes(function ($row) {
                             return [
                                 'class' => 'btn btn-outline-primary'
                             ];
                         }),
+
                 ])
         ];
     }

@@ -1,18 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Criterios')
+@section('title', 'Calificar Producto')
 
 @section('content_header')
-    <h1>{{ __('Criterios') }}</h1>
+    <h1>Calificar producto</h1>
 @stop
 
 @section('content')
-    @can('admin.departments.create')    
-        <div class="d-flex justify-content-end mb-2">
-            <a class="btn btn-primary" href="{{ route('departments.create') }}">Nuevo Criterio</a>
-        </div>
-    @endcan
-    @livewire('criteria-table')
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('bias.index') }}">Listado de BIA</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Calificar Producto</li>
+    </ol>
 @stop
 
 @section('css')

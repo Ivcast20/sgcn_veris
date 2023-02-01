@@ -52,6 +52,15 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+                <!-- CARGO -->
+                <div class="form-group">
+                    <label for="cargo" class="form-label">Cargo</label>
+                    <input type="text" name="cargo" id="cargo" class="form-control"
+                        value="{{ old('cargo') }}">
+                    @error('cargo')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
                 <!-- ROLES -->
                 <div class="text-bold mb-2">
                     Roles

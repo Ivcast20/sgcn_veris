@@ -19,5 +19,9 @@ class BiaEstadosSeeder extends Seeder
         BiaEstado::create([
             'name' => 'Parametrización del Bia'
         ]);
+        //Estado 2
+        BiaEstado::create([
+            'name' => 'Calificación de Productos/Servicios'
+        ]);
     }
 }
