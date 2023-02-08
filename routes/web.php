@@ -61,6 +61,8 @@ Route::middleware([
     Route::get('bia/{id}/productoscalificados',[BiaProcessController::class,'calificacionesComite'])->name('calificaciones.comite');
     //Calificar Prod-Servicios COMITÉ
     Route::get('bia/{id}/calificar', [BiaProcessController::class, 'calificar'])->name('calificar');
+    //
+    Route::post('bia/{id}/guardar/producto',[BiaProcessController::class, 'guardar_calificacion'])->name('bias.store.product');
     
     //Rutas para gestionar Parametros
     Route::resource('parameters',ParameterController::class)->names('parameters');

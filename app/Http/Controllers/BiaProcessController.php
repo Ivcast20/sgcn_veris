@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\BiaEstadoDifException;
 use App\Http\Requests\StoreBiaRequest;
+use App\Http\Requests\StoreScoreProductRequest;
 use App\Http\Requests\UpdateBiaRequest;
 use App\Models\BiaProcess;
+use App\Models\Level;
+use App\Models\Parameter;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -115,9 +118,17 @@ class BiaProcessController extends Controller
     public function calificar(Request $request, $id)
     {
         //$productos_ya_calificados = 
-        $productos = BiaProcess::find($id)->products()->with('category:id,name')->whereNotIn('products.id',[1])->get();
-        return json_encode($productos);
-        return view('bias.calificarproducto');
+        $productos = BiaProcess::find($id)->products()->with('category:id,name')/*->whereNotIn('products.id',[1])*/->get();
+        $parametros = Parameter::where([['bia_id',$id],['status',true]])->select(['id','name'])->get();
+        $niveles = Level::where([['bia_id',$id],['status',true]])->select(['id','value','name'])->get();
+        //return json_encode($productos);
+        return view('bias.calificarproducto', compact('productos', 'id', 'parametros', 'niveles'));
+    }
+
+    public function guardar_calificacion(StoreScoreProductRequest $request, $id)
+    {
+        return $request->all();
+        //return array($request->parametros);
     }
 
 }
