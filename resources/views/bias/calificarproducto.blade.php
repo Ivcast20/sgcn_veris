@@ -9,6 +9,7 @@
 @section('content')
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('bias.index') }}">Listado de BIA</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('calificaciones.comite', $id) }}">Listado de Calificaciones de Productos/Servicios</a></li>
         <li class="breadcrumb-item active" aria-current="page">Calificar Producto</li>
     </ol>
     <div class="card">
@@ -36,25 +37,25 @@
                 </div>
                 <!--<div name='parametros[]'> -->
                 @foreach ($parametros as $parametro)
-                    <div class="mb-3">
+                    <div class="form-group mb-3">  <!--{-{ $errors->has('parametros.' . $parametro->id) }-} -->
                         <label for="" class="form-label">{{ $parametro->name }}</label>
                         <select class="form-control" aria-label="Default select example"
-                            name="parametros[]">
+                            name="parametros[{{ $parametro->id }}]">
                             <option value="">-- Seleccione una calificación --</option>
                             @foreach ($niveles as $nivel)
-                                <option value="{{ $nivel->value }}" @selected(old('parametros[{{ $parametro->id }}]') == $nivel->value)>
+                                <option value="{{ $nivel->value }}" @selected(old('parametros.' . $parametro->id) == $nivel->value)>
                                     {{ $nivel->name }}</option>
                             @endforeach
                         </select>
+                        @if ($errors->has('parametros.' . $parametro->id))
+                            <span class="help-block text-danger">{{ $errors->first('parametros.' . $parametro->id) }}</span>
+                        @endif
                     </div>
                 @endforeach
-                @error('parametros')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
                 <!-- </div> -->
 
                 <div class="d-flex justify-content-center mt-2">
-                    <a href="{{ route('bias.index') }}" class="btn btn-secondary mr-2">Cancelar</a>
+                    <a href="{{ route('calificaciones.comite', $id) }}" class="btn btn-secondary mr-2">Cancelar</a>
                     <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
             </form>

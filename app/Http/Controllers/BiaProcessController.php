@@ -9,7 +9,9 @@ use App\Http\Requests\UpdateBiaRequest;
 use App\Models\BiaProcess;
 use App\Models\Level;
 use App\Models\Parameter;
+use App\Models\ParameterScore;
 use App\Models\Product;
+use App\Models\ProductScore;
 use Illuminate\Http\Request;
 
 class BiaProcessController extends Controller
@@ -31,7 +33,7 @@ class BiaProcessController extends Controller
      */
     public function create()
     {
-        $productos = Product::with('category:id,name')->where('status',1)->get();
+        $productos = Product::with('category:id,name')->where('status', 1)->get();
         //return  json_encode($productos);
         return view('bias.create', compact('productos'));
     }
@@ -45,7 +47,7 @@ class BiaProcessController extends Controller
     public function store(StoreBiaRequest $request)
     {
         $bia = BiaProcess::create($request->validated());
-        $bia->products()->sync($request->input('products',[]));
+        $bia->products()->sync($request->input('products', []));
         return view('bias.index')->with(['message' => 'BIA Creado', 'typo' => 'success']);
     }
 
@@ -58,8 +60,8 @@ class BiaProcessController extends Controller
      */
     public function edit(BiaProcess $bia)
     {
-        $productos = Product::with('category:id,name')->where('status',1)->get();
-        return view('bias.edit',compact('productos','bia'));
+        $productos = Product::with('category:id,name')->where('status', 1)->get();
+        return view('bias.edit', compact('productos', 'bia'));
     }
 
     /**
@@ -72,7 +74,7 @@ class BiaProcessController extends Controller
     public function update(UpdateBiaRequest $request, BiaProcess $bia)
     {
         $bia->update($request->validated());
-        $bia->products()->sync($request->input('products',[]));
+        $bia->products()->sync($request->input('products', []));
         return view('bias.index')->with(['message' => 'BIA Actualizado', 'typo' => 'success']);
     }
 
@@ -82,8 +84,7 @@ class BiaProcessController extends Controller
         $nombreBia = $bia->name;
         $ids = $bia->products->pluck('id');
         $productos = Product::with('category:id,name')->findMany($ids);
-        return view('bias.products',compact(['nombreBia','productos']));
-
+        return view('bias.products', compact(['nombreBia', 'productos']));
     }
 
     public function gestionar(Request $request, $id)
@@ -97,15 +98,13 @@ class BiaProcessController extends Controller
         $bia = BiaProcess::find($id);
         $estado_BIA = $bia->estado_id;
 
-        if($estado_BIA == 1)
-        {
+        if ($estado_BIA == 1) {
             $bia->estado_id = 2;
             $bia->save();
             return true;
-        }else{
+        } else {
             throw new BiaEstadoDifException('Ya se puede calificar los productos de este BIA');
         }
-        
     }
 
     public function calificacionesComite(Request $request, $id)
@@ -117,18 +116,32 @@ class BiaProcessController extends Controller
 
     public function calificar(Request $request, $id)
     {
-        //$productos_ya_calificados = 
-        $productos = BiaProcess::find($id)->products()->with('category:id,name')/*->whereNotIn('products.id',[1])*/->get();
-        $parametros = Parameter::where([['bia_id',$id],['status',true]])->select(['id','name'])->get();
-        $niveles = Level::where([['bia_id',$id],['status',true]])->select(['id','value','name'])->get();
+        $productos_ya_calificados = ProductScore::pluck('id');
+        $productos = BiaProcess::find($id)
+                                ->products()
+                                ->with('category:id,name')
+                                ->whereNotIn('product_id',$productos_ya_calificados)
+                                ->get();
+        $parametros = Parameter::where([['bia_id', $id], ['status', true]])->select(['id', 'name'])->get();
+        $niveles = Level::where([['bia_id', $id], ['status', true]])->select(['id', 'value', 'name'])->get();
         //return json_encode($productos);
         return view('bias.calificarproducto', compact('productos', 'id', 'parametros', 'niveles'));
     }
 
     public function guardar_calificacion(StoreScoreProductRequest $request, $id)
     {
-        return $request->all();
-        //return array($request->parametros);
-    }
+        $calif_product = ProductScore::create($request->validated());
+        $parametros_calif = $request->safe()->parametros;
+        foreach ($parametros_calif as $key => $value) {
+            ParameterScore::create(
+                [
+                    'parameter_id' => $key,
+                    'product_score_id' => $calif_product->id,
+                    'score' => $value
+                ]
+            );
+        }
 
+        return redirect()->route('calificaciones.comite', $id)->with(['message' => 'Producto Calificado', 'typo' => 'success']);
+    }
 }

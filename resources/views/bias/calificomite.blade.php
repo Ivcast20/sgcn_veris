@@ -13,7 +13,17 @@
     </ol>
     @if ($bia->estado_id == 2)
         <div class="d-flex justify-content-end mb-2">
-            <a class="btn btn-primary" href="{{ route('calificar', $bia->id) }}">Nuevo BIA</a>
+            <a class="btn btn-primary" href="{{ route('calificar', $bia->id) }}">Calificar Producto/Servicio</a>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <strong>Total Productos/Servicios calificados:</strong> 1
+                </div>
+                <div>
+                    <strong>Total Productos/Servicios por calificar:</strong> 2
+                </div>
+            </div>
         </div>
     @else
         <div class="alert alert-warning" role="alert">

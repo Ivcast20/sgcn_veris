@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreScoreProductRequest extends FormRequest
 {
@@ -24,18 +25,25 @@ class StoreScoreProductRequest extends FormRequest
     public function rules()
     {
         return [
+            'bia_id' => ['required','numeric'],
             'product_id' => ['required','numeric'],
-            'parametros' => ['required','array'],
-            'parametros.*.value' => ['required','numeric'],
+            'user_id' => ['required','numeric'],
+            'parametros.*' => ['required','numeric'],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'user_id' => Auth::user()->id,
+        ]);
     }
 
     public function messages()
     {
         return [
-            'parametros.required' => 'Debe calificar todos los parámetros',
-            'name.unique' => 'Ya existe un BIA con este nombre',
-            'parametros.*.value.required' => 'Debe calificar todos los parámetros',
+            'product_id.required' => 'Debe elegir el producto a calificar',
+            'parametros.*.required' => 'Debe elegir una calificación para este parámetro',
         ];
     }
 }
