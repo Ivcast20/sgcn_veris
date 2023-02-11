@@ -32,6 +32,7 @@ class CriteriaTable extends DataTableComponent
                 ->sortable(),
             Column::make("Parámetro", "parameter.name")
                 ->sortable(),
+            Column::make("Descripción", "description"),
             BooleanColumn::make("Estado", "status")
                 ->sortable(),
             Column::make("Fecha de creación", "created_at")

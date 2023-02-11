@@ -13,6 +13,7 @@ class Criteria extends Model
         'bia_id',
         'level_id',
         'parameter_id',
+        'description',
         'status'
     ];
 

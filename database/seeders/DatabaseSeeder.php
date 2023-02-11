@@ -26,7 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LevelSeeder::class);
         $this->call(CriteriaSeeder::class);
         
-        // \App\Models\User::factory(10)->create();
         $usuariocod1 = User::create([
             'name' => 'Ivan Francisco',
             'last_name' => 'Castro Abad',
@@ -48,6 +47,8 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt(env('PASS_SYS','Veris202x-')),
             'department_id' => 1
         ]);
+
+        $usuariocod2->roles()->sync([2]);
 
         $usuariocod3 = User::create([
             'name' => 'Carol',

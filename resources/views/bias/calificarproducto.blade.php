@@ -35,9 +35,9 @@
                 <div class="text-center">
                     <h5 class="">Parámetros</h5>
                 </div>
-                <!--<div name='parametros[]'> -->
+                
                 @foreach ($parametros as $parametro)
-                    <div class="form-group mb-3">  <!--{-{ $errors->has('parametros.' . $parametro->id) }-} -->
+                    <div class="form-group mb-3">
                         <label for="" class="form-label">{{ $parametro->name }}</label>
                         <select class="form-control" aria-label="Default select example"
                             name="parametros[{{ $parametro->id }}]">
@@ -52,7 +52,6 @@
                         @endif
                     </div>
                 @endforeach
-                <!-- </div> -->
 
                 <div class="d-flex justify-content-center mt-2">
                     <a href="{{ route('calificaciones.comite', $id) }}" class="btn btn-secondary mr-2">Cancelar</a>

@@ -15,6 +15,7 @@
         "laravel/ui": "^4.1",
         "livewire/livewire": "^2.10",
         "maatwebsite/excel": "^3.1",
+        "owen-it/laravel-auditing": "^13.0",
         "psr/simple-cache": "2.0",
         "rappasoft/laravel-livewire-tables": "^2.8",
         "spatie/laravel-permission": "^5.7"

@@ -342,7 +342,8 @@ return [
                 [
                     'text' => 'Departamentos',
                     'route' => 'departments.index',
-                    'icon' => 'fas fa-fw fa-building'
+                    'icon' => 'fas fa-fw fa-building',
+                    'can' => 'admin.departments.index'
                 ],
                 [
                     'text' => 'Productos/Servicios',

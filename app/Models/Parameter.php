@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 
 class Parameter extends Model
 {
@@ -18,6 +20,13 @@ class Parameter extends Model
     protected $casts = [
         'status' => 'boolean'
     ];
+
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn($name) => ucfirst(strtolower($name))
+        );
+    }
 
     public function bia()
     {

@@ -13,6 +13,8 @@ use App\Models\ParameterScore;
 use App\Models\Product;
 use App\Models\ProductScore;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BiaProcessController extends Controller
 {
@@ -90,7 +92,14 @@ class BiaProcessController extends Controller
     public function gestionar(Request $request, $id)
     {
         $bia = BiaProcess::find($id);
-        return view('bias.gestion', compact(['bia']));
+        $productos_totales = $bia->products->count();
+        $calific_personas = DB::table('product_scores')
+                                    ->join('users', 'product_scores.user_id', '=', 'users.id')
+                                    ->where('product_scores.bia_id', '=', $id)
+                                    ->select(DB::raw('product_scores.user_id, count(*) as num_products_cal'), 'users.name', 'users.last_name')
+                                    ->groupBy('product_scores.user_id', 'users.name', 'users.last_name')
+                                    ->paginate(10);
+        return view('bias.gestion', compact(['bia','calific_personas','productos_totales']));
     }
 
     public function calific(Request $request, $id)
@@ -109,19 +118,27 @@ class BiaProcessController extends Controller
 
     public function calificacionesComite(Request $request, $id)
     {
-        // $bia_estado = BiaProcess::where('id', $id)->first()->estado_id;
         $bia = BiaProcess::find($id);
-        return view('bias.calificomite', compact('bia'));
+        $num_products_bia = $bia->products()->count();
+        $productos_calificados = ProductScore::where([['bia_id', $id], ['user_id', Auth::user()->id]])
+            ->with(
+                [
+                    'product:id,name',
+                    'parameterScores:product_score_id,id,score,parameter_id',
+                    'parameterScores.parameter:id,name'
+                ]
+            )->paginate(10);
+        return view('bias.calificomite', compact('bia', 'productos_calificados', 'num_products_bia'));
     }
 
     public function calificar(Request $request, $id)
     {
         $productos_ya_calificados = ProductScore::pluck('id');
         $productos = BiaProcess::find($id)
-                                ->products()
-                                ->with('category:id,name')
-                                ->whereNotIn('product_id',$productos_ya_calificados)
-                                ->get();
+            ->products()
+            ->with('category:id,name')
+            ->whereNotIn('product_id', $productos_ya_calificados)
+            ->get();
         $parametros = Parameter::where([['bia_id', $id], ['status', true]])->select(['id', 'name'])->get();
         $niveles = Level::where([['bia_id', $id], ['status', true]])->select(['id', 'value', 'name'])->get();
         //return json_encode($productos);

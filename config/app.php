@@ -188,6 +188,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        OwenIt\Auditing\AuditingServiceProvider::class,
         /*
          * Application Service Providers...
          */

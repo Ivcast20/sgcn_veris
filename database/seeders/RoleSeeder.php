@@ -20,7 +20,7 @@ class RoleSeeder extends Seeder
         $director = Role::create(['name' => 'Director']); //Cod 2
         $comite = Role::create(['name' => 'Comite']); //Cod 3
 
-        //Permisos para gestionar departamentos
+        //Permisos para gestionar departamentos OK
         Permission::create([
             'name' => 'admin.departments.index',
             'description' => 'Ver departamentos'
@@ -28,10 +28,28 @@ class RoleSeeder extends Seeder
         Permission::create([
             'name' => 'admin.departments.create',
             'description' => 'Crear departamentos'
-        ])->syncRoles([$admin, $director]);
+        ])->syncRoles([$admin]);
         Permission::create([
             'name' => 'admin.departments.edit',
             'description' => 'Editar departamentos'
+        ])->syncRoles([$admin, $director]);
+
+        //Permisos para gestionar roles OK
+        Permission::create([
+            'name' => 'admin.roles.index',
+            'description' => 'Ver roles'
+        ])->syncRoles([$admin,$director]);
+        Permission::create([
+            'name' => 'admin.roles.create',
+            'description' => 'Crear rol'
+        ])->syncRoles([$admin]);
+        Permission::create([
+            'name' => 'admin.roles.edit',
+            'description' => 'Editar rol'
+        ])->syncRoles([$admin]);
+        Permission::create([
+            'name' => 'admin.roles.destroy',
+            'description' => 'Eliminar rol'
         ])->syncRoles([$admin, $director]);
 
         //Permisos para gestionar usuarios
@@ -40,40 +58,22 @@ class RoleSeeder extends Seeder
             'description' => 'Ver usuarios'
         ])->syncRoles([$admin, $director]);
         Permission::create([
-            'name' => 'admin.users.edit',
-            'description' => 'Editar usuarios'
-        ])->syncRoles([$admin, $director]);
-        Permission::create([
             'name' => 'admin.users.create',
             'description' => 'Crear usuarios'
         ])->syncRoles([$admin, $director]);
-
-        //Permisos para gestionar roles
         Permission::create([
-            'name' => 'admin.roles.index',
-            'description' => 'Ver roles'
-        ])->syncRoles([$admin, $director]);
-        Permission::create([
-            'name' => 'admin.roles.create',
-            'description' => 'Crear rol'
-        ])->syncRoles([$admin, $director]);
-        Permission::create([
-            'name' => 'admin.roles.edit',
-            'description' => 'Editar rol'
-        ])->syncRoles([$admin, $director]);
-        Permission::create([
-            'name' => 'admin.roles.destroy',
-            'description' => 'Eliminar rol'
+            'name' => 'admin.users.edit',
+            'description' => 'Editar usuarios'
         ])->syncRoles([$admin, $director]);
 
         //Permisos para gestionar el Bia
         Permission::create([
             'name' => 'admin.bia_process.index',
-            'description' => 'Ver BIAs (Administrador)' 
+            'description' => 'Ver BIAs'
         ])->syncRoles([$admin, $director]);
         Permission::create([
             'name' => 'admin.bia_process.create',
-            'description' => 'Crear BIA' 
+            'description' => 'Crear BIA'
         ])->syncRoles([$admin, $director]);
         Permission::create([
             'name' => 'admin.bia_process.edit',

@@ -15,22 +15,53 @@
         <div class="d-flex justify-content-end mb-2">
             <a class="btn btn-primary" href="{{ route('calificar', $bia->id) }}">Calificar Producto/Servicio</a>
         </div>
-        <div class="card">
-            <div class="card-body">
-                <div>
-                    <strong>Total Productos/Servicios calificados:</strong> 1
-                </div>
-                <div>
-                    <strong>Total Productos/Servicios por calificar:</strong> 2
-                </div>
-            </div>
-        </div>
     @else
         <div class="alert alert-warning" role="alert">
             <strong>NO</strong> pruede calificar productos debido a que está en un estado diferente al de calificar
             productos/servicios
         </div>
     @endif
+    <div class="card">
+        <div class="card-body">
+            <div>
+                <strong>Total Productos/Servicios calificados:</strong> {{ $productos_calificados->count() }}
+            </div>
+            <div class="pb-3">
+                <strong>Total Productos/Servicios por calificar:</strong> {{ $num_products_bia - $productos_calificados->count() }}
+            </div>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="table-primary">
+                        <tr class="text-center">
+                            <th>Id</th>
+                            <th>Nombre del producto</th>
+                            <th>Fecha de calificación</th>
+                            <th>Calificaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($productos_calificados as $producto_cal)
+                            <tr>
+                                <td class="text-center">{{ $producto_cal->id }}</td>
+                                <td>{{ $producto_cal->product->name }}</td>
+                                <td>{{ $producto_cal->created_at->format('d/m/Y') }}</td>
+                                <td>
+                                    <ul>
+                                        @foreach ($producto_cal->parameterScores as $parametro_score)
+                                            <li>
+                                                {{ $parametro_score->parameter->name . ': ' . $parametro_score->score }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('css')
