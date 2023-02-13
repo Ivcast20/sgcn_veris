@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('bia_id')->constrained('bia_processes');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('product_id')->constrained('products');
+            $table->float('total_score');
             $table->timestamps();
         });
     }

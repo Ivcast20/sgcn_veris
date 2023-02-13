@@ -12,7 +12,8 @@ class ProductScore extends Model
     protected $fillable = [
         'bia_id',
         'user_id',
-        'product_id'
+        'product_id',
+        'total_score'
     ];
 
     public function bia()

@@ -29,6 +29,7 @@ class StoreScoreProductRequest extends FormRequest
             'product_id' => ['required','numeric'],
             'user_id' => ['required','numeric'],
             'parametros.*' => ['required','numeric'],
+            'total_score' => ['required']
         ];
     }
 
@@ -36,6 +37,7 @@ class StoreScoreProductRequest extends FormRequest
     {
         $this->merge([
             'user_id' => Auth::user()->id,
+            'total_score' => collect($this->parametros)->sum(),
         ]);
     }
 
