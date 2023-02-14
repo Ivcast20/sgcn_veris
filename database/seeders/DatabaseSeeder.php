@@ -26,18 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LevelSeeder::class);
         $this->call(CriteriaSeeder::class);
         
-        $usuariocod1 = User::create([
-            'name' => 'Ivan Francisco',
-            'last_name' => 'Castro Abad',
-            'cargo' => 'Desarrollador',
-            'email' => 'ivan20cast@gmail.com',
-            'status' => 1,
-            'password' => bcrypt(env('PASS_SYS','Veris202x-')),
-            'department_id' => 11
-        ]);
-
-        $usuariocod1->roles()->sync([1]);
-
         $usuariocod2 = User::create([
             'name' => 'Pablo',
             'last_name' => 'Arevalo',
@@ -150,6 +138,21 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt(env('PASS_SYS','Veris202x-')),
             'department_id' => 11
         ]);
+
+
+        $usuariocod1 = User::create([
+            'name' => 'Ivan Francisco',
+            'last_name' => 'Castro Abad',
+            'cargo' => 'Desarrollador',
+            'email' => 'ivan20cast@gmail.com',
+            'status' => 1,
+            'password' => bcrypt(env('PASS_SYS','Veris202x-')),
+            'department_id' => 11
+        ]);
+
+        $usuariocod1->roles()->sync([1]);
+
+        $this->call(RespuestasBia::class);
 
 
         

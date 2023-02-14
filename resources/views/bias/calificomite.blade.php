@@ -27,7 +27,8 @@
                 <strong>Total Productos/Servicios calificados:</strong> {{ $productos_calificados->count() }}
             </div>
             <div class="pb-3">
-                <strong>Total Productos/Servicios por calificar:</strong> {{ $num_products_bia - $productos_calificados->count() }}
+                <strong>Total Productos/Servicios por calificar:</strong>
+                {{ $num_products_bia - $productos_calificados->count() }}
             </div>
 
             <div class="table-responsive">
@@ -59,6 +60,10 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+            <b>Total: </b>{{ $productos_calificados->count() }}
+            <div class="pt-2">
+                {{ $productos_calificados->links() }}
             </div>
         </div>
     </div>

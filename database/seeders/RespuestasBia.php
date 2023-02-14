@@ -1669,7 +1669,7 @@ class RespuestasBia extends Seeder
                 'bia_id' => 1,
                 'user_id' => 3,
                 'product_id' => 6,
-                'product_score' => 15
+                'total_score' => 15
             ]
         );
 
@@ -2370,7 +2370,7 @@ class RespuestasBia extends Seeder
             ]
         ]);
 
-        
+
 
         $cal_4_6 = ProductScore::create(
             [
@@ -4969,7 +4969,7 @@ class RespuestasBia extends Seeder
                 'bia_id' => 1,
                 'user_id' => 8,
                 'product_id' => 1,
-                'total_store' => 13
+                'total_score' => 13
             ]
         );
 
@@ -5580,259 +5580,1507 @@ class RespuestasBia extends Seeder
             [
                 'bia_id' => 1,
                 'user_id' => 8,
-                'product_id' => 14
+                'product_id' => 14,
+                'total_score' => 10
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_8_14->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_8_14->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_8_14->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_8_14->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_8_14->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_8_15 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 8,
-                'product_id' => 15
+                'product_id' => 15,
+                'total_score' => 10
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_8_15->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_8_15->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_8_15->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_8_15->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_8_15->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         //Persona 9
         $cal_9_1 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 9,
-                'product_id' => 1
+                'product_id' => 1,
+                'total_score' => 15
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_9_1->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_9_1->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_9_1->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_9_1->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_9_1->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_9_2 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 9,
-                'product_id' => 5
+                'product_id' => 5,
+                'total_score' => 15
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_9_2->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_9_2->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_9_2->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_9_2->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_9_2->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_9_3 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 9,
-                'product_id' => 4
+                'product_id' => 4,
+                'total_score' => 14
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_9_3->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_9_3->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_9_3->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_9_3->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_9_3->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_9_4 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 9,
-                'product_id' => 3
+                'product_id' => 3,
+                'total_score' => 14
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_9_4->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_9_4->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_9_4->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_9_4->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_9_4->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_9_5 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 9,
-                'product_id' => 9
+                'product_id' => 9,
+                'total_score' => 13
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_9_5->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_9_5->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_9_5->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_9_5->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_9_5->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_9_6 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 9,
-                'product_id' => 6
+                'product_id' => 6,
+                'total_score' => 14
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_9_6->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_9_6->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_9_6->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_9_6->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_9_6->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_9_7 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 9,
-                'product_id' => 8
+                'product_id' => 8,
+                'total_score' => 12
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_9_7->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_9_7->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_9_7->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_9_7->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_9_7->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_9_8 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 9,
-                'product_id' => 7
+                'product_id' => 7,
+                'total_score' => 13
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_9_8->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_9_8->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_9_8->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_9_8->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_9_8->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_9_9 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 9,
-                'product_id' => 2
+                'product_id' => 2,
+                'total_score' => 15
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_9_9->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_9_9->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_9_9->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_9_9->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_9_9->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_9_10 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 9,
-                'product_id' => 12
+                'product_id' => 12,
+                'total_score' => 14
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_9_10->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_9_10->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_9_10->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_9_10->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_9_10->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_9_11 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 9,
-                'product_id' => 10
+                'product_id' => 10,
+                'total_score' => 15
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_9_11->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_9_11->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_9_11->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_9_11->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_9_11->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_9_12 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 9,
-                'product_id' => 11
+                'product_id' => 11,
+                'total_score' => 15
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_9_12->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_9_12->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_9_12->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_9_12->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_9_12->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_9_13 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 9,
-                'product_id' => 13
+                'product_id' => 13,
+                'total_score' => 15
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_9_13->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_9_13->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_9_13->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_9_13->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_9_13->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_9_14 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 9,
-                'product_id' => 14
+                'product_id' => 14,
+                'total_score' => 15
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_9_14->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_9_14->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_9_14->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_9_14->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_9_14->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_9_15 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 9,
-                'product_id' => 15
+                'product_id' => 15,
+                'total_score' => 15
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_9_15->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_9_15->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_9_15->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_9_15->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_9_15->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         //Persona 10
         $cal_10_1 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 10,
-                'product_id' => 1
+                'product_id' => 1,
+                'total_score' => 13
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_10_1->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_10_1->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_10_1->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_10_1->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_10_1->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_10_2 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 10,
-                'product_id' => 5
+                'product_id' => 5,
+                'total_score' => 11
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_10_2->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_10_2->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_10_2->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_10_2->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_10_2->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_10_3 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 10,
-                'product_id' => 4
+                'product_id' => 4,
+                'total_score' => 13
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_10_3->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_10_3->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_10_3->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_10_3->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_10_3->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_10_4 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 10,
-                'product_id' => 3
+                'product_id' => 3,
+                'total_score' => 12
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_10_4->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_10_4->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_10_4->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_10_4->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_10_4->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_10_5 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 10,
-                'product_id' => 9
+                'product_id' => 9,
+                'total_score' => 7
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_10_5->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_10_5->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_10_5->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_10_5->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_10_5->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_10_6 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 10,
-                'product_id' => 6
+                'product_id' => 6,
+                'total_score' => 12
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_10_6->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_10_6->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_10_6->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_10_6->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_10_6->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_10_7 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 10,
-                'product_id' => 8
+                'product_id' => 8,
+                'total_score' => 9
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_10_7->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_10_7->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_10_7->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_10_7->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_10_7->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_10_8 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 10,
-                'product_id' => 7
+                'product_id' => 7,
+                'total_score' => 13
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_10_8->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_10_8->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_10_8->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_10_8->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_10_8->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_10_9 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 10,
-                'product_id' => 2
+                'product_id' => 2,
+                'total_score' => 14
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_10_9->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_10_9->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_10_9->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_10_9->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_10_9->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_10_10 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 10,
-                'product_id' => 12
+                'product_id' => 12,
+                'total_score' => 14
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_10_10->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_10_10->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_10_10->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_10_10->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_10_10->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_10_11 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 10,
-                'product_id' => 10
+                'product_id' => 10,
+                'total_score' => 12
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_10_11->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_10_11->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_10_11->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_10_11->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_10_11->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_10_12 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 10,
-                'product_id' => 11
+                'product_id' => 11,
+                'total_score' => 13
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_10_12->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_10_12->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_10_12->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_10_12->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_10_12->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_10_13 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 10,
-                'product_id' => 13
+                'product_id' => 13,
+                'total_score' => 10
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_10_13->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_10_13->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_10_13->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_10_13->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_10_13->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_10_14 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 10,
-                'product_id' => 14
+                'product_id' => 14,
+                'total_score' => 13
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_10_14->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_10_14->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_10_14->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_10_14->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_10_14->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_10_15 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 10,
-                'product_id' => 15
+                'product_id' => 15,
+                'total_score' => 11
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_10_15->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_10_15->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_10_15->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_10_15->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_10_15->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
 
         //Persona 11
@@ -5840,120 +7088,705 @@ class RespuestasBia extends Seeder
             [
                 'bia_id' => 1,
                 'user_id' => 11,
-                'product_id' => 1
+                'product_id' => 1,
+                'total_score' => 11
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_11_1->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_11_1->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_11_1->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_11_1->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_11_1->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_11_2 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 11,
-                'product_id' => 5
+                'product_id' => 5,
+                'total_score' => 11
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_11_2->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_11_2->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_11_2->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_11_2->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_11_2->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_11_3 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 11,
-                'product_id' => 4
+                'product_id' => 4,
+                'total_score' => 10
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_11_3->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_11_3->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_11_3->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_11_3->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_11_3->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_11_4 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 11,
-                'product_id' => 3
+                'product_id' => 3,
+                'total_score' => 11
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_11_4->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_11_4->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_11_4->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_11_4->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_11_4->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_11_5 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 11,
-                'product_id' => 9
+                'product_id' => 9,
+                'total_score' => 9
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_11_5->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_11_5->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_11_5->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_11_5->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_11_5->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_11_6 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 11,
-                'product_id' => 6
+                'product_id' => 6,
+                'total_score' => 9
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_11_6->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_11_6->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_11_6->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_11_6->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_11_6->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_11_7 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 11,
-                'product_id' => 8
+                'product_id' => 8,
+                'total_score' => 8
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_11_7->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_11_7->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_11_7->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_11_7->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_11_7->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_11_8 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 11,
-                'product_id' => 7
+                'product_id' => 7,
+                'total_score' => 9
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_11_8->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_11_8->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_11_8->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_11_8->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_11_8->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_11_9 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 11,
-                'product_id' => 2
+                'product_id' => 2,
+                'total_score' => 12
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_11_9->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_11_9->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_11_9->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_11_9->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_11_9->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_11_10 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 11,
-                'product_id' => 12
+                'product_id' => 12,
+                'total_score' => 8
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_11_10->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_11_10->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_11_10->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_11_10->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_11_10->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_11_11 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 11,
-                'product_id' => 10
+                'product_id' => 10,
+                'total_score' => 9
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_11_11->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_11_11->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_11_11->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_11_11->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_11_11->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_11_12 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 11,
-                'product_id' => 11
+                'product_id' => 8,
+                'total_score' => 8
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_11_12->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_11_12->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_11_12->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_11_12->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_11_12->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_11_13 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 11,
-                'product_id' => 13
+                'product_id' => 13,
+                'total_score' => 10
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_11_13->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_11_13->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_11_13->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_11_13->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_11_13->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_11_14 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 11,
-                'product_id' => 14
+                'product_id' => 14,
+                'total_score' => 10
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_11_14->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_11_14->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_11_14->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_11_14->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_11_14->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
 
         $cal_11_15 = ProductScore::create(
             [
                 'bia_id' => 1,
                 'user_id' => 11,
-                'product_id' => 15
+                'product_id' => 15,
+                'total_score' => 11
             ]
         );
+
+        ParameterScore::insert([
+            [
+                'parameter_id' => 1,
+                'product_score_id' => $cal_11_15->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 2,
+                'product_score_id' => $cal_11_15->id,
+                'score' => 3,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 3,
+                'product_score_id' => $cal_11_15->id,
+                'score' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 4,
+                'product_score_id' => $cal_11_15->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'parameter_id' => 5,
+                'product_score_id' => $cal_11_15->id,
+                'score' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
     }
 }
