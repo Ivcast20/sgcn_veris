@@ -317,49 +317,52 @@ return [
             ]
         ],
         [
+            'header' => 'Seguridad'
+        ],
+        [
+            'text' => 'Usuarios',
+            'route' => 'users.index',
+            'icon' => 'fas fw fa-users',
+            'can' => 'admin.users.index'
+        ],
+        [
+            'text' => 'Roles',
+            'route' => 'roles.index',
+            'icon' => 'fas fa-user-tag',
+            'can' => 'admin.roles.index'
+        ],
+        [
             'header' => 'Configuración'
         ],
+        // [
+        //     'text' => 'Configuración',
+        //     'icon' => 'fas fa-cogs',
+        //     'submenu' => [
+
+        //     ]
+        // ],
         [
-            'text'    => 'Seguridad',
-            'icon'    => 'fas fa-fw fa-lock',
-            'submenu' => [
-                [
-                    'text' => 'Usuarios',
-                    'route' => 'users.index',
-                    'icon' => 'fas fw fa-users'
-                ],
-                [
-                    'text' => 'Roles',
-                    'route' => 'roles.index',
-                    'icon' => 'fas fa-user-tag'
-                ]
-            ]
+            'text' => 'Departamentos',
+            'route' => 'departments.index',
+            'icon' => 'fas fa-fw fa-building',
+            'can' => 'admin.departments.index'
+        ],
+        // [
+        //     'text' => 'Productos/Servicios',
+        //     'submenu' => [
+
+        //     ]
+        // ]
+        [
+            'text' => 'Categorías',
+            'route' => 'categories.index',
+            'can' => 'admin.categories.index'
         ],
         [
-            'text' => 'Configuración',
-            'icon' => 'fas fa-cogs',
-            'submenu' => [
-                [
-                    'text' => 'Departamentos',
-                    'route' => 'departments.index',
-                    'icon' => 'fas fa-fw fa-building',
-                    'can' => 'admin.departments.index'
-                ],
-                [
-                    'text' => 'Productos/Servicios',
-                    'submenu' => [
-                        [
-                            'text' => 'Categorías',
-                            'route' => 'categories.index'
-                        ],
-                        [
-                            'text' => 'Lista de productos/servicios',
-                            'route' => 'products.index'
-                        ]
-                    ]
-                ]
-            ]
-        ],
+            'text' => 'Lista de productos/servicios',
+            'route' => 'products.index',
+            'can' => 'admin.products.index'
+        ]
     ],
 
     /*

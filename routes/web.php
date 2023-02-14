@@ -8,9 +8,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductScoreController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Models\ProductScore;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,10 +26,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::get('/', function () {
     return redirect()->route('dashboard'); //Redirecciona al dashboard
@@ -63,7 +62,10 @@ Route::middleware([
     Route::get('bia/{id}/calificar', [BiaProcessController::class, 'calificar'])->name('calificar');
     //
     Route::post('bia/{id}/guardar/producto',[BiaProcessController::class, 'guardar_calificacion'])->name('bias.store.product');
-    
+    //Obtener promedios de calificaciones Prod-Servicios
+    Route::get('bia/{id}/averagescore', [ProductScoreController::class, 'sacar_promedio'])->name('bia.averagescore');
+
+
     //Rutas para gestionar Parametros
     Route::resource('parameters',ParameterController::class)->names('parameters');
     //Rutas para gestionar Niveles

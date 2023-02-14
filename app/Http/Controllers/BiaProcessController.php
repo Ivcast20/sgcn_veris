@@ -120,6 +120,7 @@ class BiaProcessController extends Controller
     {
         $bia = BiaProcess::find($id);
         $num_products_bia = $bia->products()->count();
+        $num_products_cal = ProductScore::where([['bia_id', $id], ['user_id', Auth::user()->id]])->get()->count();
         $productos_calificados = ProductScore::where([['bia_id', $id], ['user_id', Auth::user()->id]])
             ->with(
                 [
@@ -128,7 +129,7 @@ class BiaProcessController extends Controller
                     'parameterScores.parameter:id,name'
                 ]
             )->paginate(10);
-        return view('bias.calificomite', compact('bia', 'productos_calificados', 'num_products_bia'));
+        return view('bias.calificomite', compact('bia', 'productos_calificados', 'num_products_bia', 'num_products_cal'));
     }
 
     public function calificar(Request $request, $id)

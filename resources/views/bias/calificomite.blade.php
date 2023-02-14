@@ -24,11 +24,11 @@
     <div class="card">
         <div class="card-body">
             <div>
-                <strong>Total Productos/Servicios calificados:</strong> {{ $productos_calificados->count() }}
+                <strong>Total Productos/Servicios calificados:</strong> {{ $num_products_cal }}
             </div>
             <div class="pb-3">
                 <strong>Total Productos/Servicios por calificar:</strong>
-                {{ $num_products_bia - $productos_calificados->count() }}
+                {{ $num_products_bia - $num_products_cal }}
             </div>
 
             <div class="table-responsive">

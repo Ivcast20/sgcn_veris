@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
@@ -38,7 +39,9 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-        dd($request);
+        $role = Role::create($request->validated());
+        $role->syncPermissions($request->permisos);
+        return redirect()->route('roles.index')->with(['message' => 'Producto Creado', 'typo' => 'success']);
     }
 
 
@@ -51,7 +54,7 @@ class RoleController extends Controller
     public function edit($id)
     {
         $permisos = Permission::all(); //Obtengo todos los permisos
-        $rol = Role::withTrashed()->with('permissions')->where('id',$id)->first(); //Recupero la info del rol
+        $rol = Role::find($id); //Recupero la info del rol
         return view('roles.edit',compact('rol','permisos')); //Envío todo a la visra roles.edit
     }
 
@@ -62,21 +65,10 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRoleRequest $request, Role $role)
     {
-        // $rol = Role::withTrashed()->with('permissions')->where('id',$id)->first();
-        // $activo_checked = $request->has('status');
-        // if ($activo_checked && $rol->status)
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $role->update($request->validated());
+        $role->syncPermissions($request->permisos);
+        return redirect()->route('admin.roles.index')->with(['message' => 'Producto Creado', 'typo' => 'success']);
     }
 }

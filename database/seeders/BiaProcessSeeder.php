@@ -21,7 +21,7 @@ class BiaProcessSeeder extends Seeder
             'name' => 'BIA 2022',
             'alcance' => 'Prestación de servicios de salud, atención médica presencial y/o virtual de servicios como consultas, imágenes, óptica, terapias, odontología, procedimientos, laboratorio clínico y farmacia en Centrales Médicas y Atención Prioritaria, Salud a empresas, dispensarios y chequeos, y servicios a domicilio de tomas de muestra y entrega de medicamentos',
             'fecha_inicio' => Carbon::createFromDate(2022, 5, 30),
-            'estado_id' => 1,
+            'estado_id' => 2,
         ]);
 
         $productos = Product::all()->pluck('id');
@@ -29,15 +29,15 @@ class BiaProcessSeeder extends Seeder
         $procesoBia->products()->sync($productos);
 
         //BIA 2 PRUEBA
-        $procesoBia2 = BiaProcess::create([
-            'name' => 'BIA2 2022',
-            'alcance' => 'Prestación de servicios de salud, atención médica presencial y/o virtual de servicios como consultas, imágenes, óptica, terapias, odontología, procedimientos, laboratorio clínico y farmacia en Centrales Médicas y Atención Prioritaria, Salud a empresas, dispensarios y chequeos, y servicios a domicilio de tomas de muestra y entrega de medicamentos',
-            'fecha_inicio' => Carbon::createFromDate(2022, 5, 30),
-            'estado_id' => 1,
-        ]);
+        // $procesoBia2 = BiaProcess::create([
+        //     'name' => 'BIA2 2022',
+        //     'alcance' => 'Prestación de servicios de salud, atención médica presencial y/o virtual de servicios como consultas, imágenes, óptica, terapias, odontología, procedimientos, laboratorio clínico y farmacia en Centrales Médicas y Atención Prioritaria, Salud a empresas, dispensarios y chequeos, y servicios a domicilio de tomas de muestra y entrega de medicamentos',
+        //     'fecha_inicio' => Carbon::createFromDate(2022, 5, 30),
+        //     'estado_id' => 1,
+        // ]);
 
-        $productos2 = Product::all()->pluck('id');
+        // $productos2 = Product::all()->pluck('id');
 
-        $procesoBia2->products()->sync($productos2);
+        // $procesoBia2->products()->sync($productos2);
     }
 }

@@ -23,5 +23,13 @@ class BiaEstadosSeeder extends Seeder
         BiaEstado::create([
             'name' => 'Calificación de Productos/Servicios'
         ]);
+        //Estado 3
+        BiaEstado::create([
+            'name' => 'Calificación de Productos/Servicios finalizada'
+        ]);
+        //Estado 4
+        BiaEstado::create([
+            'name' => 'Productos/Servicios críticos generados'
+        ]);
     }
 }

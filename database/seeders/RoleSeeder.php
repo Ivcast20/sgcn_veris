@@ -19,6 +19,7 @@ class RoleSeeder extends Seeder
         $admin = Role::create(['name' => 'Admin']); //Cod 1
         $director = Role::create(['name' => 'Director']); //Cod 2
         $comite = Role::create(['name' => 'Comite']); //Cod 3
+        $jefe_de_area = Role::create(['name' => 'Jefe de Área']); //Cod 3
 
         //Permisos para gestionar departamentos OK
         Permission::create([
@@ -28,7 +29,7 @@ class RoleSeeder extends Seeder
         Permission::create([
             'name' => 'admin.departments.create',
             'description' => 'Crear departamentos'
-        ])->syncRoles([$admin]);
+        ])->syncRoles([$admin, $director]);
         Permission::create([
             'name' => 'admin.departments.edit',
             'description' => 'Editar departamentos'
@@ -38,15 +39,15 @@ class RoleSeeder extends Seeder
         Permission::create([
             'name' => 'admin.roles.index',
             'description' => 'Ver roles'
-        ])->syncRoles([$admin,$director]);
+        ])->syncRoles([$admin, $director]);
         Permission::create([
             'name' => 'admin.roles.create',
             'description' => 'Crear rol'
-        ])->syncRoles([$admin]);
+        ])->syncRoles([$admin, $director]);
         Permission::create([
             'name' => 'admin.roles.edit',
             'description' => 'Editar rol'
-        ])->syncRoles([$admin]);
+        ])->syncRoles([$admin, $director]);
         Permission::create([
             'name' => 'admin.roles.destroy',
             'description' => 'Eliminar rol'
@@ -79,6 +80,9 @@ class RoleSeeder extends Seeder
             'name' => 'admin.bia_process.edit',
             'description' => 'Editar BIA'
         ])->syncRoles([$admin, $director]);
+
+
+
 
         //Permisos para gestionar categorías de productos
         Permission::create([

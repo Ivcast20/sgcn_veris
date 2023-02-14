@@ -26,18 +26,11 @@
                 </div>
                 <select name="permisos[]" id="multipleselect" multiple class="form-control">
                     @foreach ($permisos as $permiso)
-                        <option value="{{ $permiso->id }}" 
-                            @selected(old('permisos[]',$rol->permissions->contains($permiso->id)))
-                            >{{ $permiso->description }}
+                        <option value="{{ $permiso->id }}" @selected(old('permisos[]', $rol->permissions->contains($permiso->id)))>{{ $permiso->description }}
                         </option>
                     @endforeach
                 </select>
-                <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="status" name="status" value="1"
-                        @checked(old('status', $rol->status)) />
-                    <label class="custom-control-label" for="status">Activo</label>
-                </div>
-                @error('status')
+                @error('permisos')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
                 <div class="d-flex justify-content-center mt-2">
