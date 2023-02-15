@@ -300,7 +300,8 @@ return [
             'submenu' => [
                 [
                     'text' => 'Lista de BIA',
-                    'route' => 'bias.index'
+                    'route' => 'bias.index',
+                    'can' => 'admin.bia_process.index'
                 ],
                 [
                     'text' => 'Parámetros',

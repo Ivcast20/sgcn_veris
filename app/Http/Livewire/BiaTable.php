@@ -29,6 +29,78 @@ class BiaTable extends DataTableComponent
 
     public function columns(): array
     {
+        $botones = [];
+        $usuario = Auth::user();
+        $puede_editar = $usuario->hasPermissionTo('admin.bia_process.edit');
+        $puede_gestionar = $usuario->hasPermissionTo('admin.bia_process.gestion');
+        $puede_ver_prod = $usuario->hasPermissionTo('admin.bia_process.ver_prod');
+        $puede_cal_prod = $usuario->hasPermissionTo('admin.bia_process.cal_prod');
+        $pueder_ver_prod_avg = true;
+
+        if ($puede_editar) {
+            $botones = array_merge($botones, [
+                LinkColumn::make('Editar')
+                    ->title(fn ($row) => 'Editar')
+                    ->location(fn ($row) => route('bias.edit', $row->id))
+                    ->attributes(function ($row) {
+                        return [
+                            'class' => 'btn btn-outline-primary'
+                        ];
+                    })
+            ]);
+        }
+
+        if ($puede_gestionar) {
+            $botones = array_merge($botones, [
+                LinkColumn::make('Gestionar')
+                    ->title(fn ($row) => 'Gestionar')
+                    ->location(fn ($row) => route('gestbia', $row->id))
+                    ->attributes(function ($row) {
+                        return [
+                            'class' => 'btn btn-outline-primary'
+                        ];
+                    })
+            ]);
+        }
+
+        if ($puede_ver_prod) {
+            $botones = array_merge($botones, [
+                LinkColumn::make('Ver Productos')
+                    ->title(fn ($row) => 'Ver Productos')
+                    ->location(fn ($row) => route('verproductos', $row->id))
+                    ->attributes(function ($row) {
+                        return [
+                            'class' => 'btn btn-outline-primary'
+                        ];
+                    })
+            ]);
+        }
+
+        if ($puede_cal_prod) {
+            $botones = array_merge($botones, [
+                LinkColumn::make('Calificar Productos')
+                    ->title(fn ($row) => 'Calificar Productos')
+                    ->location(fn ($row) => route('calificaciones.comite', $row->id))
+                    ->attributes(function ($row) {
+                        return [
+                            'class' => 'btn btn-outline-primary'
+                        ];
+                    })
+            ]);
+        }
+
+        if ($pueder_ver_prod_avg) {
+            $botones = array_merge($botones, [
+                LinkColumn::make('Ver Calificaciones de Productos')
+                    ->title(fn ($row) => 'Ver Calificaciones de Productos')
+                    ->location(fn ($row) => route('promedios.index', $row->id))
+                    ->attributes(function ($row) {
+                        return [
+                            'class' => 'btn btn-outline-primary'
+                        ];
+                    })
+            ]);
+        }
         return [
             Column::make("Id", "id")
                 ->sortable(),
@@ -59,41 +131,7 @@ class BiaTable extends DataTableComponent
                         'class' => 'btn-group-vertical'
                     ];
                 })
-                ->buttons([
-                    LinkColumn::make('Editar')
-                        ->title(fn ($row) => 'Editar')
-                        ->location(fn ($row) => route('bias.edit', $row->id))
-                        ->attributes(function ($row) {
-                            return [
-                                'class' => 'btn btn-outline-primary'
-                            ];
-                        }),
-                    LinkColumn::make('Gestionar')
-                        ->title(fn ($row) => 'Gestionar')
-                        ->location(fn ($row) => route('gestbia', $row->id))
-                        ->attributes(function ($row) {
-                            return [
-                                'class' => 'btn btn-outline-primary'
-                            ];
-                        }),
-                    LinkColumn::make('Ver Productos')
-                        ->title(fn ($row) => 'Ver Productos')
-                        ->location(fn ($row) => route('verproductos', $row->id))
-                        ->attributes(function ($row) {
-                            return [
-                                'class' => 'btn btn-outline-primary'
-                            ];
-                        }),
-                    LinkColumn::make('Calificar Productos')
-                        ->title(fn ($row) => 'Calificar Productos')
-                        ->location(fn ($row) => route('calificaciones.comite', $row->id))
-                        ->attributes(function ($row) {
-                            return [
-                                'class' => 'btn btn-outline-primary'
-                            ];
-                        }),
-
-                ])
+                ->buttons($botones)
         ];
     }
 

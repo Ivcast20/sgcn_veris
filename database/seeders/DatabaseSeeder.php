@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
             'department_id' => 1
         ]);
 
-        $usuariocod2->roles()->sync([2]);
+        $usuariocod2->roles()->sync([3]);
 
         $usuariocod3 = User::create([
             'name' => 'Carol',
@@ -48,6 +48,8 @@ class DatabaseSeeder extends Seeder
             'department_id' => 2
         ]);
 
+        $usuariocod3->roles()->sync([3]);
+
         $usuariocod4 = User::create([
             'name' => 'Fausto',
             'last_name' => 'Gavilanes',
@@ -57,6 +59,8 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt(env('PASS_SYS','Veris202x-')),
             'department_id' => 3
         ]);
+
+        $usuariocod4->roles()->sync([3]);
 
         $usuariocod5 = User::create([
             'name' => 'Melissa',
@@ -68,6 +72,8 @@ class DatabaseSeeder extends Seeder
             'department_id' => 4
         ]);
 
+        $usuariocod5->roles()->sync([3]);
+
         $usuariocod6 = User::create([
             'name' => 'Michelle',
             'last_name' => 'Benites',
@@ -77,6 +83,8 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt(env('PASS_SYS','Veris202x-')),
             'department_id' => 5
         ]);
+
+        $usuariocod6->roles()->sync([3]);
 
         $usuariocod7 = User::create([
             'name' => 'Yenny Alexandra',
@@ -88,6 +96,8 @@ class DatabaseSeeder extends Seeder
             'department_id' => 6
         ]);
 
+        $usuariocod7->roles()->sync([3]);
+
         $usuariocod8 = User::create([
             'name' => 'Alfredo',
             'last_name' => 'Medina',
@@ -97,6 +107,8 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt(env('PASS_SYS','Veris202x-')),
             'department_id' => 7
         ]);
+
+        $usuariocod8->roles()->sync([3]);
 
         $usuariocod9 = User::create([
             'name' => 'Diego',
@@ -108,6 +120,7 @@ class DatabaseSeeder extends Seeder
             'department_id' => 8
         ]);
 
+        $usuariocod9->roles()->sync([3]);
 
         $usuariocod10 = User::create([
             'name' => 'Doris',
@@ -119,7 +132,9 @@ class DatabaseSeeder extends Seeder
             'department_id' => 9
         ]);
 
-        $usuariocod10 = User::create([
+        $usuariocod10->roles()->sync([3]);
+
+        $usuariocod11 = User::create([
             'name' => 'Elizabeth',
             'last_name' => 'Santos',
             'cargo' => 'Vp Gestion Humana',
@@ -129,7 +144,9 @@ class DatabaseSeeder extends Seeder
             'department_id' => 10
         ]);
 
-        $usuariocod11 = User::create([
+        $usuariocod11->roles()->sync([3]);
+
+        $usuariocod12 = User::create([
             'name' => 'Franklin',
             'last_name' => 'Rosero',
             'cargo' => 'Vp Tecnología',
@@ -139,6 +156,7 @@ class DatabaseSeeder extends Seeder
             'department_id' => 11
         ]);
 
+        $usuariocod12->roles()->sync([3]);
 
         $usuariocod1 = User::create([
             'name' => 'Ivan Francisco',

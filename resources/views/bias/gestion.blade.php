@@ -19,8 +19,8 @@
                         <i class="fas fa-check"></i>
                     </h2>
                 </div>
-                <!-- Estado 1 -->
-                <h4 class="card-title">Enviar Notificación de Calificación de productos/Servicios</h4>
+                <!-- Estado 2 -->
+                <h4 class="card-title">Habilitar Calificación de productos/Servicios</h4>
             </div>
         </div>
         <div class="col-lg-4">
@@ -30,13 +30,24 @@
                         <i class="far fa-hand-paper"></i>
                     </h2>
                 </div>
-                <!-- Estado 2 -->
+                <!-- Estado 3 -->
                 <h4 class="card-title">Cerrar calificación Productos/Servicios críticos</h4>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card text-center p-3 bg-warning" id="gene_p_crit" style="height: 120px">
+                <div class="card-img-top">
+                    <h2>
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </h2>
+                </div>
+                <!-- Estado 4 -->
+                <h4 class="card-title">Generar Productos/Servicios críticos</h4>
             </div>
         </div>
     </div>
     @if ($bia->estado_id != 1)
-        @if ($bia->estado_id === 2)
+        @if ($bia->estado_id >= 2)
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -85,17 +96,17 @@
                             icon: 'success',
                             showConfirmButton: true,
                             confirmButtonText: 'Entendido'
-                        }).then(function(response){
-                            if(response.isConfirmed)
-                            {
+                        }).then(function(response) {
+                            if (response.isConfirmed) {
                                 location.reload();
                             }
                         });
                     },
-                    error: function() {
+                    error: function(error) {
+                        console.log(error.responseJSON.message);
                         Swal.fire({
                             title: 'Advertencia',
-                            text: 'Ya se puede calificar los productos/servicios del BIA',
+                            html: error.responseJSON.message,
                             icon: 'warning',
                             showConfirmButton: true,
                             confirmButtonText: 'Entendido'
@@ -107,11 +118,40 @@
             $('#stop_prod').click(function(e) {
                 $.ajax({
                     type: 'GET',
-                    url: "{{ route('calific', $bia->id) }}",
+                    url: "{{ route('detener_calif', $bia->id) }}",
                     success: function() {
                         Swal.fire({
                             title: 'Listo',
-                            text: 'Se habilitó para calificar los productos/servicios del BIA',
+                            text: 'Se ha cerrado la calificación de Productos/Servicios',
+                            icon: 'success',
+                            showConfirmButton: true,
+                            confirmButtonText: 'Entendido'
+                        }).then(function(response) {
+                            if (response.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    },
+                    error: function(error) {
+                        Swal.fire({
+                            title: 'Advertencia',
+                            html: error.responseJSON.message,
+                            icon: 'warning',
+                            showConfirmButton: true,
+                            confirmButtonText: 'Entendido'
+                        });
+                    },
+                })
+            });
+
+            $('#gene_p_crit').click(function(e) {
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('bia.averagescore', $bia->id) }}",
+                    success: function() {
+                        Swal.fire({
+                            title: 'Listo',
+                            text: 'Se ha generado los promedios de las calificaciones y se han determinado los productos críticos',
                             icon: 'success',
                             showConfirmButton: true,
                             confirmButtonText: 'Entendido'
@@ -122,16 +162,73 @@
                             }
                         });
                     },
-                    error: function() {
+                    error: function(error) {
                         Swal.fire({
                             title: 'Advertencia',
-                            text: 'Ya se puede calificar los productos/servicios del BIA',
+                            html: error.responseJSON.message,
                             icon: 'warning',
                             showConfirmButton: true,
                             confirmButtonText: 'Entendido'
                         });
                     },
                 })
+                // let timerInterval;
+                // Swal.fire({
+                //     title: 'Promedios de calificaciones de Productos/Servicios',
+                //     html: 'Se están generando los Productos/Servicios críticos',
+                //     timer: 5000,
+                //     timerProgressBar: true,
+                //     didOpen: () => {
+                //         $.ajax({
+                //             type: 'GET',
+                //             url: "{{ route('bia.averagescore', $bia->id) }}",
+                //             success: function() {
+                //                 Swal.fire({
+                //                     title: 'Listo',
+                //                     text: 'Se ha generado los promedios de las calificaciones y se han determinado los productos críticos',
+                //                     icon: 'success',
+                //                     showConfirmButton: true,
+                //                     confirmButtonText: 'Entendido'
+                //                 }).then(function(response) {
+                //                     if (response.isConfirmed) {
+                //                         location.reload();
+                //                     }
+                //                 });
+                //             },
+                //             error: function(error) {
+                //                 Swal.showValidationMessage(
+                //                     error.responseJSON.message
+                //                 )
+                //             },
+                //         })
+                //     },
+                // })
+                // $.ajax({
+                //     type: 'GET',
+                //     url: "{{ route('bia.averagescore', $bia->id) }}",
+                //     success: function() {
+                //         Swal.fire({
+                //             title: 'Listo',
+                //             text: 'Se ha generado los promedios de las calificaciones y se han determinado los productos críticos',
+                //             icon: 'success',
+                //             showConfirmButton: true,
+                //             confirmButtonText: 'Entendido'
+                //         }).then(function(response) {
+                //             if (response.isConfirmed) {
+                //                 location.reload();
+                //             }
+                //         });
+                //     },
+                //     error: function(error) {
+                //         Swal.fire({
+                //             title: 'Advertencia',
+                //             html: error.responseJSON.message,
+                //             icon: 'warning',
+                //             showConfirmButton: true,
+                //             confirmButtonText: 'Entendido'
+                //         });
+                //     },
+                // })
             });
         });
     </script>

@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class ProductScoreAverage extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'bia_process_id',
+        'product_id',
+        'total_score',
+        'is_critical',
+        'user_asigned'
+    ];
+
+    protected $casts = [
+        'is_critical' => 'boolean'
+    ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
+}

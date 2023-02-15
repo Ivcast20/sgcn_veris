@@ -102,50 +102,6 @@ class BiaProcessController extends Controller
         return view('bias.gestion', compact(['bia','calific_personas','productos_totales']));
     }
 
-    public function calific(Request $request, $id)
-    {
-        $bia = BiaProcess::find($id);
-        $estado_BIA = $bia->estado_id;
-
-        if ($estado_BIA == 1) {
-            $bia->estado_id = 2;
-            $bia->save();
-            return true;
-        } else {
-            throw new BiaEstadoDifException('Ya se puede calificar los productos de este BIA');
-        }
-    }
-
-    public function calificacionesComite(Request $request, $id)
-    {
-        $bia = BiaProcess::find($id);
-        $num_products_bia = $bia->products()->count();
-        $num_products_cal = ProductScore::where([['bia_id', $id], ['user_id', Auth::user()->id]])->get()->count();
-        $productos_calificados = ProductScore::where([['bia_id', $id], ['user_id', Auth::user()->id]])
-            ->with(
-                [
-                    'product:id,name',
-                    'parameterScores:product_score_id,id,score,parameter_id',
-                    'parameterScores.parameter:id,name'
-                ]
-            )->paginate(10);
-        return view('bias.calificomite', compact('bia', 'productos_calificados', 'num_products_bia', 'num_products_cal'));
-    }
-
-    public function calificar(Request $request, $id)
-    {
-        $productos_ya_calificados = ProductScore::pluck('id');
-        $productos = BiaProcess::find($id)
-            ->products()
-            ->with('category:id,name')
-            ->whereNotIn('product_id', $productos_ya_calificados)
-            ->get();
-        $parametros = Parameter::where([['bia_id', $id], ['status', true]])->select(['id', 'name'])->get();
-        $niveles = Level::where([['bia_id', $id], ['status', true]])->select(['id', 'value', 'name'])->get();
-        //return json_encode($productos);
-        return view('bias.calificarproducto', compact('productos', 'id', 'parametros', 'niveles'));
-    }
-
     public function guardar_calificacion(StoreScoreProductRequest $request, $id)
     {
         $calif_product = ProductScore::create($request->validated());
