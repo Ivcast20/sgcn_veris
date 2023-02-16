@@ -61,6 +61,8 @@ Route::middleware([
     Route::get('bia/{id}/calific',[ProductScoreController::class,'calific'])->name('calific');
     //Deten el proceso de calificar Prod-Servicios
     Route::get('bia/{id}/detener_calif',[ProductScoreController::class,'detener_calif'])->name('detener_calif');
+    //Obtener promedios de calificaciones Prod-Servicios
+    Route::get('bia/{id}/averagescore', [ProductScoreController::class, 'sacar_promedio'])->name('bia.averagescore');
 
     //Calificaciones de productos por usuario
     Route::get('bia/{id}/productoscalificados',[ProductScoreController::class,'calificacionesComite'])->name('calificaciones.comite');
@@ -68,8 +70,6 @@ Route::middleware([
     Route::get('bia/{id}/calificar', [ProductScoreController::class, 'calificar'])->name('calificar');
     //Guarda calificación de Producto-Servicio
     Route::post('bia/{id}/guardar/producto',[BiaProcessController::class, 'guardar_calificacion'])->name('bias.store.product');
-    //Obtener promedios de calificaciones Prod-Servicios
-    Route::get('bia/{id}/averagescore', [ProductScoreController::class, 'sacar_promedio'])->name('bia.averagescore');
     //Ver promedios de calificaciones
     Route::get('bia/{id}/verpromedios',[ProductScoreAverageController::class, 'ver_promedios'])->name('promedios.index');
 

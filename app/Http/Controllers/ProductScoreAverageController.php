@@ -85,14 +85,22 @@ class ProductScoreAverageController extends Controller
     }
 
     public function ver_promedios($id)
-   {
-      $bia = BiaProcess::find($id);
-      $productos_promediados = ProductScoreAverage::with(
-         [
-            'product:id,name,category_id' => ['category:id,name']
-         ]
-      )
-         ->where('bia_process_id', $id)->paginate(5);
-      return view('bias.promedios', compact('productos_promediados', 'bia'));
-   }
+    {
+        $bia = BiaProcess::find($id);
+        $productos_promediados = ProductScoreAverage::with(
+            [
+                'product:id,name,category_id' => ['category:id,name']
+            ]
+        )
+            ->where('bia_process_id', $id)->paginate(5);
+        $productos_criticos = ProductScoreAverage::with(
+            [
+                'product:id,name,category_id' => ['category:id,name'],
+                'user:id,name,last_name,cargo'
+            ]
+        )
+            ->where([['bia_process_id', $id],['is_critical',true]])->get();
+        //return dd($productos_criticos);
+        return view('bias.promedios', compact('productos_promediados', 'bia', 'productos_criticos'));
+    }
 }
