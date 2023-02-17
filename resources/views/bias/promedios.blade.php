@@ -12,7 +12,10 @@
         <li class="breadcrumb-item active" aria-current="page">{{ 'Calificaciones de Productos del BIA ' . $bia->name }}</li>
     </ol>
     <div class="card">
-        {{-- <img class="card-img-top" src="holder.js/100px180/" alt="Title"> --}}
+        <div class="d-flex justify-content-end mb-2">
+            <a href="#" class="btn btn-danger mr-2">PDF</a>
+            <a href="#" class="btn btn-success mr-2">Excel</a>
+        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -45,6 +48,12 @@
     </div>
     <div class="card mt-2">
         <div class="card-body">
+            <h4>Productos Críticos</h4>
+            <div class="d-flex justify-content-end mb-2">
+                <a href="#" class="btn btn-danger mr-2">PDF</a>
+                <a href="#" class="btn btn-success mr-2">Excel</a>
+                <a class="btn btn-primary" href="{{ route('bias.create') }}">Agregar Producto Crítico</a>
+            </div>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -54,7 +63,7 @@
                             <th scope="col">Categoría del producto</th>
                             <th scope="col">Calificación total</th>
                             <th scope="col">Crítico</th>
-                            <th scope="col">Persona Asignada</th>
+                            <th scope="col" colspan="2">Persona Asignada</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,7 +74,14 @@
                                 <td>{{ $product_critical->product->category->name }}</td>
                                 <td>{{ $product_critical->total_score }}</td>
                                 <td>{{ $product_critical->is_critical ? 'Si' : 'No' }}</td>
-                                <td>{{ $product_critical->user == null ? 'Sin asignar' : $product_critical->user->name . ' ' . $product_critical->user->name . ' : ' . $product_critical->user->cargo}}</td>
+                                @if ($product_critical->user == null)
+                                    <td>Sin asignar</td>
+                                    <td><a href="#" class="btn btn-success">Asignar</a></td>
+                                @else
+                                    <td colspan="2">
+                                        {{ $product_critical->user->name . ' ' . $product_critical->user->name . ' : ' . $product_critical->user->cargo }}
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

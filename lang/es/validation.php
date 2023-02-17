@@ -204,5 +204,7 @@ return [
         'updated_at'               => 'actualizado el',
         'username'                 => 'usuario',
         'year'                     => 'año',
+        'new_password'             => 'Nueva contraseña',
+        'old_password'             => 'Contraseña actual',
     ],
 ];

@@ -37,7 +37,12 @@ Auth::routes();
 Route::middleware([
     'auth'
 ])->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+    Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+    //Rutas para cambiar contraseña
+    Route::get('change_password', [App\Http\Controllers\HomeController::class, 'change_password'])->name('change_password');
+    Route::post('update_password', [App\Http\Controllers\HomeController::class, 'update_password'])->name('update_password');
+
+
     //Rutas para gestionar departamentos
     Route::resource('departments', DepartmentController::class)->names('departments');
     //Rutas para gestionar roles

@@ -333,6 +333,11 @@ return [
             'can' => 'admin.roles.index'
         ],
         [
+            'text' => 'Cambiar Contraseña',
+            'route' => 'change_password',
+            'icon' => 'fa fa-lock'
+        ],
+        [
             'header' => 'Configuración'
         ],
         // [

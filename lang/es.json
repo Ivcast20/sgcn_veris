@@ -60,5 +60,7 @@
     "New Department" : "Nuevo Departamento",
     "permissions": "permisos",
     "Categories":"Categorías",
-    "New Category" : "Nueva Categoría"
+    "New Category" : "Nueva Categoría",
+    "new password" : "Nueva contraseña",
+    "old password" : "Contraseña"
 }

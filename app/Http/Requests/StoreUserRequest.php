@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class StoreUserRequest extends FormRequest
 {
@@ -46,7 +47,7 @@ class StoreUserRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'password' => bcrypt(env('PASS_SYS','Veris202x-')),
+            'password' => Str::random(8),
         ]);
     }
 }

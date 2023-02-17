@@ -15,15 +15,17 @@ class NewUserMailable extends Mailable
 {
     use Queueable, SerializesModels;
     public $usuario;
+    public $password;
     public $url;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $usuario)
+    public function __construct(User $usuario, $password)
     {
         $this->usuario = $usuario;
+        $this->password = $password;
     }
 
     /**
@@ -50,7 +52,8 @@ class NewUserMailable extends Mailable
             markdown: 'emails.newUser',
             with: [
                 'url' => env('APP_URL'),
-                'usuario' => $this->usuario
+                'usuario' => $this->usuario,
+                'password' => $this->password,
             ]
         );
     }
