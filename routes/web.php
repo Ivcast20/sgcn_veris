@@ -12,6 +12,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductScoreAverageController;
 use App\Http\Controllers\ProductScoreController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SourceController;
+use App\Http\Controllers\TreatmentOptionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -106,8 +108,11 @@ Route::middleware([
     //Rutas para gestionar Criterios
     Route::resource('criterias', CriteriaController::class)->names('criterias');
 
-    
-    //Rutas para consultas del dashboard
-    //Route::get('usuarios-rol', [HomeController::class,'get_usuarios_x_rol'])->name('usuario.x.rol');
-    //Route::get('usuarios-x-dept',[HomeController::class,'get_usuarios_x_dept'])->name('usuarios.x.dept');
+
+    //Rutas para matriz de riesgos
+    //Rtuas para gestionar Fuentes
+    Route::resource('sources', SourceController::class)->names('sources');
+
+    Route::resource('treatmentoptions', TreatmentOptionController::class)->names('treatmentoptions');
+    //
 });

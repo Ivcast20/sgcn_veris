@@ -318,6 +318,25 @@ return [
             ]
         ],
         [
+            'text' => 'Matriz de riesgos',
+            'icon' => 'fas fa-chart-pie',
+            'submenu' => [
+                [
+                    'text' => 'Riesgos',
+                    'url' => '#',
+                    // 'can' => 'admin.bia_process.index'
+                ],
+                [
+                    'text' => 'Fuentes',
+                    'route' => 'sources.index'
+                ],
+                [
+                    'text' => 'Opciones de tratamiento',
+                    'route' => 'treatmentoptions.index'
+                ],
+            ]
+        ],
+        [
             'header' => 'Seguridad'
         ],
         [

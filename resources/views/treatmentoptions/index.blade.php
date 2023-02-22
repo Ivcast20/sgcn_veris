@@ -1,21 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Criterios')
+@section('title', 'Opciones de Tratamiento')
 
 @section('content_header')
-    <h1>{{ __('Criterios') }}</h1>
+    <h1>{{ __('Opciones de Tratamiento') }}</h1>
 @stop
 
 @section('content')
-    @can('admin.departments.create')    
-        <div class="d-flex justify-content-end mb-2">
-            <a class="btn btn-primary" href="{{ route('criterias.create') }}">Nuevo Criterio</a>
-        </div>
-    @endcan
-    @livewire('criteria-table')
-@stop
-
-@section('css')
+    <div class="d-flex justify-content-end mb-2">
+        <a class="btn btn-primary" href="{{ route('treatmentoptions.create') }}">Nueva opción de tratamiento</a>
+    </div>
+    @livewire('treatment-option-table')
 @stop
 
 @section('js')

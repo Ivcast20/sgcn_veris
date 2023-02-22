@@ -1,18 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Criterios')
+@section('title', 'Fuentes')
 
 @section('content_header')
-    <h1>{{ __('Criterios') }}</h1>
+    <h1>{{ __('Fuentes') }}</h1>
 @stop
 
 @section('content')
-    @can('admin.departments.create')    
-        <div class="d-flex justify-content-end mb-2">
-            <a class="btn btn-primary" href="{{ route('criterias.create') }}">Nuevo Criterio</a>
-        </div>
-    @endcan
-    @livewire('criteria-table')
+    <div class="d-flex justify-content-end mb-2">
+        <a class="btn btn-primary" href="{{ route('sources.create') }}">Nueva Fuente</a>
+    </div>
+    @livewire('source-table')
 @stop
 
 @section('css')
