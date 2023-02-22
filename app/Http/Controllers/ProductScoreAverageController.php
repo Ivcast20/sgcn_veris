@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateProductStorageAvgRequest;
 use App\Models\BiaProcess;
 use App\Models\ProductScoreAverage;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProductScoreAverageController extends Controller
@@ -102,5 +104,19 @@ class ProductScoreAverageController extends Controller
             ->where([['bia_process_id', $id],['is_critical',true]])->get();
         //return dd($productos_criticos);
         return view('bias.promedios', compact('productos_promediados', 'bia', 'productos_criticos'));
+    }
+
+    public function asignar_producto($id)
+    {
+        $productoCritico = ProductScoreAverage::with('product:id,name,category_id','product.category:id,name')->find($id);
+        $usuarios_responsables = User::permission('admin.activities.create')->orderBy('last_name','asc')->get();
+        //return json_encode($productoCritico);
+        return view('bias.criticalproduct.asignar', compact('productoCritico','usuarios_responsables'));
+    }
+
+    public function guardar_asignacion(UpdateProductStorageAvgRequest $request, ProductScoreAverage $productoScore)
+    {
+        $productoScore->update($request->validated());
+        return redirect()->route('promedios.index',$productoScore->bia_process_id)->with(['message' => 'Se ha asignado un responsable', 'typo' => 'success']);
     }
 }
