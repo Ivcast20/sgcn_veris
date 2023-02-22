@@ -19,7 +19,7 @@ class RoleSeeder extends Seeder
         $admin = Role::create(['name' => 'Admin']); //Cod 1
         $director = Role::create(['name' => 'Director']); //Cod 2
         $comite = Role::create(['name' => 'Comite']); //Cod 3
-        $jefe_de_area = Role::create(['name' => 'Jefe de Área']); //Cod 3
+        $jefe_de_area = Role::create(['name' => 'Jefe de Área']); //Cod 4
 
 
         //Permisos para gestionar departamentos OK
@@ -107,6 +107,13 @@ class RoleSeeder extends Seeder
             'name' => 'admin.prod_cr.edit',
             'description' => 'Editar producto/servicio crítico'
         ])->syncRoles([$admin, $director]);
+
+
+        //Permisos para gestionar actividades
+        Permission::create([
+            'name' => 'admin.activities.create',
+            'description' => 'Crear Actividades de productos críticos'
+        ])->syncRoles([$jefe_de_area]);
 
 
         //Permisos para gestionar categorías de productos

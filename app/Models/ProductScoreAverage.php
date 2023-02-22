@@ -30,4 +30,9 @@ class ProductScoreAverage extends Model
     {
         return $this->belongsTo(User::class, 'user_asigned');
     }
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class, 'critic_product_id', 'id');
+    }
 }

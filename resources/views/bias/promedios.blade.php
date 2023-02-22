@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Productos/Servicios del BIA' . $bia->name)
+@section('title', 'Calificaciones de productos ' . $bia->name)
 
 @section('content_header')
-    <h1>Listado de productos/servicios <strong>"{{ $bia->name }}"</strong> </h1>
+    <h1>Calificaciones de productos <strong>"{{ $bia->name }}"</strong> </h1>
 @stop
 
 @section('content')
@@ -12,9 +12,12 @@
         <li class="breadcrumb-item active" aria-current="page">{{ 'Calificaciones de Productos del BIA ' . $bia->name }}</li>
     </ol>
     <div class="card">
-        <div class="d-flex justify-content-end mb-2">
-            <a href="#" class="btn btn-danger mr-2">PDF</a>
-            <a href="#" class="btn btn-success mr-2">Excel</a>
+        <div class="card-header">
+            <h4>Promedio de Calificaciones de Productos</h4>
+            <div class="d-flex justify-content-end">
+                <a href="#" class="btn btn-danger mr-2">PDF</a>
+                <a href="#" class="btn btn-success mr-2">Excel</a>
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -26,6 +29,7 @@
                             <th scope="col">Categoría del producto</th>
                             <th scope="col">Calificación total</th>
                             <th scope="col">Crítico</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,6 +40,7 @@
                                 <td>{{ $product_avg->product->category->name }}</td>
                                 <td>{{ $product_avg->total_score }}</td>
                                 <td>{{ $product_avg->is_critical ? 'Si' : 'No' }}</td>
+                                <td><a href="#" class="btn btn-success">Editar</a></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -47,13 +52,15 @@
         </div>
     </div>
     <div class="card mt-2">
-        <div class="card-body">
+        <div class="card-header">
             <h4>Productos Críticos</h4>
-            <div class="d-flex justify-content-end mb-2">
+            <div class="d-flex justify-content-end">
                 <a href="#" class="btn btn-danger mr-2">PDF</a>
                 <a href="#" class="btn btn-success mr-2">Excel</a>
                 <a class="btn btn-primary" href="{{ route('bias.create') }}">Agregar Producto Crítico</a>
             </div>
+        </div>
+        <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -64,6 +71,7 @@
                             <th scope="col">Calificación total</th>
                             <th scope="col">Crítico</th>
                             <th scope="col" colspan="2">Persona Asignada</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,12 +84,13 @@
                                 <td>{{ $product_critical->is_critical ? 'Si' : 'No' }}</td>
                                 @if ($product_critical->user == null)
                                     <td>Sin asignar</td>
-                                    <td><a href="#" class="btn btn-success">Asignar</a></td>
+                                    <td><a href="{{route('productcritical.asign', $product_critical->id)}}" class="btn btn-success">Asignar</a></td>
                                 @else
                                     <td colspan="2">
-                                        {{ $product_critical->user->name . ' ' . $product_critical->user->name . ' : ' . $product_critical->user->cargo }}
+                                        {{ $product_critical->user->name . ' ' . $product_critical->user->last_name . ' : ' . $product_critical->user->cargo }}
                                     </td>
                                 @endif
+                                <td><a href="{{ route('activities.index', ['bia_id' => $bia->id, 'product_id' => $product_critical->id]) }}" class="btn btn-primary">Actividades</a></td>
                             </tr>
                         @endforeach
                     </tbody>

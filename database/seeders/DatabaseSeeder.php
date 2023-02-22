@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
             'department_id' => 2
         ]);
 
-        $usuariocod3->roles()->sync([3]);
+        $usuariocod3->roles()->sync([3,4]);
 
         $usuariocod4 = User::create([
             'name' => 'Fausto',
@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
             'department_id' => 3
         ]);
 
-        $usuariocod4->roles()->sync([3]);
+        $usuariocod4->roles()->sync([3,4]);
 
         $usuariocod5 = User::create([
             'name' => 'Melissa',
@@ -72,7 +72,7 @@ class DatabaseSeeder extends Seeder
             'department_id' => 4
         ]);
 
-        $usuariocod5->roles()->sync([3]);
+        $usuariocod5->roles()->sync([3,4]);
 
         $usuariocod6 = User::create([
             'name' => 'Michelle',
@@ -169,6 +169,18 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $usuariocod1->roles()->sync([1]);
+
+        $usuariocod13 = User::create([
+            'name' => 'Ivan Prueba',
+            'last_name' => 'Castro Prueba',
+            'cargo' => 'Desarrollador',
+            'email' => 'ivanuees@gmail.com',
+            'status' => 1,
+            'password' => bcrypt(env('PASS_SYS','Veris202x-')),
+            'department_id' => 11
+        ]);
+
+        $usuariocod13->roles()->sync([4]);
 
         $this->call(RespuestasBia::class);
 

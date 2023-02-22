@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\BiaProcessController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CriteriaController;
@@ -12,7 +13,6 @@ use App\Http\Controllers\ProductScoreAverageController;
 use App\Http\Controllers\ProductScoreController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Models\ProductScore;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -75,11 +75,30 @@ Route::middleware([
     Route::get('bia/{id}/calificar', [ProductScoreController::class, 'calificar'])->name('calificar');
     //Guarda calificación de Producto-Servicio
     Route::post('bia/{id}/guardar/producto',[BiaProcessController::class, 'guardar_calificacion'])->name('bias.store.product');
+    
+
+
+
     //Ver promedios de calificaciones
     Route::get('bia/{id}/verpromedios',[ProductScoreAverageController::class, 'ver_promedios'])->name('promedios.index');
+    //Forumalio para asignar producto crítico a un usuario
+    Route::get('bia/criticalproduct/{id}/asign',[ProductScoreAverageController::class, 'asignar_producto'])->name('productcritical.asign');
+    //Guarda asignacion de producto crítico a usuario
+    Route::put('bia/criticalproduct/{productoScore}/storeasign',[ProductScoreAverageController::class, 'guardar_asignacion'])->name('productcritical.storeasign');
+    
+    //Ruta para ver actividades de productos críticos
+    Route::get('bia/{bia_id}/criticalproduct/{product_id}/activities',[ActivityController::class,'index'])->name('activities.index');
+    //Ruta para el formulario crear una actividad de producto crítico
+    Route::get('bia/{bia_id}/criticalproduct/{product}/createactivity',[ActivityController::class,'create'])->name('activities.create');
+    //Guarda actividad de un producto crítico
+    Route::post('criticalproduct/storeactivity', [ActivityController::class, 'store'])->name('activities.store');
+    //Formulario para cambiar si una actividad es crítica
+    Route::get('activities/{activity}/edit',[ActivityController::class,'edit'])->name('activities.edit');
+    //Actualiza los campos de una actividad crítica
+    Route::put('activities/{activity}/update',[ActivityController::class,'update'])->name('activities.update');
 
 
-
+    
     //Rutas para gestionar Parametros
     Route::resource('parameters',ParameterController::class)->names('parameters');
     //Rutas para gestionar Niveles
@@ -87,6 +106,7 @@ Route::middleware([
     //Rutas para gestionar Criterios
     Route::resource('criterias', CriteriaController::class)->names('criterias');
 
+    
     //Rutas para consultas del dashboard
     //Route::get('usuarios-rol', [HomeController::class,'get_usuarios_x_rol'])->name('usuario.x.rol');
     //Route::get('usuarios-x-dept',[HomeController::class,'get_usuarios_x_dept'])->name('usuarios.x.dept');
