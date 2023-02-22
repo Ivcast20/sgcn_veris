@@ -88,5 +88,6 @@ Route::middleware([
     Route::resource('criterias', CriteriaController::class)->names('criterias');
 
     //Rutas para consultas del dashboard
-    Route::get('usuarios-rol', [HomeController::class,'get_usuarios_x_rol'])->name('usuario.x.rol');
+    //Route::get('usuarios-rol', [HomeController::class,'get_usuarios_x_rol'])->name('usuario.x.rol');
+    //Route::get('usuarios-x-dept',[HomeController::class,'get_usuarios_x_dept'])->name('usuarios.x.dept');
 });

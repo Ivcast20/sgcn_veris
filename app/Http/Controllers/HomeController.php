@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
@@ -27,7 +29,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $users = DB::table('users')->where('status','=',true)->count();
+        $bias = DB::table('bia_processes')->where('status',true)->count();
+        $products = DB::table('products')->where('status',true)->count();
+
+        $usuarios_x_roles = Role::withCount('users')->pluck('users_count', 'name');
+        $usr_x_rol_lb = $usuarios_x_roles->keys();
+        $usr_x_rol_data = $usuarios_x_roles->values();
+        $usuarios_x_dept = Department::withCount('users')->pluck('users_count', 'name');
+        $usr_x_dept_lb = $usuarios_x_dept->keys();
+        $usr_x_dept_data = $usuarios_x_dept->values();
+        return view('home', compact('users','bias','products', 'usr_x_rol_lb', 'usr_x_rol_data', 'usr_x_dept_lb', 'usr_x_dept_data'));
     }
 
     /**
@@ -60,7 +72,12 @@ class HomeController extends Controller
 
     public function get_usuarios_x_rol()
     {
-        $respuesta = Role::withCount('users')->get();
-        return json_encode($respuesta);
+        //return json_encode($respuesta);
+    }
+
+    public function get_usuarios_x_dept()
+    {
+        
+        //return json_encode($respuesta);
     }
 }

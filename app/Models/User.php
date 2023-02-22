@@ -29,6 +29,7 @@ class User extends Authenticatable
         'email',
         'department_id',
         'password',
+        'status'
     ];
 
     /**
@@ -48,6 +49,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'status' => 'boolean'
     ];
 
     function adminlte_desc()

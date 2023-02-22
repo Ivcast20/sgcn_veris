@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Mail\NewUserMailable;
 use App\Models\Department;
 use App\Models\Role;
@@ -35,7 +36,21 @@ class UserController extends Controller
             'cargo' => $datos_validados['cargo']
         ]);
         $nuevo_usuario->assignRole($request->roles);
-        Mail::to($nuevo_usuario)->send(new NewUserMailable($nuevo_usuario, $datos_validados['password']));
+        Mail::to($nuevo_usuario)->queue(new NewUserMailable($nuevo_usuario, $datos_validados['password']));
         return redirect()->route('users.index')->with(['message' => 'Usuario guardado', 'typo' => 'success']);
+    }
+
+    public function edit(User $user)
+    {
+        $roles = Role::all();
+        $departamentos = Department::where('status',1)->get();
+        return view('users.edit', compact('user','roles','departamentos'));
+    }
+
+    public function update(UpdateUserRequest $request, User $user)
+    {
+        $user->update($request->validated());
+        $user->syncRoles($request->roles);
+        return redirect()->route('users.index')->with(['message' => 'Usuario Actualizado', 'typo' => 'success']);
     }
 }

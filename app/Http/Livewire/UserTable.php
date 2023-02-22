@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class UserTable extends DataTableComponent
@@ -56,7 +57,14 @@ class UserTable extends DataTableComponent
                     return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
                 })
                 ->deselected(),
-            BooleanColumn::make('Estado', 'status')
+            BooleanColumn::make('Estado', 'status'),
+            LinkColumn::make('Acciones')
+                ->title(fn ($row) => 'Editar')
+                ->location(fn ($row) => route('users.edit', $row->id))
+                ->attributes(function ($row) {
+                    return ['class' => 'btn btn-success'];
+                })
+
         ];
     }
 
@@ -80,12 +88,12 @@ class UserTable extends DataTableComponent
 
     public function exportPDF()
     {
-         $usuarios = User::with('department:id,name')->findMany($this->getSelected());
-         $usuario = Auth::user();
-         $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
-         $fecha = Carbon::now()->format('d-m-Y');
-         $hora = Carbon::now()->format('H:i');
-         $pdf = Pdf::loadView('pdf.users', compact('nombreCompleto', 'fecha', 'hora', 'usuarios'))->output();
+        $usuarios = User::with('department:id,name')->findMany($this->getSelected());
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->format('H:i');
+        $pdf = Pdf::loadView('pdf.users', compact('nombreCompleto', 'fecha', 'hora', 'usuarios'))->output();
         return response()->streamDownload(
             fn () => print($pdf),
             $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Usuarios.pdf'
@@ -94,11 +102,11 @@ class UserTable extends DataTableComponent
 
     public function exportExcel()
     {
-         $usuarios = $this->getSelected();
-         $usuario = Auth::user();
-         $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
-         $fecha = Carbon::now()->format('d-m-Y');
-         $hora = Carbon::now()->format('H:i');
-         return Excel::download(new UsersExport($usuarios), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Usuarios.xlsx');
+        $usuarios = $this->getSelected();
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->format('H:i');
+        return Excel::download(new UsersExport($usuarios), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Usuarios.xlsx');
     }
 }
