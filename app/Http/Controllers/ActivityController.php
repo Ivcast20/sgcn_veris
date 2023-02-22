@@ -70,7 +70,6 @@ class ActivityController extends Controller
      */
     public function edit(Activity $activity)
     {
-        //return $activity->criticproduct;
         return view('activities.edit', compact('activity'));
     }
 

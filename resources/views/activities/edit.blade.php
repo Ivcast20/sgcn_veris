@@ -9,8 +9,12 @@
 @section('content')
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('bias.index') }}">Listado de BIA</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('promedios.index', $activity->criticproduct->bia_process_id) }}">Promedios de calificaciones de productos</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('activities.index', ['bia_id' => $activity->criticproduct->bia_process_id, 'product_id' => $activity->criticproduct->id]) }}">Actividades</a></li>
+        <li class="breadcrumb-item"><a
+                href="{{ route('promedios.index', $activity->criticproduct->bia_process_id) }}">Promedios de calificaciones
+                de productos</a></li>
+        <li class="breadcrumb-item"><a
+                href="{{ route('activities.index', ['bia_id' => $activity->criticproduct->bia_process_id, 'product_id' => $activity->criticproduct->id]) }}">Actividades</a>
+        </li>
         <li class="breadcrumb-item active" aria-current="page">{{ __('Editar Actividad Crítica') }}</li>
     </ol>
     <div class="card">
@@ -21,7 +25,8 @@
                 <!-- Nombre -->
                 <div class="form-group">
                     <label for="name" class="form">Nombre</label>
-                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $activity->name) }}" readonly>
+                    <input type="text" name="name" id="name" class="form-control"
+                        value="{{ old('name', $activity->name) }}" readonly>
                     @error('name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -38,8 +43,7 @@
                 <!-- MTPD -->
                 <div class="form-group">
                     <label>MTPD</label>
-                    <input type="text" name="mtpd" class="form-control"
-                        value="{{ old('mtpd', $activity->mtpd) }}">
+                    <input type="text" name="mtpd" class="form-control" value="{{ old('mtpd', $activity->mtpd) }}">
                     @error('mtpd')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -47,8 +51,7 @@
                 <!-- RTO -->
                 <div class="form-group">
                     <label>RTO</label>
-                    <input type="text" name="rto" class="form-control"
-                        value="{{ old('rto', $activity->rto) }}">
+                    <input type="text" name="rto" class="form-control" value="{{ old('rto', $activity->rto) }}">
                     @error('rto')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -56,8 +59,7 @@
                 <!-- RPO -->
                 <div class="form-group">
                     <label>RPO</label>
-                    <input type="text" name="rpo" class="form-control"
-                        value="{{ old('rpo', $activity->rpo) }}">
+                    <input type="text" name="rpo" class="form-control" value="{{ old('rpo', $activity->rpo) }}">
                     @error('rpo')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -81,19 +83,17 @@
                     @enderror
                 </div>
                 <!-- Dependencia de otros procesos -->
-                <div class="custom-control custom-switch">
-                    <input 
-                        type="checkbox"
-                        class="custom-control-input"
-                        name="other_proc_depen"
+                <div>
+                    <input type="checkbox" name="other_proc_depen" 
                         @checked(old('other_proc_depen', $activity->other_proc_depen))/>
-                    <label class="custom-control-label">Dependencia de otros procesos</label>
+                    <label>Dependencia de otros procesos</label>
+                    @error('other_proc_depen')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
-                @error('other_proc_depen')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
+
                 <!-- ¿Qué procesos? ( en caso de aplicar) -->
-                <div class="form-group pt-2">
+                <div class="form-group">
                     <label>¿Qué procesos? ( en caso de aplicar)</label>
                     <textarea class="form-control" name="processes" rows="3">{{ old('processes', $activity->processes) }}</textarea>
                     @error('processes')
@@ -198,7 +198,8 @@
                 </div>
                 <!-- Fin -->
                 <div class="d-flex justify-content-center mt-2">
-                    <a href="{{ route('activities.index', ['bia_id' => $activity->criticproduct->bia_process_id, 'product_id' => $activity->criticproduct->id]) }}" class="btn btn-secondary mr-2">Cancelar</a>
+                    <a href="{{ route('activities.index', ['bia_id' => $activity->criticproduct->bia_process_id, 'product_id' => $activity->criticproduct->id]) }}"
+                        class="btn btn-secondary mr-2">Cancelar</a>
                     <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
             </form>
