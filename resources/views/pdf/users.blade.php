@@ -86,17 +86,18 @@
             font-size: 0.8em;
         }
 
-        table {
-            width: 100%;
-            /*border-collapse: collapse;*/
-            border-spacing: 0;
-            margin-bottom: 20px;
-            table-layout: fixed;
+        table,
+        td,
+        th {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px
         }
 
-        /* table tr:nth-child(2n-1) td {
-            background: #0087C3;
-        } */
+        table {
+            width: 100%;
+            table-layout: fixed;
+        }
 
         table th,
         table td {
@@ -105,14 +106,11 @@
         }
 
         table th {
-            padding: 5px 20px;
-            border-bottom: 1px solid #014764;
-            /*white-space: nowrap;*/
             font-weight: bold;
+            background-color: #018bc2;
         }
 
         table td {
-            border-bottom: 1px solid #0188c2;
             padding: 20px 10px;
         }
 
