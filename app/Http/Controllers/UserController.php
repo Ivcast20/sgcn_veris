@@ -36,7 +36,7 @@ class UserController extends Controller
             'cargo' => $datos_validados['cargo']
         ]);
         $nuevo_usuario->assignRole($request->roles);
-        Mail::to($nuevo_usuario)->queue(new NewUserMailable($nuevo_usuario, $datos_validados['password']));
+        Mail::to($nuevo_usuario)->queue(new NewUserMailable($nuevo_usuario, $datos_validados['password'], config('app.url')));
         return redirect()->route('users.index')->with(['message' => 'Usuario guardado', 'typo' => 'success']);
     }
 

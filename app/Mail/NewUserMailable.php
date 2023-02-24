@@ -22,10 +22,11 @@ class NewUserMailable extends Mailable
      *
      * @return void
      */
-    public function __construct(User $usuario, $password)
+    public function __construct(User $usuario, $password, $url)
     {
         $this->usuario = $usuario;
         $this->password = $password;
+        $this->url = $url;
     }
 
     /**
@@ -49,9 +50,9 @@ class NewUserMailable extends Mailable
     public function content()
     {
         return new Content(
-            markdown: 'emails.newUser',
+            view: 'emails.newUser',
             with: [
-                'url' => env('APP_URL'),
+                'link_pagina' => $this->url,
                 'usuario' => $this->usuario,
                 'password' => $this->password,
             ]

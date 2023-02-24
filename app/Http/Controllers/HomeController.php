@@ -67,17 +67,4 @@ class HomeController extends Controller
 
         return back()->with("status", "El cambio ha sido exitoso");
     }
-
-
-
-    public function get_usuarios_x_rol()
-    {
-        //return json_encode($respuesta);
-    }
-
-    public function get_usuarios_x_dept()
-    {
-        
-        //return json_encode($respuesta);
-    }
 }
