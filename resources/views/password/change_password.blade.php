@@ -39,6 +39,22 @@
                         @error('new_password')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
+                        <small>
+                            <ul>
+                                <li>
+                                    Debe contener al menos 8 caracteres
+                                </li>
+                                <li>
+                                    Debe contener al menos una letra mayúscula y una minúscula
+                                </li>
+                                <li>
+                                    Debe contener al menos un número
+                                </li>
+                                <li>
+                                    Debe contener al menos un símbolo Ej: -/+*
+                                </li>
+                            </ul>
+                        </small>
                     </div>
                     <div class="mb-3">
                         <label for="confirmNewPassword" class="form-label">Confirmación de nueva contraseña</label>
