@@ -1,7 +1,9 @@
 <div>
     @can('admin.roles.create')
         <div class="d-flex justify-content-end">
-            <a class="btn btn-success" href="{{ route('roles.create') }}">Nuevo Rol</a>
+            <a class="btn btn-danger mr-2" href="{{ route('roles.pdf') }}"><i class="far fa-file-pdf"></i> PDF</a>
+            <a class="btn btn-success mr-2" href="{{ route('roles.excel') }}"><i class="far fa-file-excel"></i></i> Excel</a>
+            <a class="btn btn-primary" href="{{ route('roles.create') }}">Nuevo Rol</a>
         </div>
     @endcan
     <div class="card mt-2">

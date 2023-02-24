@@ -11,6 +11,7 @@ use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductScoreAverageController;
 use App\Http\Controllers\ProductScoreController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SourceController;
 use App\Http\Controllers\TreatmentOptionController;
@@ -114,5 +115,10 @@ Route::middleware([
     Route::resource('sources', SourceController::class)->names('sources');
 
     Route::resource('treatmentoptions', TreatmentOptionController::class)->names('treatmentoptions');
-    //
+
+    //Rutas para reportes
+    Route::prefix('report')->group(function () {
+        Route::get('rolespdf', [ReportController::class, 'report_roles_pdf'])->name('roles.pdf');
+        Route::get('rolesexcel', [ReportController::class, 'report_roles_excel'])->name('roles.excel');
+    });
 });
