@@ -28,7 +28,10 @@ class CategoryTable extends DataTableComponent
 
     public function columns(): array
     {
-        return [
+        $usuario = Auth::user();
+        $puede_editar = $usuario->hasPermissionTo('admin.categories.edit');
+
+        $columnas = [
             Column::make("Id", "id")
                 ->sortable(),
             Column::make("Name", "name")
@@ -45,15 +48,25 @@ class CategoryTable extends DataTableComponent
                     return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
                 })
                 ->deselected(),
-            LinkColumn::make('Acciones')
-                ->title(fn ($row) => 'Editar')
-                ->location(fn ($row) => route('categories.edit', $row->id))
-                ->attributes(function ($row) {
-                    return [
-                        'class' => 'btn btn-success'
-                    ];
-                }),
         ];
+
+        if ($puede_editar) {
+            $columnas = array_merge(
+                $columnas,
+                [
+                    LinkColumn::make('Acciones')
+                        ->title(fn ($row) => 'Editar')
+                        ->location(fn ($row) => route('categories.edit', $row->id))
+                        ->attributes(function ($row) {
+                            return [
+                                'class' => 'btn btn-success'
+                            ];
+                        }),
+                ]
+            );
+        }
+
+        return $columnas;
     }
 
     public function filters(): array
