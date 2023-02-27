@@ -12,9 +12,9 @@
         <li class="breadcrumb-item active" aria-current="page">{{ 'Productos ' . $nombreBia }}</li>
     </ol>
     <div>
-        <div>
+        <div class="d-flex justify-content-end pb-2">
             <a href="{{ route('productosbia.pdf', $id) }}" class="btn btn-success">PDF</a>
-            <a href="{{ route('productosbia.excel', $id) }}" class="btn btn-danger">Excel</a>
+            <a href="{{ route('productosbia.excel', $id) }}" class="btn btn-danger ml-2">Excel</a>
         </div>
     </div>
     <div class="table-responsive">

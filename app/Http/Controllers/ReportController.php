@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CriticActivitiesExport;
 use App\Exports\ProductsExport;
 use App\Exports\RolesExport;
 use App\Models\BiaProcess;
@@ -61,5 +62,14 @@ class ReportController extends Controller
             $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Productos.pdf'
         );
 
+    }
+
+    public function report_actividades_criticas_bia($id_producto)
+    {
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->format('H:i');
+        return Excel::download(new CriticActivitiesExport($id_producto), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' actividades criticas.xlsx');
     }
 }

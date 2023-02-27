@@ -128,5 +128,6 @@ Route::middleware([
         Route::get('rolesexcel', [ReportController::class, 'report_roles_excel'])->name('roles.excel');
         Route::get('productosbia/{bia_id}/excel',[ReportController::class, 'report_productos_bia_excel'])->name('productosbia.excel');
         Route::get('productosbia/{bia_id}/pdf',[ReportController::class, 'report_productos_bia_pdf'])->name('productosbia.pdf');
+        Route::get('actividadescriticas/{id_producto}/excel', [ReportController::class, 'report_actividades_criticas_bia'])->name('actividadescriticas.excel');
     });
 });

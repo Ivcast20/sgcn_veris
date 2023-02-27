@@ -21,6 +21,10 @@
     @livewire('activities.show-activities', ['product_id' => $product_id])
 
     <h4>Actividades críticas</h4>
+    <div class="d-flex justify-content-end">
+        <a class="btn btn-success"
+            href="{{ route('actividadescriticas.excel', ['id_producto' => $product_id]) }}">Excel</a>
+    </div>
     @livewire('activities.show-critical-activities', ['product_id' => $product_id, 'bia_id' => $bia_id])
 @stop
 

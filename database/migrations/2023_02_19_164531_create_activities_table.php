@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('mtpd',50)->nullable();
             $table->string('rto',50)->nullable();
             $table->string('rpo',50)->nullable();
-            $table->string('aceptable_minimun',50)->nullable();
+            $table->string('aceptable_minimun',500)->nullable();
             $table->integer('priority')->nullable();
             $table->boolean('other_proc_depen')->nullable();
             $table->string('processes',500)->nullable();
