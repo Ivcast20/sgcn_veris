@@ -2,12 +2,16 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\ParametersExport;
 use App\Models\BiaProcess;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Parameter;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
@@ -88,11 +92,25 @@ class ParameterTable extends DataTableComponent
 
     public function exportPDF()
     {
-        return 'Hola';
+        $parametros = Parameter::with('bia:id,name')->findMany($this->getSelected());
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->toTimeString();
+        $pdf = Pdf::loadView('pdf.parameters', compact('nombreCompleto', 'fecha', 'hora', 'parametros'))->output();
+        return response()->streamDownload(
+            fn () => print($pdf),
+            $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo BIA.pdf'
+        );
     }
 
     public function exportExcel()
     {
-        return 'Chao';
+        $parametros = $this->getSelected();
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->format('H:i');
+        return Excel::download(new ParametersExport($parametros), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Parámetros.xlsx');
     }
 }
