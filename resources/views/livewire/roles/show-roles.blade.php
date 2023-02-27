@@ -1,11 +1,11 @@
 <div>
-    @can('admin.roles.create')
-        <div class="d-flex justify-content-end">
-            <a class="btn btn-danger mr-2" href="{{ route('roles.pdf') }}"><i class="far fa-file-pdf"></i> PDF</a>
-            <a class="btn btn-success mr-2" href="{{ route('roles.excel') }}"><i class="far fa-file-excel"></i></i> Excel</a>
-            <a class="btn btn-primary" href="{{ route('roles.create') }}">Nuevo Rol</a>
-        </div>
-    @endcan
+    <div class="d-flex justify-content-end">
+        <a class="btn btn-danger" href="{{ route('roles.pdf') }}"><i class="far fa-file-pdf"></i> PDF</a>
+        <a class="btn btn-success ml-2" href="{{ route('roles.excel') }}"><i class="far fa-file-excel"></i></i> Excel</a>
+        @can('admin.roles.create')
+            <a class="btn btn-primary ml-2" href="{{ route('roles.create') }}">Nuevo Rol</a>
+        @endcan
+    </div>
     <div class="card mt-2">
         <div class="card-header">
             <div class="input-group  mb-3">
@@ -51,7 +51,7 @@
                                         <td>
                                             @can('admin.roles.edit')
                                                 <a class="btn btn-info"
-                                                    href="{{ Route('roles.edit',$rol->id) }}">Editar</a>
+                                                    href="{{ Route('roles.edit', $rol->id) }}">Editar</a>
                                             @endcan
                                             @can('admin.roles.destroy')
                                                 <button class="btn btn-danger"
