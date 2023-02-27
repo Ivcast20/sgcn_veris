@@ -54,7 +54,7 @@ class RoleSeeder extends Seeder
             'description' => 'Eliminar rol'
         ])->syncRoles([$admin, $director]);
 
-        //Permisos para gestionar usuarios
+        //Permisos para gestionar usuarios OK
         Permission::create([
             'name' => 'admin.users.index',
             'description' => 'Ver usuarios'

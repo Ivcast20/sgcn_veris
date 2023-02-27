@@ -7,9 +7,11 @@
 @stop
 
 @section('content')
-    <div class="d-flex justify-content-end mb-2">
-        <a class="btn btn-primary" href="{{ route('users.create') }}">Nuevo Usuario</a>
-    </div>
+    @can('admin.users.create')
+        <div class="d-flex justify-content-end mb-2">
+            <a class="btn btn-primary" href="{{ route('users.create') }}">Nuevo Usuario</a>
+        </div>
+    @endcan
     <livewire:user-table />
 @stop
 
