@@ -9,6 +9,7 @@
             display: table;
             clear: both;
         }
+
         body {
             margin: 0 auto;
             color: #001028;
@@ -17,16 +18,20 @@
             font-size: 14px;
             font-family: 'Times New Roman', Times, serif;
         }
+
         header {
             padding: 20px 0px;
             margin-bottom: 30px;
         }
+
         #logo {
             margin: right;
         }
+
         #logo img {
             width: 200px;
         }
+
         h1 {
             color: #5D6975;
             font-size: 2.4em;
@@ -34,6 +39,7 @@
             text-align: right;
             margin: 0 0 5px 0;
         }
+
         h2 {
             border-bottom: 1px solid #0087C3;
             color: #5D6975;
@@ -43,28 +49,29 @@
             text-align: right;
             margin: 0 0 5px 0;
         }
+
         #TotalR {
             text-align: right;
             font-weight: bold;
         }
+
         #datosR {
             float: left;
             font-weight: normal;
         }
+
         #datosR span {
             color: black;
-            /* text-align: left; */
             width: 52px;
-            /* margin-right: 5px; */
-            /* display: inline-block; */
-            /* font-size: 1em; */
             font-weight: bolder;
             padding-left: 6px;
             border-left: 6px solid #0087C3;
         }
+
         #project {
             float: left;
         }
+
         #project span {
             color: #5D6975;
             text-align: right;
@@ -73,30 +80,35 @@
             display: inline-block;
             font-size: 0.8em;
         }
+
+        table,
+        td,
+        th {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px
+        }
+
         table {
             width: 100%;
-            border-collapse: collapse;
-            border-spacing: 0;
-            margin-bottom: 20px;
+            table-layout: fixed;
         }
-        table tr:nth-child(2n-1) td {
-            background: #0087C3;
-        }
+
         table th,
         table td {
-            text-align: center;
+            text-align: justify;
+            vertical-align: baseline;
         }
+
         table th {
-            padding: 5px 20px;
-            /* color: #5D6975; */
-            border-bottom: 1px solid #0087C3;
-            white-space: nowrap;
-            font-weight: normal;
+            font-weight: bold;
+            background-color: #018bc2;
         }
+
         table td {
-            padding: 90px;
-            text-align: right;
+            padding: 20px 10px;
         }
+
         footer {
             color: #5D6975;
             width: 100%;
@@ -145,10 +157,10 @@
             <tbody>
                 @foreach ($categorias as $category)   
                 <tr>
-                    <th>{{ $category->id }}</th>
-                    <th>{{ $category->name }}</th>
-                    <th>{{ $category->created_at_r }}</th>
-                    <th>{{ $category->status == 1 ? 'Activo' : 'Inactivo' }}</th>
+                    <td>{{ $category->id }}</td>
+                    <td>{{ $category->name }}</td>
+                    <td>{{ $category->created_at_r }}</td>
+                    <td>{{ $category->status == 1 ? 'Activo' : 'Inactivo' }}</td>
                 </tr>
                 @endforeach
             </tbody>
