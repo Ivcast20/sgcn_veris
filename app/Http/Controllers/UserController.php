@@ -15,6 +15,13 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.users.index')->only('index');
+        $this->middleware('can:admin.users.create')->only('create');
+        $this->middleware('can:admin.users.edit')->only('edit');        
+    }
+    
     public function index(): View {
         return view('users.index');
     }
