@@ -9,7 +9,7 @@
 @section('content')
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('roles.index') }}">Roles</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Editar Rol</li>
+        <li class="breadcrumb-item active" aria-current="page">Crear Rol</li>
     </ol>
     <div class="card">
         <div class="card-body">
