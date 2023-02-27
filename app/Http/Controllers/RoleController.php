@@ -10,33 +10,24 @@ use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.roles.index')->only('index');
+        $this->middleware('can:admin.roles.create')->only('create');
+        $this->middleware('can:admin.roles.edit')->only('edit');
+    }
+
     public function index()
     {
         return view('roles.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $permisos = Permission::all();
         return view('roles.create', compact('permisos'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function store(StoreRoleRequest $request)
     {
         $role = Role::create($request->validated());
@@ -44,13 +35,6 @@ class RoleController extends Controller
         return redirect()->route('roles.index')->with(['message' => 'Producto Creado', 'typo' => 'success']);
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $permisos = Permission::all(); //Obtengo todos los permisos
@@ -58,13 +42,6 @@ class RoleController extends Controller
         return view('roles.edit',compact('rol','permisos')); //Envío todo a la visra roles.edit
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateRoleRequest $request, Role $role)
     {
         $role->update($request->validated());
