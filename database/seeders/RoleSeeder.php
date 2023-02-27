@@ -16,11 +16,11 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $admin = Role::create(['name' => 'Admin']); //Cod 1
+        $admin = Role::create(['name' => 'Administrador']); //Cod 1
         $director = Role::create(['name' => 'Director']); //Cod 2
         $comite = Role::create(['name' => 'Comite']); //Cod 3
         $jefe_de_area = Role::create(['name' => 'Jefe de Área']); //Cod 4
-
+        $auditor = Role::create(['name' => 'Auditor']); //Cod 5
 
         //Permisos para gestionar departamentos OK
         Permission::create([
@@ -35,7 +35,6 @@ class RoleSeeder extends Seeder
             'name' => 'admin.departments.edit',
             'description' => 'Editar departamentos'
         ])->syncRoles([$admin, $director]);
-
 
         //Permisos para gestionar roles OK
         Permission::create([
@@ -55,7 +54,6 @@ class RoleSeeder extends Seeder
             'description' => 'Eliminar rol'
         ])->syncRoles([$admin, $director]);
 
-
         //Permisos para gestionar usuarios
         Permission::create([
             'name' => 'admin.users.index',
@@ -70,12 +68,11 @@ class RoleSeeder extends Seeder
             'description' => 'Editar usuarios'
         ])->syncRoles([$admin, $director]);
 
-
         //Permisos para gestionar el Bia
         Permission::create([
             'name' => 'admin.bia_process.index',
             'description' => 'Ver BIAs'
-        ])->syncRoles([$admin, $director, $comite]);
+        ])->syncRoles([$admin, $director, $comite, $jefe_de_area, $auditor]);
         Permission::create([
             'name' => 'admin.bia_process.create',
             'description' => 'Crear BIA'
@@ -91,30 +88,35 @@ class RoleSeeder extends Seeder
         Permission::create([
             'name' => 'admin.bia_process.ver_prod',
             'description' => 'Ver productos del BIA'
-        ])->syncRoles([$admin, $director, $comite]);
+        ])->syncRoles([$admin, $director, $comite, $jefe_de_area, $auditor]);
         Permission::create([
             'name' => 'admin.bia_process.cal_prod',
             'description' => 'Calificar productos del BIA (COMITÉ)'
         ])->syncRoles([$comite]);
 
-
         //Permisos para gestionar productos con calificaciones promediadas
         Permission::create([
             'name' => 'admin.product_score_avg.index',
             'description' => 'Ver calificaciones de Productos promediada'
-        ])->syncRoles([$admin, $director, $comite]);
+        ])->syncRoles([$admin, $director, $comite, $auditor]);
         Permission::create([
             'name' => 'admin.prod_cr.edit',
             'description' => 'Editar producto/servicio crítico'
         ])->syncRoles([$admin, $director]);
 
-
         //Permisos para gestionar actividades
+        Permission::create([
+            'name' => 'admin.activities.index',
+            'description' => 'Ver Actividades de productos críticos'
+        ])->syncRoles([$admin, $auditor, $comite, $director, $jefe_de_area]);
         Permission::create([
             'name' => 'admin.activities.create',
             'description' => 'Crear Actividades de productos críticos'
         ])->syncRoles([$jefe_de_area]);
-
+        Permission::create([
+            'name' => 'admin.activities.edit',
+            'description' => 'Editar Actividades de productos críticos'
+        ])->syncRoles([$jefe_de_area]);
 
         //Permisos para gestionar categorías de productos
         Permission::create([
@@ -130,12 +132,11 @@ class RoleSeeder extends Seeder
             'description' => 'Editar categoría'
         ])->syncRoles([$admin, $director]);
 
-
         //Permisos para gestionar niveles
         Permission::create([
             'name' => 'admin.levels.index',
             'description' => 'Ver niveles',
-        ])->syncRoles([$admin, $director]);
+        ])->syncRoles([$admin, $director, $comite]);
         Permission::create([
             'name' => 'admin.levels.create',
             'description' => 'Crear nivel'
@@ -145,12 +146,11 @@ class RoleSeeder extends Seeder
             'description' => 'Editar nivel'
         ])->syncRoles([$admin, $director]);
 
-
         //Permisos para gestionar parámetros
         Permission::create([
             'name' => 'admin.parameters.index',
             'description' => 'Ver parametros',
-        ])->syncRoles([$admin, $director]);
+        ])->syncRoles([$admin, $director, $comite]);
         Permission::create([
             'name' => 'admin.parameters.create',
             'description' => 'Crear parametro'
@@ -164,7 +164,7 @@ class RoleSeeder extends Seeder
         Permission::create([
             'name' => 'admin.criterias.index',
             'description' => 'Ver criterios',
-        ])->syncRoles([$admin, $director]);
+        ])->syncRoles([$admin, $director, $comite]);
         Permission::create([
             'name' => 'admin.criterias.create',
             'description' => 'Crear criterio'
