@@ -65,13 +65,13 @@ class UserTable extends DataTableComponent
         if($puede_editar)
         {
             $columnas = array_merge(
+                $columnas,
                 [LinkColumn::make('Acciones')
                 ->title(fn ($row) => 'Editar')
                 ->location(fn ($row) => route('users.edit', $row->id))
                 ->attributes(function ($row) {
                     return ['class' => 'btn btn-success'];
-                })],
-                $columnas
+                })]
             );
         }
         return $columnas;
