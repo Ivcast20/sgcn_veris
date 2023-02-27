@@ -16,7 +16,7 @@ class ParameterSeeder extends Seeder
     public function run()
     {
         Parameter::create([
-            'name' => 'FINACIERO',
+            'name' => 'FINANCIERO',
             'bia_id' => 1
         ]);
 
