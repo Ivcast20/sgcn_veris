@@ -5,6 +5,7 @@ use App\Http\Controllers\BiaProcessController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\ImpactLevelController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\ProductController;
@@ -16,7 +17,6 @@ use App\Http\Controllers\SourceController;
 use App\Http\Controllers\TreatmentOptionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -116,6 +116,8 @@ Route::middleware([
     Route::resource('sources', SourceController::class)->names('sources');
 
     Route::resource('treatmentoptions', TreatmentOptionController::class)->names('treatmentoptions');
+
+    Route::resource('impact_levels', ImpactLevelController::class)->names('impact_levels');
 
     //Rutas para reportes
     Route::prefix('report')->group(function () {

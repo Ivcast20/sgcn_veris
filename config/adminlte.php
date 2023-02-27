@@ -334,6 +334,18 @@ return [
                     'text' => 'Opciones de tratamiento',
                     'route' => 'treatmentoptions.index'
                 ],
+                [
+                    'text' => 'Niveles de Impacto',
+                    'route' => 'impact_levels.index'
+                ],
+                [
+                    'text' => 'Niveles de Probabilidad',
+                    'route' => 'impact_levels.index'
+                ],
+                [
+                    'text' => 'Niveles de riesgo',
+                    'route' => 'impact_levels.index'
+                ],
             ]
         ],
         [
