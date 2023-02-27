@@ -2,12 +2,16 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\LevelsExport;
 use App\Models\BiaProcess;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Level;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
@@ -105,25 +109,25 @@ class LevelTable extends DataTableComponent
 
     public function exportPDF()
     {
-        // $productos = Product::with(['category:id,name'])->findMany($this->getSelected());
-        // $usuario = Auth::user();
-        // $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
-        // $fecha = Carbon::now()->format('d-m-Y');
-        // $hora = Carbon::now()->format('H:i');
-        // $pdf = Pdf::loadView('pdf.products', compact('nombreCompleto', 'fecha', 'hora', 'productos'))->output();
-        // return response()->streamDownload(
-        //     fn () => print($pdf),
-        //     $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Productos.pdf'
-        // );
+        $levels = Level::with(['bia:id,name'])->findMany($this->getSelected());
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->format('H:i');
+        $pdf = Pdf::loadView('pdf.levels', compact('nombreCompleto', 'fecha', 'hora', 'levels'))->output();
+        return response()->streamDownload(
+            fn () => print($pdf),
+            $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Niveles.pdf'
+        );
     }
 
     public function exportExcel()
     {
-        // $productos = $this->getSelected();
-        // $usuario = Auth::user();
-        // $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
-        // $fecha = Carbon::now()->format('d-m-Y');
-        // $hora = Carbon::now()->format('H:i');
-        // return Excel::download(new ProductsExport($productos), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Productos.xlsx');
+        $levels = $this->getSelected();
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->format('H:i');
+        return Excel::download(new LevelsExport($levels), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Niveles.xlsx');
     }
 }
