@@ -62,30 +62,6 @@ class DepartmentTable extends DataTableComponent
         }
 
         return $columnas;
-        /*return [
-            Column::make("Id", "id")
-                ->sortable(),
-            Column::make("Nombre", "name")
-                ->sortable()
-                ->searchable(),
-            Column::make("Descripción", "description"),
-            Column::make("Fecha de creación", "created_at")
-                ->format(function ($value) {
-                    return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
-                }),
-            Column::make("Fecha de actualización", "updated_at")
-                ->format(function ($value) {
-                    return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
-                })
-                ->deselected(),
-            BooleanColumn::make("Estado", "status"),
-            LinkColumn::make('Acciones')
-                ->title(fn ($row) => 'Editar')
-                ->location(fn ($row) => route('departments.edit', $row->id))
-                ->attributes(function ($row) {
-                    return ['class' => 'btn btn-success'];
-                }),
-        ];*/
     }
 
     public function filters(): array
