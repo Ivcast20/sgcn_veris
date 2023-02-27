@@ -94,12 +94,12 @@ class BiaProcessController extends Controller
         $bia = BiaProcess::find($id);
         $productos_totales = $bia->products->count();
         $calific_personas = DB::table('product_scores')
-                                    ->join('users', 'product_scores.user_id', '=', 'users.id')
-                                    ->where('product_scores.bia_id', '=', $id)
-                                    ->select(DB::raw('product_scores.user_id, count(*) as num_products_cal'), 'users.name', 'users.last_name')
-                                    ->groupBy('product_scores.user_id', 'users.name', 'users.last_name')
-                                    ->paginate(10);
-        return view('bias.gestion', compact(['bia','calific_personas','productos_totales']));
+            ->join('users', 'product_scores.user_id', '=', 'users.id')
+            ->where('product_scores.bia_id', '=', $id)
+            ->select(DB::raw('product_scores.user_id, count(*) as num_products_cal'), 'users.name', 'users.last_name')
+            ->groupBy('product_scores.user_id', 'users.name', 'users.last_name')
+            ->paginate(10);
+        return view('bias.gestion', compact(['bia', 'calific_personas', 'productos_totales']));
     }
 
     public function guardar_calificacion(StoreScoreProductRequest $request, $id)
@@ -117,5 +117,28 @@ class BiaProcessController extends Controller
         }
 
         return redirect()->route('calificaciones.comite', $id)->with(['message' => 'Producto Calificado', 'typo' => 'success']);
+    }
+
+    public function finalizar_bia(BiaProcess $bia)
+    {
+        switch ($bia->estado_id) {
+            case 1:
+                throw new BiaEstadoDifException('<p>Para pasar al siguiente paso, primero debe dar click en <strong>Habilitar Calificación de productos/Servicios</strong></p>');
+                break;
+            case 2:
+                throw new BiaEstadoDifException('<p>Para pasar al siguiente paso, primero debe dar click en <strong>Cerrar calificación Productos/Servicios críticos</strong></p>');
+                break;
+            case 3:
+                throw new BiaEstadoDifException('<p>Para pasar al siguiente paso, primero debe dar click en <strong>Genear productos críticos</strong></p>');
+                break;
+            case 4:
+                $bia->estado_id = 5;
+                $bia->save();
+                return true;
+                break;
+            default:
+                throw new BiaEstadoDifException('<p>Este BIA ya se encuentra en un paso superior, por lo que <strong>no</strong> puede regresar</p>');
+                break;
+        }
     }
 }

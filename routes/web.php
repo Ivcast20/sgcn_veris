@@ -5,7 +5,6 @@ use App\Http\Controllers\BiaProcessController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\ProductController;
@@ -71,6 +70,8 @@ Route::middleware([
     Route::get('bia/{id}/detener_calif',[ProductScoreController::class,'detener_calif'])->name('detener_calif');
     //Obtener promedios de calificaciones Prod-Servicios
     Route::get('bia/{id}/averagescore', [ProductScoreController::class, 'sacar_promedio'])->name('bia.averagescore');
+    //Termina el proceso del BIA
+    Route::get('bia/{bia}/finalizar_bia', [BiaProcessController::class, 'finalizar_bia'])->name('bias.finalizar');
 
     //Calificaciones de productos por usuario
     Route::get('bia/{id}/productoscalificados',[ProductScoreController::class,'calificacionesComite'])->name('calificaciones.comite');

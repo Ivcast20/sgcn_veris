@@ -12,7 +12,7 @@
         <li class="breadcrumb-item active" aria-current="page">Gestionar BIA</li>
     </ol>
     <div class="row my-3">
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="card text-center p-3 bg-success" id="cal_prod" style="height: 120px">
                 <div class="card-img-top">
                     <h2>
@@ -23,7 +23,7 @@
                 <h4 class="card-title">Habilitar Calificación de productos/Servicios</h4>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="card text-center p-3 bg-primary" id="stop_prod" style="height: 120px">
                 <div class="card-img-top">
                     <h2>
@@ -34,7 +34,7 @@
                 <h4 class="card-title">Cerrar calificación Productos/Servicios críticos</h4>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="card text-center p-3 bg-warning" id="gene_p_crit" style="height: 120px">
                 <div class="card-img-top">
                     <h2>
@@ -43,6 +43,17 @@
                 </div>
                 <!-- Estado 4 -->
                 <h4 class="card-title">Generar Productos/Servicios críticos</h4>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card text-center p-3 bg-danger" id="finalizar_bia" style="height: 120px">
+                <div class="card-img-top">
+                    <h2>
+                        <i class="far fa-flag"></i>
+                    </h2>
+                </div>
+                <!-- Estado 5 -->
+                <h4 class="card-title">Finalizar BIA</h4>
             </div>
         </div>
     </div>
@@ -172,63 +183,36 @@
                         });
                     },
                 })
-                // let timerInterval;
-                // Swal.fire({
-                //     title: 'Promedios de calificaciones de Productos/Servicios',
-                //     html: 'Se están generando los Productos/Servicios críticos',
-                //     timer: 5000,
-                //     timerProgressBar: true,
-                //     didOpen: () => {
-                //         $.ajax({
-                //             type: 'GET',
-                //             url: "{{ route('bia.averagescore', $bia->id) }}",
-                //             success: function() {
-                //                 Swal.fire({
-                //                     title: 'Listo',
-                //                     text: 'Se ha generado los promedios de las calificaciones y se han determinado los productos críticos',
-                //                     icon: 'success',
-                //                     showConfirmButton: true,
-                //                     confirmButtonText: 'Entendido'
-                //                 }).then(function(response) {
-                //                     if (response.isConfirmed) {
-                //                         location.reload();
-                //                     }
-                //                 });
-                //             },
-                //             error: function(error) {
-                //                 Swal.showValidationMessage(
-                //                     error.responseJSON.message
-                //                 )
-                //             },
-                //         })
-                //     },
-                // })
-                // $.ajax({
-                //     type: 'GET',
-                //     url: "{{ route('bia.averagescore', $bia->id) }}",
-                //     success: function() {
-                //         Swal.fire({
-                //             title: 'Listo',
-                //             text: 'Se ha generado los promedios de las calificaciones y se han determinado los productos críticos',
-                //             icon: 'success',
-                //             showConfirmButton: true,
-                //             confirmButtonText: 'Entendido'
-                //         }).then(function(response) {
-                //             if (response.isConfirmed) {
-                //                 location.reload();
-                //             }
-                //         });
-                //     },
-                //     error: function(error) {
-                //         Swal.fire({
-                //             title: 'Advertencia',
-                //             html: error.responseJSON.message,
-                //             icon: 'warning',
-                //             showConfirmButton: true,
-                //             confirmButtonText: 'Entendido'
-                //         });
-                //     },
-                // })
+            });
+
+            $('#finalizar_bia').click(function(e) {
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('bias.finalizar', $bia->id) }}",
+                    success: function() {
+                        Swal.fire({
+                            title: 'Listo',
+                            text: 'Se Ha finalizado el BIA',
+                            icon: 'success',
+                            showConfirmButton: true,
+                            confirmButtonText: 'Entendido'
+                        }).then(function(response) {
+                            if (response.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    },
+                    error: function(error) {
+                        console.log(error.responseJSON.message);
+                        Swal.fire({
+                            title: 'Advertencia',
+                            html: error.responseJSON.message,
+                            icon: 'warning',
+                            showConfirmButton: true,
+                            confirmButtonText: 'Entendido'
+                        });
+                    },
+                })
             });
         });
     </script>

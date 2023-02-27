@@ -31,5 +31,9 @@ class BiaEstadosSeeder extends Seeder
         BiaEstado::create([
             'name' => 'Productos/Servicios críticos generados'
         ]);
+        //Estado 5
+        BiaEstado::create([
+            'name' => 'Bia finalizado'
+        ]);
     }
 }
