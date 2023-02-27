@@ -10,6 +10,12 @@ use Illuminate\View\View;
 
 class DepartmentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.departments.index')->only('index');
+        $this->middleware('can:admin.departments.create')->only('create');
+        $this->middleware('can:admin.departments.edit')->only('edit');
+    }
     public function index():View
     {
         return view('departments.index');
