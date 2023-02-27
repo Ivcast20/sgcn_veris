@@ -86,7 +86,7 @@ class BiaProcessController extends Controller
         $nombreBia = $bia->name;
         $ids = $bia->products->pluck('id');
         $productos = Product::with('category:id,name')->findMany($ids);
-        return view('bias.products', compact(['nombreBia', 'productos']));
+        return view('bias.products', compact(['nombreBia', 'productos', 'id']));
     }
 
     public function gestionar(Request $request, $id)

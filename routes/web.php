@@ -121,5 +121,7 @@ Route::middleware([
     Route::prefix('report')->group(function () {
         Route::get('rolespdf', [ReportController::class, 'report_roles_pdf'])->name('roles.pdf');
         Route::get('rolesexcel', [ReportController::class, 'report_roles_excel'])->name('roles.excel');
+        Route::get('productosbia/{bia_id}/excel',[ReportController::class, 'report_productos_bia_excel'])->name('productosbia.excel');
+        Route::get('productosbia/{bia_id}/pdf',[ReportController::class, 'report_productos_bia_pdf'])->name('productosbia.pdf');
     });
 });

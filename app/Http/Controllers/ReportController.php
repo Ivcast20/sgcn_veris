@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductsExport;
 use App\Exports\RolesExport;
+use App\Models\BiaProcess;
+use App\Models\Product;
 use App\Models\Role;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Carbon;
@@ -29,5 +32,34 @@ class ReportController extends Controller
         $fecha = Carbon::now()->format('d-m-Y');
         $hora = Carbon::now()->format('H:i');
         return Excel::download(new RolesExport, $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Roles.xlsx');
+    }
+
+    public function report_productos_bia_excel($bia_id)
+    {
+        $bia = BiaProcess::find($bia_id);
+        $ids = $bia->products->pluck('id');
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->format('H:i');
+        return Excel::download(new ProductsExport($ids), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Productos.xlsx');
+
+    }
+
+    public function report_productos_bia_pdf($bia_id)
+    {
+        $bia = BiaProcess::find($bia_id);
+        $ids = $bia->products->pluck('id');
+        $productos = Product::with(['category:id,name'])->findMany($ids);
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->format('H:i');
+        $pdf = Pdf::loadView('pdf.products', compact('nombreCompleto', 'fecha', 'hora', 'productos'))->output();
+        return response()->streamDownload(
+            fn () => print($pdf),
+            $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Productos.pdf'
+        );
+
     }
 }

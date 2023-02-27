@@ -11,6 +11,12 @@
         <li class="breadcrumb-item"><a href="{{ route('bias.index') }}">Listado de BIA</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ 'Productos ' . $nombreBia }}</li>
     </ol>
+    <div>
+        <div>
+            <a href="{{ route('productosbia.pdf', $id) }}" class="btn btn-success">PDF</a>
+            <a href="{{ route('productosbia.excel', $id) }}" class="btn btn-danger">Excel</a>
+        </div>
+    </div>
     <div class="table-responsive">
         <table class="table table-striped">
             <caption>Total de productos/servicios: {{ $productos->count() }}</caption>
