@@ -6,6 +6,7 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\ImpactLevel;
 use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
@@ -30,7 +31,7 @@ class ImpactLevelTable extends DataTableComponent
                 ->searchable(),
             Column::make("Descripción", "description")
                 ->sortable(),
-            Column::make("Estado", "status")
+            BooleanColumn::make("Estado", "status")
                 ->sortable(),
             Column::make("Fecha de creación", "created_at")
                 ->sortable(),
@@ -56,9 +57,9 @@ class ImpactLevelTable extends DataTableComponent
                     '0' => 'Inactivo',
                 ])->filter(function (Builder $builder, string $value) {
                     if ($value === '1') {
-                        $builder->where('levels.status', true);
+                        $builder->where('status', true);
                     } elseif ($value === '0') {
-                        $builder->where('levels.status', false);
+                        $builder->where('status', false);
                     }
                 }),
         ];

@@ -206,6 +206,8 @@ return [
         'year'                     => 'año',
         'new_password'             => 'Nueva contraseña',
         'old_password'             => 'Contraseña actual',
-        'strategy'                 => 'estrategia'
+        'strategy'                 => 'estrategia',
+        'clasification'            => 'clasificación',
+        'value'                    => 'valor'
     ],
 ];

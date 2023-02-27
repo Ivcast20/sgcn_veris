@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreImpactLevelRequest;
+use App\Http\Requests\UpdateImpactLevelRequest;
 use App\Models\ImpactLevel;
 use Illuminate\Http\Request;
 
@@ -33,20 +35,10 @@ class ImpactLevelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreImpactLevelRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ImpactLevel  $impactLevel
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ImpactLevel $impactLevel)
-    {
-        //
+        ImpactLevel::create($request->validated());
+        return redirect()->route('impact_levels.index')->with(['message' => 'Nivel de impacto creado', 'typo' => 'success']);
     }
 
     /**
@@ -57,7 +49,7 @@ class ImpactLevelController extends Controller
      */
     public function edit(ImpactLevel $impactLevel)
     {
-        //
+        return view('impact_levels.edit', compact('impactLevel'));
     }
 
     /**
@@ -67,9 +59,11 @@ class ImpactLevelController extends Controller
      * @param  \App\Models\ImpactLevel  $impactLevel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ImpactLevel $impactLevel)
+    public function update(UpdateImpactLevelRequest $request, ImpactLevel $impactLevel)
     {
-        //
+        //return json_encode(['request' => $request->all(), $impactLevel]);
+        $impactLevel->update($request->validated());
+        return redirect()->route('impact_levels.index')->with(['message' => 'Nivel de impacto actualizado']);
     }
 
     /**
