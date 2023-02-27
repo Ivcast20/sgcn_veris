@@ -118,7 +118,7 @@ class RoleSeeder extends Seeder
             'description' => 'Editar Actividades de productos críticos'
         ])->syncRoles([$jefe_de_area]);
 
-        //Permisos para gestionar categorías de productos
+        //Permisos para gestionar categorías de productos OK
         Permission::create([
             'name' => 'admin.categories.index',
             'description' => 'Ver categorías',
