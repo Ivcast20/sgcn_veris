@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateCriteriaRequest;
 use App\Models\BiaProcess;
 use App\Models\Criteria;
 use Illuminate\Http\Request;
@@ -29,17 +30,6 @@ class CriteriaController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Criteria  $criteria
@@ -56,9 +46,10 @@ class CriteriaController extends Controller
      * @param  \App\Models\Criteria  $criteria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Criteria $criteria)
+    public function edit($criteria)
     {
-        //
+        $criteria = Criteria::with(['level:id,name','parameter:id,name'])->find($criteria);
+        return view('criterias.edit', compact('criteria'));
     }
 
     /**
@@ -68,9 +59,10 @@ class CriteriaController extends Controller
      * @param  \App\Models\Criteria  $criteria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Criteria $criteria)
+    public function update(UpdateCriteriaRequest $request, Criteria $criteria)
     {
-        //
+        $criteria->update($request->validated());
+        return redirect()->route('criterias.index')->with(['message' => 'Criterio actualizado correctamente', 'typo' => 'success']);
     }
 
     /**
