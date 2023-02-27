@@ -340,7 +340,7 @@ return [
                 ],
                 [
                     'text' => 'Niveles de Probabilidad',
-                    'route' => 'impact_levels.index'
+                    'route' => 'probability_levels.index'
                 ],
                 [
                     'text' => 'Niveles de riesgo',
