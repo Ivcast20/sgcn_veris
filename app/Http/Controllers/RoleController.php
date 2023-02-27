@@ -69,6 +69,6 @@ class RoleController extends Controller
     {
         $role->update($request->validated());
         $role->syncPermissions($request->permisos);
-        return redirect()->route('admin.roles.index')->with(['message' => 'Producto Creado', 'typo' => 'success']);
+        return redirect()->route('roles.index')->with(['message' => 'Producto Creado', 'typo' => 'success']);
     }
 }
