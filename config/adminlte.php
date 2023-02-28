@@ -344,7 +344,7 @@ return [
                 ],
                 [
                     'text' => 'Niveles de riesgo',
-                    'route' => 'impact_levels.index'
+                    'route' => 'risk_levels.index'
                 ],
             ]
         ],

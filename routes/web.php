@@ -13,6 +13,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductScoreAverageController;
 use App\Http\Controllers\ProductScoreController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\RiskLevelController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SourceController;
 use App\Http\Controllers\TreatmentOptionController;
@@ -125,6 +126,8 @@ Route::middleware([
     Route::resource('impact_levels', ImpactLevelController::class)->names('impact_levels');
 
     Route::resource('probability_levels', ProbabilityLevelController::class)->names('probability_levels');
+
+    Route::resource('risk_levels', RiskLevelController::class)->names('risk_levels');
 
     //Rutas para reportes
     Route::prefix('report')->group(function () {
