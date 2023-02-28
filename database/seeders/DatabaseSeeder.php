@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Pablo',
             'last_name' => 'Arevalo',
             'cargo' => 'Chief Data Officer',
-            'email' => 'pablo.arevalo@veris.com.ec',
+            'email' => 'pablo.arevalo@example.com' /**veris.com.ec */,
             'status' => 1,
             'password' => bcrypt(env('PASS_SYS','Veris202x-')),
             'department_id' => 1
@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Carol',
             'last_name' => 'Zambrano',
             'cargo' => 'Vicepresidente Financiera',
-            'email' => 'carol.zambrano@veris.com.ec',
+            'email' => 'carol.zambrano@example.com' /**veris.com.ec */,
             'status' => 1,
             'password' => bcrypt(env('PASS_SYS','Veris202x-')),
             'department_id' => 2
@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Fausto',
             'last_name' => 'Gavilanes',
             'cargo' => 'Jefe Nacional de Control Interno',
-            'email' => 'fausto.gavilanes@veris.com.ec',
+            'email' => 'fausto.gavilanes@example.com' /**veris.com.ec */,
             'status' => 1,
             'password' => bcrypt(env('PASS_SYS','Veris202x-')),
             'department_id' => 3
@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Melissa',
             'last_name' => 'Santoro',
             'cargo' => 'Gerente de Customer Experience',
-            'email' => 'melissa.santoro@veris.com.ec',
+            'email' => 'melissa.santoro@example.com' /**veris.com.ec */,
             'status' => 1,
             'password' => bcrypt(env('PASS_SYS','Veris202x-')),
             'department_id' => 4
@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Michelle',
             'last_name' => 'Benites',
             'cargo' => 'Gerente Marketing',
-            'email' => 'michelle.benites@veris.com.ec',
+            'email' => 'michelle.benites@example.com' /**veris.com.ec */,
             'status' => 1,
             'password' => bcrypt(env('PASS_SYS','Veris202x-')),
             'department_id' => 5
@@ -90,7 +90,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Yenny Alexandra',
             'last_name' => 'Mejía Osorio',
             'cargo' => 'Vicepresidente de Gestión y Operaciones',
-            'email' => 'yenny.mejia@veris.com.ec',
+            'email' => 'yenny.mejia@example.com' /**veris.com.ec */,
             'status' => 1,
             'password' => bcrypt(env('PASS_SYS','Veris202x-')),
             'department_id' => 6
@@ -102,7 +102,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Alfredo',
             'last_name' => 'Medina',
             'cargo' => 'Gerente de Operaciones',
-            'email' => 'alfredo.medina@veris.com.ec',
+            'email' => 'alfredo.medina@example.com' /**veris.com.ec */,
             'status' => 1,
             'password' => bcrypt(env('PASS_SYS','Veris202x-')),
             'department_id' => 7
@@ -114,7 +114,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Diego',
             'last_name' => 'Vera',
             'cargo' => 'Vicepresidente de Ventas',
-            'email' => 'diego.vera@veris.com.ec',
+            'email' => 'diego.vera@example.com' /**veris.com.ec */,
             'status' => 1,
             'password' => bcrypt(env('PASS_SYS','Veris202x-')),
             'department_id' => 8
@@ -126,7 +126,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Doris',
             'last_name' => 'Oyos',
             'cargo' => 'Gerente Central médica Virtual',
-            'email' => 'doris.oyos@veris.com.ec',
+            'email' => 'doris.oyos@example.com' /**veris.com.ec */,
             'status' => 1,
             'password' => bcrypt(env('PASS_SYS','Veris202x-')),
             'department_id' => 9
@@ -138,7 +138,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Elizabeth',
             'last_name' => 'Santos',
             'cargo' => 'Vp Gestion Humana',
-            'email' => 'elizabeth.santos@veris.com.ec',
+            'email' => 'elizabeth.santos@example.com' /**veris.com.ec */,
             'status' => 1,
             'password' => bcrypt(env('PASS_SYS','Veris202x-')),
             'department_id' => 10
@@ -150,7 +150,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Franklin',
             'last_name' => 'Rosero',
             'cargo' => 'Vp Tecnología',
-            'email' => 'franklin.rosero@veris.com.ec',
+            'email' => 'franklin.rosero@example.com' /**veris.com.ec */,
             'status' => 1,
             'password' => bcrypt(env('PASS_SYS','Veris202x-')),
             'department_id' => 11
@@ -184,15 +184,5 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RespuestasBia::class);
 
-
-        
-
-        // $usuario = \App\Models\User::factory()->create([
-        //     'name' => 'Admin',
-        //     'last_name' => 'Admin',
-        //     'email' => 'ivan20cast@gmail.com',
-        //     'status' => 1,
-        //     'department_id' => 11
-        // ]);
     }
 }
