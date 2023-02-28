@@ -86,6 +86,10 @@ Route::middleware([
 
     //Ver promedios de calificaciones
     Route::get('bia/{id}/verpromedios',[ProductScoreAverageController::class, 'ver_promedios'])->name('promedios.index');
+    //Formulario para determinar si un producto es crítico o no
+    Route::get('bia/avergarescore/{productScoreAverage}/edit', [ProductScoreAverageController::class, 'edit'])->name('averagescore.edit');
+    //Guarda cambio de producto critico si/no
+    Route::put('bia/avergarescore/{productScoreAverage}/update', [ProductScoreAverageController::class, 'update'])->name('averagescore.update');
     //Forumalio para asignar producto crítico a un usuario
     Route::get('bia/criticalproduct/{id}/asign',[ProductScoreAverageController::class, 'asignar_producto'])->name('productcritical.asign');
     //Guarda asignacion de producto crítico a usuario
@@ -128,6 +132,12 @@ Route::middleware([
         Route::get('rolesexcel', [ReportController::class, 'report_roles_excel'])->name('roles.excel');
         Route::get('productosbia/{bia_id}/excel',[ReportController::class, 'report_productos_bia_excel'])->name('productosbia.excel');
         Route::get('productosbia/{bia_id}/pdf',[ReportController::class, 'report_productos_bia_pdf'])->name('productosbia.pdf');
+        Route::get('scoreaverageproducts/{bia_id}/excel',
+                    [ReportController::class, 'report_scoreaverage_bia_excel'])
+                    ->name('scoreaveragebia.excel');
+        Route::get('criticalproduct/{bia_id}/excel',
+                    [ReportController::class, 'report_critical_products_excel'])
+                    ->name('criticalproducts.excel');
         Route::get('actividadescriticas/{id_producto}/excel', [ReportController::class, 'report_actividades_criticas_bia'])->name('actividadescriticas.excel');
     });
 });

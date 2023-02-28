@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Exports\CriticActivitiesExport;
+use App\Exports\CriticalProductExport;
 use App\Exports\ProductsExport;
 use App\Exports\RolesExport;
+use App\Exports\ScoreAverageExport;
 use App\Models\BiaProcess;
 use App\Models\Product;
 use App\Models\Role;
@@ -71,5 +73,23 @@ class ReportController extends Controller
         $fecha = Carbon::now()->format('d-m-Y');
         $hora = Carbon::now()->format('H:i');
         return Excel::download(new CriticActivitiesExport($id_producto), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' actividades criticas.xlsx');
+    }
+
+    public function report_scoreaverage_bia_excel($bia_id)
+    {
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->format('H:i');
+        return Excel::download(new ScoreAverageExport($bia_id), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' promedio de calificaciones BIA.xlsx');
+    }
+
+    public function report_critical_products_excel($bia_id)
+    {
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->format('H:i');
+        return Excel::download(new CriticalProductExport($bia_id), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' productos críticos BIA.xlsx');
     }
 }

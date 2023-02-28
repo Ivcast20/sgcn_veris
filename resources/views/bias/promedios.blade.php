@@ -15,8 +15,7 @@
         <div class="card-header">
             <h4>Promedio de Calificaciones de Productos</h4>
             <div class="d-flex justify-content-end">
-                <a href="#" class="btn btn-danger mr-2">PDF</a>
-                <a href="#" class="btn btn-success mr-2">Excel</a>
+                <a href="{{ route('scoreaveragebia.excel', $bia->id) }}" class="btn btn-success mr-2">Excel</a>
             </div>
         </div>
         <div class="card-body">
@@ -40,7 +39,7 @@
                                 <td>{{ $product_avg->product->category->name }}</td>
                                 <td>{{ $product_avg->total_score }}</td>
                                 <td>{{ $product_avg->is_critical ? 'Si' : 'No' }}</td>
-                                <td><a href="#" class="btn btn-success">Editar</a></td>
+                                <td><a href="{{ route('averagescore.edit', $product_avg->id) }}" class="btn btn-success">Editar</a></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -55,9 +54,7 @@
         <div class="card-header">
             <h4>Productos Críticos</h4>
             <div class="d-flex justify-content-end">
-                <a href="#" class="btn btn-danger mr-2">PDF</a>
-                <a href="#" class="btn btn-success mr-2">Excel</a>
-                <a class="btn btn-primary" href="{{ route('bias.create') }}">Agregar Producto Crítico</a>
+                <a href="{{ route('criticalproducts.excel', $bia->id) }}" class="btn btn-success mr-2">Excel</a>
             </div>
         </div>
         <div class="card-body">
