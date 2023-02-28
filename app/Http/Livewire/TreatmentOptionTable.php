@@ -30,6 +30,7 @@ class TreatmentOptionTable extends DataTableComponent
             Column::make("Id", "id")
                 ->sortable(),
             Column::make("Estrategia", "strategy")
+                ->searchable()
                 ->sortable(),
             Column::make("Descripción", "description")
                 ->sortable(),
@@ -63,9 +64,9 @@ class TreatmentOptionTable extends DataTableComponent
                     '0' => 'Inactivo',
                 ])->filter(function (Builder $builder, string $value) {
                     if ($value === '1') {
-                        $builder->where('sources.status', true);
+                        $builder->where('treatment_options.status', true);
                     } elseif ($value === '0') {
-                        $builder->where('sources.status', false);
+                        $builder->where('treatment_options.status', false);
                     }
                 })
         ];
