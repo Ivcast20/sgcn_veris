@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -170,19 +170,24 @@ class DatabaseSeeder extends Seeder
 
         $usuariocod1->roles()->sync([1]);
 
-        $usuariocod13 = User::create([
-            'name' => 'Ivan Prueba',
-            'last_name' => 'Castro Prueba',
-            'cargo' => 'Desarrollador',
-            'email' => 'ivanuees@gmail.com',
-            'status' => 1,
-            'password' => bcrypt(env('PASS_SYS','Veris202x-')),
-            'department_id' => 11
-        ]);
+        // $usuariocod13 = User::create([
+        //     'name' => 'Ivan Prueba',
+        //     'last_name' => 'Castro Prueba',
+        //     'cargo' => 'Desarrollador',
+        //     'email' => 'ivanuees@gmail.com',
+        //     'status' => 1,
+        //     'password' => bcrypt(env('PASS_SYS','Veris202x-')),
+        //     'department_id' => 11
+        // ]);
 
-        $usuariocod13->roles()->sync([4]);
+        // $usuariocod13->roles()->sync([4]);
 
         $this->call(RespuestasBia::class);
+        $this->call(SourceSeeder::class);
+        $this->call(TreatmentOptionSeeder::class);
+        $this->call(ImpactLevelSeeder::class);
+        $this->call(ProbabilityLevelSeeder::class);
+        $this->call(RiskLevelSeeder::class);
 
     }
 }
