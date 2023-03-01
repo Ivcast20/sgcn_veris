@@ -17,6 +17,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RiskLevelController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SourceController;
+use App\Http\Controllers\StatusRiskController;
 use App\Http\Controllers\TreatmentOptionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -131,6 +132,8 @@ Route::middleware([
     Route::resource('risk_levels', RiskLevelController::class)->names('risk_levels');
 
     Route::resource('causes', CauseController::class)->names('causes');
+
+    Route::resource('status_risks', StatusRiskController::class)->names('status_risks');
 
     //Rutas para reportes
     Route::prefix('report')->group(function () {

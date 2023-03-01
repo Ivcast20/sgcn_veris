@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StatusRiskRequest;
+use App\Http\Requests\UpdateStatusRiskRequest;
 use App\Models\StatusRisk;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,7 @@ class StatusRiskController extends Controller
      */
     public function index()
     {
-        //
+        return view('status_risk.index');
     }
 
     /**
@@ -24,7 +26,7 @@ class StatusRiskController extends Controller
      */
     public function create()
     {
-        //
+        return view('status_risk.create');
     }
 
     /**
@@ -33,20 +35,10 @@ class StatusRiskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StatusRiskRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\StatusRisk  $statusRisk
-     * @return \Illuminate\Http\Response
-     */
-    public function show(StatusRisk $statusRisk)
-    {
-        //
+        StatusRisk::create($request->validated());
+        return redirect()->route('status_risks.index')->with(['message' => 'Estado de Tratamiento agregado']);
     }
 
     /**
@@ -55,9 +47,9 @@ class StatusRiskController extends Controller
      * @param  \App\Models\StatusRisk  $statusRisk
      * @return \Illuminate\Http\Response
      */
-    public function edit(StatusRisk $statusRisk)
+    public function edit(StatusRisk $status_risk)
     {
-        //
+        return view('status_risk.edit', compact('status_risk'));
     }
 
     /**
@@ -67,9 +59,10 @@ class StatusRiskController extends Controller
      * @param  \App\Models\StatusRisk  $statusRisk
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, StatusRisk $statusRisk)
+    public function update(UpdateStatusRiskRequest $request, StatusRisk $status_risk)
     {
-        //
+        $status_risk->update($request->validated());
+        return redirect()->route('status_risks.index')->with(['message' => 'Estado de Tratamiento actualizado']);
     }
 
     /**

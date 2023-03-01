@@ -350,6 +350,10 @@ return [
                     'text' => 'Niveles de riesgo',
                     'route' => 'risk_levels.index'
                 ],
+                [
+                    'text' => 'Estado de tratamiento',
+                    'route' => 'status_risks.index'
+                ],
             ]
         ],
         [
