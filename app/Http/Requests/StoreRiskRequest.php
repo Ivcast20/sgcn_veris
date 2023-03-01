@@ -45,10 +45,21 @@ class StoreRiskRequest extends FormRequest
         ];
     }
 
-    protected function prepareForValidation()
+    public function prepareForValidation()
     {
         $this->merge([
             'is_aceptable' => (bool)$this->is_aceptable
         ]);
+    }
+
+    public function messages()
+    {
+        return [
+            'treatment_plan.required_if' => ':Attribute es obligatorio cuando la opción de tratamiento es modificar',
+            'responsable.required_if' => ':Attribute es obligatorio cuando la opción de tratamiento es modificar',
+            'resources.required_if' => ':Attribute es obligatorio cuando la opción de tratamiento es modificar',
+            'start_date.required_if' => ':Attribute es obligatorio cuando la opción de tratamiento es modificar',
+            'end_date.required_if' => ':Attribute es obligatorio cuando la opción de tratamiento es modificar',
+        ];
     }
 }

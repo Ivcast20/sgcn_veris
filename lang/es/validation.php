@@ -217,6 +217,10 @@ return [
         'probability'              => 'probabilidad',
         'impact'                   => 'impacto',
         'risk_level'               => 'nivel de riesgo',
-        'treatment_option_id'      => 'opción de tratamiento'
+        'treatment_option_id'      => 'opción de tratamiento',
+        'end_date'                 => 'fecha de fin',
+        'treatment_plan'           => 'plan de tratamiento',
+        'resources'                => 'recursos',
+        'start_date'               => 'fecha de fin'
     ],
 ];
