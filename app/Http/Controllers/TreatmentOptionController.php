@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTreatmentOptionRequest;
+use App\Http\Requests\UpdateTreatmentOptionRequest;
 use App\Models\TreatmentOption;
 use Illuminate\Http\Request;
 
@@ -41,25 +42,14 @@ class TreatmentOptionController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\TreartmentOption  $treartmentOption
-     * @return \Illuminate\Http\Response
-     */
-    public function show(TreatmentOption $treartmentOption)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\TreartmentOption  $treartmentOption
      * @return \Illuminate\Http\Response
      */
-    public function edit(TreatmentOption $treartmentOption)
+    public function edit(TreatmentOption $treatmentoption)
     {
-        //
+        return view('treatmentoptions.edit', compact('treatmentoption'));
     }
 
     /**
@@ -69,19 +59,9 @@ class TreatmentOptionController extends Controller
      * @param  \App\Models\TreartmentOption  $treartmentOption
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TreatmentOption $treartmentOption)
+    public function update(UpdateTreatmentOptionRequest $request, TreatmentOption $treatmentoption)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\TreartmentOption  $treartmentOption
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(TreatmentOption $treartmentOption)
-    {
-        //
+        $treatmentoption->update($request->validated());
+        return redirect()->route('treatmentoptions.index')->with(['message' => 'Opción de tratamiento actualizada']);
     }
 }
