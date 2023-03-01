@@ -50,6 +50,16 @@ class BiaProcess extends Model
         return $this->belongsToMany(Product::class,'bia_process_product','bia_id','product_id');
     }
 
+    public function average_score_products()
+    {
+        return $this->hasMany(ProductScoreAverage::class, 'bia_process_id', 'id');
+    }
+
+    public function critical_products()
+    {
+        return $this->average_score_products()->where('is_critical',true);
+    }
+
     public function parameters()
     {
         return $this->hasMany(Parameters::class,'bia_id','id');

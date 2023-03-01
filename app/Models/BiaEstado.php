@@ -12,4 +12,9 @@ class BiaEstado extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function bias()
+    {
+        return $this->hasMany(BiaProcess::class, 'estado_id', 'id');
+    }
 }
