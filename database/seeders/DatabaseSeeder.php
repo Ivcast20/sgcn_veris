@@ -188,6 +188,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ImpactLevelSeeder::class);
         $this->call(ProbabilityLevelSeeder::class);
         $this->call(RiskLevelSeeder::class);
+        $this->call(CauseSeeder::class);
+        $this->call(StatusRiskSeeder::class);
 
     }
 }

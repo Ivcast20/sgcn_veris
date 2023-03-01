@@ -14,6 +14,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductScoreAverageController;
 use App\Http\Controllers\ProductScoreController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\RiskController;
 use App\Http\Controllers\RiskLevelController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SourceController;
@@ -134,6 +135,8 @@ Route::middleware([
     Route::resource('causes', CauseController::class)->names('causes');
 
     Route::resource('status_risks', StatusRiskController::class)->names('status_risks');
+
+    Route::resource('risks', RiskController::class)->names('risks');
 
     //Rutas para reportes
     Route::prefix('report')->group(function () {

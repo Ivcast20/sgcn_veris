@@ -2,7 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRiskRequest;
+use App\Models\Cause;
+use App\Models\Department;
+use App\Models\ImpactLevel;
+use App\Models\ProbabilityLevel;
 use App\Models\Risk;
+use App\Models\Source;
+use App\Models\StatusRisk;
+use App\Models\TreatmentOption;
 use Illuminate\Http\Request;
 
 class RiskController extends Controller
@@ -14,7 +22,7 @@ class RiskController extends Controller
      */
     public function index()
     {
-        //
+        return view('risks.index');
     }
 
     /**
@@ -24,7 +32,14 @@ class RiskController extends Controller
      */
     public function create()
     {
-        //
+        $causes = Cause::where('status', true)->select('name','id')->get();
+        $sources = Source::where('status', true)->select('name','id')->get();
+        $treatment_options = TreatmentOption::where('status', true)->select('strategy', 'id')->get();
+        $departments = Department::where('status', true)->get();
+        $probability_levels = ProbabilityLevel::where('status', true)->get();
+        $impact_levels = ImpactLevel::where('status', true)->get();
+        $status_risk = StatusRisk::where('status', true)->pluck('name','id');
+        return view('risks.create', compact('causes', 'sources', 'treatment_options', 'departments', 'probability_levels', 'impact_levels', 'status_risk'));
     }
 
     /**
@@ -33,9 +48,11 @@ class RiskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRiskRequest $request)
     {
-        //
+        $riesgo = Risk::create($request->validated());
+        $riesgo->causes()->attach($request->input('causes', []));
+        return redirect()->route('risks.index')->with(['message' => 'Riesgo guardado exitosamente']);
     }
 
     /**
@@ -46,7 +63,7 @@ class RiskController extends Controller
      */
     public function show(Risk $risk)
     {
-        //
+        return view('risks.show');
     }
 
     /**

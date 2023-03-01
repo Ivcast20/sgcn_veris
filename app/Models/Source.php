@@ -18,4 +18,9 @@ class Source extends Model
     protected $casts = [
         'status' => 'boolean'
     ];
+
+    public function risks()
+    {
+        return $this->belongsToMany(Risk::class,'risk_source', 'source_id', 'risk_id');
+    }
 }

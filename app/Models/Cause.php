@@ -17,4 +17,10 @@ class Cause extends Model
     protected $casts = [
         'status' => 'boolean'
     ];
+
+
+    public function risks()
+    {
+        return $this->belongsToMany(Risk::class,'cause_risk','cause_id','risk_id');
+    }
 }

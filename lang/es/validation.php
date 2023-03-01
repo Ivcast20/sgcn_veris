@@ -208,6 +208,15 @@ return [
         'old_password'             => 'Contraseña actual',
         'strategy'                 => 'estrategia',
         'clasification'            => 'clasificación',
-        'value'                    => 'valor'
+        'value'                    => 'valor',
+        'code'                     => 'código',
+        'causes'                   => 'causas',
+        'consecuences'             => 'consecuencias',
+        'risk_owner_id'            => 'dueño del riesgo',
+        'existing_controls'        => 'controles existentes',
+        'probability'              => 'probabilidad',
+        'impact'                   => 'impacto',
+        'risk_level'               => 'nivel de riesgo',
+        'treatment_option_id'      => 'opción de tratamiento'
     ],
 ];

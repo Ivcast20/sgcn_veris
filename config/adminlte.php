@@ -323,7 +323,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Riesgos',
-                    'url' => '#',
+                    'route' => 'risks.index',
                     // 'can' => 'admin.bia_process.index'
                 ],
                 [
