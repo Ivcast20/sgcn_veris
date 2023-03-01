@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\BiaProcessController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CauseController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ImpactLevelController;
@@ -128,6 +129,8 @@ Route::middleware([
     Route::resource('probability_levels', ProbabilityLevelController::class)->names('probability_levels');
 
     Route::resource('risk_levels', RiskLevelController::class)->names('risk_levels');
+
+    Route::resource('causes', CauseController::class)->names('causes');
 
     //Rutas para reportes
     Route::prefix('report')->group(function () {

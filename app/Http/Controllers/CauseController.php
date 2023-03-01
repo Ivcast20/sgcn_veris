@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCauseRequest;
+use App\Http\Requests\UpdateCauseRequest;
 use App\Models\Cause;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,7 @@ class CauseController extends Controller
      */
     public function index()
     {
-        //
+        return view('causes.index');
     }
 
     /**
@@ -24,7 +26,7 @@ class CauseController extends Controller
      */
     public function create()
     {
-        //
+        return view('causes.create');
     }
 
     /**
@@ -33,20 +35,10 @@ class CauseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCauseRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Cause  $cause
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Cause $cause)
-    {
-        //
+        Cause::create($request->validated());
+        return redirect()->route('causes.index')->with(['message' => 'Causa ingresada exitosamente']);
     }
 
     /**
@@ -57,7 +49,7 @@ class CauseController extends Controller
      */
     public function edit(Cause $cause)
     {
-        //
+        return view('causes.edit', compact('cause'));
     }
 
     /**
@@ -67,19 +59,10 @@ class CauseController extends Controller
      * @param  \App\Models\Cause  $cause
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cause $cause)
+    public function update(UpdateCauseRequest $request, Cause $cause)
     {
-        //
+        $cause->update($request->validated());
+        return redirect()->route('causes.index')->with(['message' => 'Causa actualizada exitosamente']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Cause  $cause
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Cause $cause)
-    {
-        //
-    }
 }

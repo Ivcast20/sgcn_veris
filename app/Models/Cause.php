@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Cause extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'status'
+    ];
+
+    protected $casts = [
+        'status' => 'boolean'
+    ];
 }

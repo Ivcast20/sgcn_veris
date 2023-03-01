@@ -327,6 +327,10 @@ return [
                     // 'can' => 'admin.bia_process.index'
                 ],
                 [
+                    'text' => 'Causas o Amenazas',
+                    'route' => 'causes.index',
+                ],
+                [
                     'text' => 'Fuentes',
                     'route' => 'sources.index'
                 ],
