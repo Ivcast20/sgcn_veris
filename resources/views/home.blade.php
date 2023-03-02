@@ -227,13 +227,13 @@
                 aspectRatio: 1,
                 title: {
                     display: true,
-                    text: 'Número de Usuarios por Departamento',
+                    text: 'Número de BIAs por Estado',
                 }
             },
             data: {
                 labels: bia_x_est_lb,
                 datasets: [{
-                    label: 'Número de Usuarios por Rol',
+                    label: 'Número de BIAs',
                     data: bia_x_est_data,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
