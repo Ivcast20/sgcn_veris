@@ -27,7 +27,7 @@ class UpdateProductRequest extends FormRequest
         $nombre = $this->name;
         $categoria = $this->category_id;
         return [
-            'name' => ['required','string','max:255',Rule::unique('products')->ignore($this->product->id)],
+            'name' => ['required','string','max:255',Rule::unique('products')->where('category_id', $categoria)->ignore($this->product->id)],
             'category_id' => ['required','integer'],
             'status' => ['required','boolean']
         ];
