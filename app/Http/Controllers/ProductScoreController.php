@@ -213,7 +213,7 @@ class ProductScoreController extends Controller
 
    public function calificar(Request $request, $id)
    {
-      $productos_ya_calificados = ProductScore::pluck('id');
+      $productos_ya_calificados = ProductScore::where([['bia_id',$id],['user_id',Auth::id()]])->pluck('product_id');
       $productos = BiaProcess::find($id)
          ->products()
          ->with('category:id,name')
