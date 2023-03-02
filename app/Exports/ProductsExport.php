@@ -46,6 +46,6 @@ class ProductsExport implements FromCollection, WithHeadings, ShouldAutoSize, Wi
     */
     public function collection()
     {
-        return Product::with('category:id,name')->get();
+        return Product::with('category:id,name')->findMany($this->ids);
     }
 }
