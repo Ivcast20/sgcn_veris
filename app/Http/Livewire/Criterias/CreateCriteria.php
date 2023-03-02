@@ -75,6 +75,6 @@ class CreateCriteria extends Component
     {
         $datosValidados = $this->validate();
         Criteria::create($datosValidados);
-        return redirect()->route('criterias.index')->with('message','Se ha guardado el description exitosamente');
+        return redirect()->route('criterias.index')->with('message','Se ha guardado el criterio exitosamente');
     }
 }
