@@ -33,6 +33,8 @@ class RiskTable extends DataTableComponent
             Column::make("Descripción", "description")
                 ->searchable()
                 ->sortable(),
+            Column::make("Causas")
+                ->label(fn($row) => $row->causes->pluck('name')->implode(', ')),
             Column::make("Consecuencias", "consecuences")
                 ->sortable(),
             Column::make("Dueño del riesgo", "department.name")
