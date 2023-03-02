@@ -18,6 +18,14 @@ use Illuminate\Support\Facades\DB;
 
 class BiaProcessController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.bia_process.index')->only('index');
+        $this->middleware('can:admin.bia_process.create')->only('create');
+        $this->middleware('can:admin.bia_process.edit')->only('edit');
+        $this->middleware('can:admin.bia_process.gestion')->only('gestionar');
+        $this->middleware('can:admin.bia_process.ver_prod')->only('verProductos');
+    }
     /**
      * Display a listing of the resource.
      *

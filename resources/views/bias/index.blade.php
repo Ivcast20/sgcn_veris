@@ -7,10 +7,11 @@
 @stop
 
 @section('content')
-    <div class="d-flex justify-content-end mb-2">
-        <a class="btn btn-primary" href="{{ route('bias.create') }}">Nuevo BIA</a>
-    </div>
-    {{-- @livewire('category-table') --}}
+    @can('admin.bia_process.create')
+        <div class="d-flex justify-content-end mb-2">
+            <a class="btn btn-primary" href="{{ route('bias.create') }}">Nuevo BIA</a>
+        </div>
+    @endcan
     @livewire('bia-table')
 @stop
 

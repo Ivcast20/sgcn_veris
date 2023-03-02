@@ -68,7 +68,7 @@ class RoleSeeder extends Seeder
             'description' => 'Editar usuarios'
         ])->syncRoles([$admin, $director]);
 
-        //Permisos para gestionar el Bia
+        //Permisos para gestionar el Bia OK
         Permission::create([
             'name' => 'admin.bia_process.index',
             'description' => 'Ver BIAs'
