@@ -15,6 +15,13 @@ use Illuminate\Http\Request;
 
 class RiskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.risks.index')->only('index');
+        $this->middleware('can:admin.risks.create')->only('create');
+        $this->middleware('can:admin.risks.show')->only('show');
+        $this->middleware('can:admin.risks.edit')->only('edit');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -63,7 +70,7 @@ class RiskController extends Controller
      */
     public function show(Risk $risk)
     {
-        return view('risks.show');
+        return view('risks.show', compact('risk'));
     }
 
     /**

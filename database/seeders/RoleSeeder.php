@@ -191,5 +191,122 @@ class RoleSeeder extends Seeder
             'name' => 'admin.products.edit',
             'description' => 'Editar producto/servicio'
         ])->syncRoles([$admin, $director]);
+
+        //Permisos para Matriz de riegos
+        //Riesgos
+        Permission::create([
+            'name' => 'admin.risks.index',
+            'description' => 'Ver riesgos',
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        Permission::create([
+            'name' => 'admin.risks.create',
+            'description' => 'Crear riesgo'
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        Permission::create([
+            'name' => 'admin.risks.edit',
+            'description' => 'Editar riesgo'
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        Permission::create([
+            'name' => 'admin.risks.show',
+            'description' => 'Ver riesgo'
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        
+        //Causas o Amenazas
+        Permission::create([
+            'name' => 'admin.causes.index',
+            'description' => 'Ver causas',
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        Permission::create([
+            'name' => 'admin.causes.create',
+            'description' => 'Crear causa'
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        Permission::create([
+            'name' => 'admin.causes.edit',
+            'description' => 'Editar causa'
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+
+        //Fuentes
+        Permission::create([
+            'name' => 'admin.sources.index',
+            'description' => 'Ver fuentes de riesgos',
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        Permission::create([
+            'name' => 'admin.sources.create',
+            'description' => 'Crear fuente de riesgos'
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        Permission::create([
+            'name' => 'admin.sources.edit',
+            'description' => 'Editar fuente de riesgos'
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+
+        //TreatmentOptions
+        Permission::create([
+            'name' => 'admin.treatment_options.index',
+            'description' => 'Ver opciones de tratamiento',
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        Permission::create([
+            'name' => 'admin.treatment_options.create',
+            'description' => 'Crear opcion de tratamiento'
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        Permission::create([
+            'name' => 'admin.treatment_options.edit',
+            'description' => 'Editar opcion de tratamiento'
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+
+        //Impact_levels
+        Permission::create([
+            'name' => 'admin.impact_levels.index',
+            'description' => 'Ver niveles de impacto',
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        Permission::create([
+            'name' => 'admin.impact_levels.create',
+            'description' => 'Crear nivel de impacto'
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        Permission::create([
+            'name' => 'admin.impact_levels.edit',
+            'description' => 'Editar nivel de impacto'
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+
+        //Probability_levels
+        Permission::create([
+            'name' => 'admin.probability_levels.index',
+            'description' => 'Ver niveles de probabilidad',
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        Permission::create([
+            'name' => 'admin.probability_levels.create',
+            'description' => 'Crear nivel de probabilidad'
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        Permission::create([
+            'name' => 'admin.probability_levels.edit',
+            'description' => 'Editar nivel de probabilidad'
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+
+        //Risk_levels
+        Permission::create([
+            'name' => 'admin.risk_levels.index',
+            'description' => 'Ver niveles de riesgo',
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        Permission::create([
+            'name' => 'admin.risk_levels.create',
+            'description' => 'Crear nivel de riesgo'
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        Permission::create([
+            'name' => 'admin.risk_levels.edit',
+            'description' => 'Editar nivel de riesgo'
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+
+        //Estados de tratamiento
+        Permission::create([
+            'name' => 'admin.risk_treatment_status.index',
+            'description' => 'Ver estados de tratamiento',
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        Permission::create([
+            'name' => 'admin.risk_treatment_status.create',
+            'description' => 'Crear estado de tratamiento'
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
+        Permission::create([
+            'name' => 'admin.risk_treatment_status.edit',
+            'description' => 'Editar estado de tratamiento'
+        ])->syncRoles([$admin, $director, $jefe_de_area]);
     }
 }

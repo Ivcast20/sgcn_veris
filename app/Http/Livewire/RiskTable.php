@@ -5,7 +5,9 @@ namespace App\Http\Livewire;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Risk;
+use Illuminate\Support\Facades\Auth;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class RiskTable extends DataTableComponent
 {
@@ -18,7 +20,11 @@ class RiskTable extends DataTableComponent
 
     public function columns(): array
     {
-        return [
+        $usuario = Auth::user();
+        $puede_editar = $usuario->hasPermissionTo('admin.risks.edit');
+        $puede_ver_riesgo = $usuario->hasPermissionTo('admin.risks.show');
+        
+        $columnas = [
             Column::make("Id", "id")
                 ->sortable(),
             Column::make("Código", "code")
@@ -63,5 +69,35 @@ class RiskTable extends DataTableComponent
                 ->deselected()
                 ->sortable(),
         ];
+
+        if($puede_ver_riesgo)
+        {
+            $columnas = array_merge($columnas, [
+                LinkColumn::make('Ver')
+                    ->title(fn ($row) => 'Ver')
+                    ->location(fn ($row) => route('risks.show', $row->id))
+                    ->attributes(function ($row) {
+                        return [
+                            'class' => 'btn btn-info'
+                        ];
+                    })
+                ]);
+        }
+
+        if($puede_editar)
+        {
+            $columnas = array_merge($columnas, [
+                LinkColumn::make('Editar')
+                    ->title(fn ($row) => 'Editar')
+                    ->location(fn ($row) => route('risks.edit', $row->id))
+                    ->attributes(function ($row) {
+                        return [
+                            'class' => 'btn btn-success'
+                        ];
+                    })
+                ]);
+        }
+
+        return $columnas;
     }
 }

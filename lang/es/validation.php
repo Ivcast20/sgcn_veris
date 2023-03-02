@@ -222,6 +222,7 @@ return [
         'treatment_plan'           => 'plan de tratamiento',
         'resources'                => 'recursos',
         'start_date'               => 'fecha de fin',
-        'total_score'              => 'calificación total'
+        'total_score'              => 'calificación total',
+        'range'                    => 'rango'
     ],
 ];

@@ -324,7 +324,7 @@ return [
                 [
                     'text' => 'Riesgos',
                     'route' => 'risks.index',
-                    // 'can' => 'admin.bia_process.index'
+                    'can' => 'admin.risks.index'
                 ],
                 [
                     'text' => 'Causas o Amenazas',

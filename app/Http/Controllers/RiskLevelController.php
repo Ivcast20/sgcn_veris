@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRiskLevelRequest;
 use App\Models\RiskLevel;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class RiskLevelController extends Controller
      */
     public function create()
     {
-        //
+        return view('risk_levels.create');
     }
 
     /**
@@ -33,20 +34,10 @@ class RiskLevelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRiskLevelRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\RiskLevel  $riskLevel
-     * @return \Illuminate\Http\Response
-     */
-    public function show(RiskLevel $riskLevel)
-    {
-        //
+        RiskLevel::create($request->validated());
+        return redirect()->route('risk_levels.index')->with(['message' => 'Nivel de riesgo creado']);
     }
 
     /**
@@ -55,9 +46,9 @@ class RiskLevelController extends Controller
      * @param  \App\Models\RiskLevel  $riskLevel
      * @return \Illuminate\Http\Response
      */
-    public function edit(RiskLevel $riskLevel)
+    public function edit(RiskLevel $risk_level)
     {
-        //
+        return view('risk_levels.edit', compact('risk_level'));
     }
 
     /**
@@ -67,19 +58,8 @@ class RiskLevelController extends Controller
      * @param  \App\Models\RiskLevel  $riskLevel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RiskLevel $riskLevel)
+    public function update(Request $request, RiskLevel $risk_level)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\RiskLevel  $riskLevel
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(RiskLevel $riskLevel)
-    {
-        //
+        
     }
 }
