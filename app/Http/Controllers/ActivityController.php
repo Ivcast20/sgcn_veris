@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 
 class ActivityController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.activities.index')->only('index');
+        $this->middleware('can:admin.activities.create')->only('create');
+        $this->middleware('can:admin.activities.edit')->only('edit');
+    }
     /**
      * Muestra las actividades de un producto crítico
      * $id es el $id del producto crítico

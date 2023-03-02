@@ -11,6 +11,12 @@ use Illuminate\Http\Request;
 
 class ProductScoreAverageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.product_score_avg.index')->only('ver_promedios');
+        $this->middleware('can:admin.prod_score_avg.edit')->only('edit');
+        $this->middleware('can:admin.critic_product.asign')->only('asignar_producto');
+    }
 
     public function edit(ProductScoreAverage $productScoreAverage)
     {

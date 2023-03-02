@@ -94,17 +94,21 @@ class RoleSeeder extends Seeder
             'description' => 'Calificar productos del BIA (COMITÉ)'
         ])->syncRoles([$comite]);
 
-        //Permisos para gestionar productos con calificaciones promediadas
+        //Permisos para gestionar productos con calificaciones promediadas OK
         Permission::create([
             'name' => 'admin.product_score_avg.index',
             'description' => 'Ver calificaciones de Productos promediada'
         ])->syncRoles([$admin, $director, $comite, $auditor]);
         Permission::create([
-            'name' => 'admin.prod_cr.edit',
-            'description' => 'Editar producto/servicio crítico'
+            'name' => 'admin.prod_score_avg.edit',
+            'description' => 'Editar si producto/servicio es crítico'
+        ])->syncRoles([$admin, $director]);
+        Permission::create([
+            'name' => 'admin.critic_product.asign',
+            'description' => 'Asignar productos críticos'
         ])->syncRoles([$admin, $director]);
 
-        //Permisos para gestionar actividades
+        //Permisos para gestionar actividades OK
         Permission::create([
             'name' => 'admin.activities.index',
             'description' => 'Ver Actividades de productos críticos'

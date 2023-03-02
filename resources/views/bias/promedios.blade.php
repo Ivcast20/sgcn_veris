@@ -28,7 +28,9 @@
                             <th scope="col">Categoría del producto</th>
                             <th scope="col">Calificación total</th>
                             <th scope="col">Crítico</th>
-                            <th scope="col">Acciones</th>
+                            @can('admin.prod_score_avg.edit')
+                                <th scope="col">Acciones</th>
+                            @endcan
                         </tr>
                     </thead>
                     <tbody>
@@ -39,7 +41,10 @@
                                 <td>{{ $product_avg->product->category->name }}</td>
                                 <td>{{ $product_avg->total_score }}</td>
                                 <td>{{ $product_avg->is_critical ? 'Si' : 'No' }}</td>
-                                <td><a href="{{ route('averagescore.edit', $product_avg->id) }}" class="btn btn-success">Editar</a></td>
+                                @can('admin.prod_score_avg.edit')
+                                    <td><a href="{{ route('averagescore.edit', $product_avg->id) }}"
+                                            class="btn btn-success">Editar</a></td>
+                                @endcan
                             </tr>
                         @endforeach
                     </tbody>
@@ -68,7 +73,9 @@
                             <th scope="col">Calificación total</th>
                             <th scope="col">Crítico</th>
                             <th scope="col" colspan="2">Persona Asignada</th>
-                            <th scope="col">Acciones</th>
+                            @can('admin.activities.index')
+                                <th scope="col">Acciones</th>
+                            @endcan
                         </tr>
                     </thead>
                     <tbody>
@@ -81,13 +88,19 @@
                                 <td>{{ $product_critical->is_critical ? 'Si' : 'No' }}</td>
                                 @if ($product_critical->user == null)
                                     <td>Sin asignar</td>
-                                    <td><a href="{{route('productcritical.asign', $product_critical->id)}}" class="btn btn-success">Asignar</a></td>
+                                    @can('admin.critic_product.asign')
+                                        <td><a href="{{ route('productcritical.asign', $product_critical->id) }}"
+                                                class="btn btn-success">Asignar</a></td>
+                                    @endcan
                                 @else
                                     <td colspan="2">
                                         {{ $product_critical->user->name . ' ' . $product_critical->user->last_name . ' : ' . $product_critical->user->cargo }}
                                     </td>
                                 @endif
-                                <td><a href="{{ route('activities.index', ['bia_id' => $bia->id, 'product_id' => $product_critical->id]) }}" class="btn btn-primary">Actividades</a></td>
+                                @can('admin.activities.index')
+                                    <td><a href="{{ route('activities.index', ['bia_id' => $bia->id, 'product_id' => $product_critical->id]) }}"
+                                            class="btn btn-primary">Actividades</a></td>
+                                @endcan
                             </tr>
                         @endforeach
                     </tbody>

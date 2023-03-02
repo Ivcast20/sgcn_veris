@@ -35,7 +35,7 @@ class BiaTable extends DataTableComponent
         $puede_gestionar = $usuario->hasPermissionTo('admin.bia_process.gestion');
         $puede_ver_prod = $usuario->hasPermissionTo('admin.bia_process.ver_prod');
         $puede_cal_prod = $usuario->hasPermissionTo('admin.bia_process.cal_prod');
-        $pueder_ver_prod_avg = true;
+        $pueder_ver_prod_avg = $usuario->hasPermissionTo('admin.product_score_avg.index');
 
         if ($puede_editar) {
             $botones = array_merge($botones, [
