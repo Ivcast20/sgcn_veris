@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\RiskExport;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Risk;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
@@ -16,6 +19,8 @@ class RiskTable extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id');
+        $this->setHideBulkActionsWhenEmptyEnabled();
+        $this->setFilterLayout('slide-down');
     }
 
     public function columns(): array
@@ -101,5 +106,22 @@ class RiskTable extends DataTableComponent
         }
 
         return $columnas;
+    }
+
+    public function bulkActions(): array
+    {
+        return [
+            'exportExcel' => 'exportar EXCEL'
+        ];
+    }
+
+    public function exportExcel()
+    {
+        $riesgos_id = $this->getSelected();
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->format('H:i');
+        return Excel::download(new RiskExport($riesgos_id), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Riesgos.xlsx');
     }
 }
