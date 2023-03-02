@@ -41,14 +41,16 @@ class UpdateRiskRequest extends FormRequest
             'resources' => 'nullable|required_if:treatment_option_id,3|string|max:500',
             'start_date' => 'nullable|required_if:treatment_option_id,3|date',
             'end_date' => 'nullable|required_if:treatment_option_id,3|date|after:start_date',
-            'status_id' => ['required', 'integer']
+            'status_id' => ['required', 'integer'],
+            'status' => ['required', 'boolean']
         ];
     }
 
     public function prepareForValidation()
     {
         $this->merge([
-            'is_aceptable' => (bool)$this->is_aceptable
+            'is_aceptable' => (bool)$this->is_aceptable,
+            'status' => (bool)$this->status
         ]);
     }
 

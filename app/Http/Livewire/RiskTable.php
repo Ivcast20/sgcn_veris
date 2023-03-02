@@ -61,9 +61,9 @@ class RiskTable extends DataTableComponent
                 ->sortable(),
             Column::make("Fecha de fin", "end_date")
                 ->sortable(),
-            Column::make("Estado", "treatment_status.name")
+            Column::make("Estado de tratamiento", "treatment_status.name")
                 ->sortable(),
-            BooleanColumn::make("Activo", "status")
+            BooleanColumn::make("Estado", "status")
                 ->sortable(),
             Column::make("Creación", "created_at")
                 ->sortable(),

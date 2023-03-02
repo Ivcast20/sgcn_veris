@@ -185,7 +185,12 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-
+                <!--Status -->
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="status" name="status" value="1"
+                        @checked(old('status', $risk->status)) />
+                    <label class="custom-control-label" for="status">Activo</label>
+                </div>
                 <div class="d-flex justify-content-center mt-2">
                     <a href="{{ route('risks.index') }}" class="btn btn-secondary mr-2">Cancelar</a>
                     <button type="submit" class="btn btn-success">Guardar cambios</button>
