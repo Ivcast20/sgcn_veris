@@ -221,6 +221,7 @@ return [
         'end_date'                 => 'fecha de fin',
         'treatment_plan'           => 'plan de tratamiento',
         'resources'                => 'recursos',
-        'start_date'               => 'fecha de fin'
+        'start_date'               => 'fecha de fin',
+        'total_score'              => 'calificación total'
     ],
 ];
