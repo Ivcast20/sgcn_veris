@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRiskRequest;
+use App\Http\Requests\UpdateRiskRequest;
 use App\Models\Cause;
 use App\Models\Department;
 use App\Models\ImpactLevel;
@@ -81,7 +82,15 @@ class RiskController extends Controller
      */
     public function edit(Risk $risk)
     {
-        //
+        $causes = Cause::where('status', true)->select('name','id')->get();
+        $sources = Source::where('status', true)->select('name','id')->get();
+        $treatment_options = TreatmentOption::where('status', true)->select('strategy', 'id')->get();
+        $departments = Department::where('status', true)->get();
+        $probability_levels = ProbabilityLevel::where('status', true)->get();
+        $impact_levels = ImpactLevel::where('status', true)->get();
+        $status_risk = StatusRisk::where('status', true)->pluck('name','id');
+
+        return view('risks.edit', compact('causes', 'sources', 'treatment_options', 'departments', 'probability_levels', 'impact_levels', 'status_risk', 'risk'));
     }
 
     /**
@@ -91,19 +100,11 @@ class RiskController extends Controller
      * @param  \App\Models\Risk  $risk
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Risk $risk)
+    public function update(UpdateRiskRequest $request, Risk $risk)
     {
-        //
+        $risk->update($request->validated());
+        $risk->causes()->sync($request->input('causes', []));
+        return redirect()->route('risks.index')->with(['message' => 'Riesgo actualizado exitosamente']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Risk  $risk
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Risk $risk)
-    {
-        //
-    }
 }
