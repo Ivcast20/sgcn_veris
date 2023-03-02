@@ -293,10 +293,11 @@ return [
         [
             'text' => 'Dashboard',
             'url'  => 'dashboard',
+            'icon' => 'fas fa-chart-pie'
         ],
         [
             'text' => 'BIA',
-            'icon' => 'fas fa-chart-pie',
+            'icon' => 'fas fa-check-square',
             'submenu' => [
                 [
                     'text' => 'Lista de BIA',
@@ -319,7 +320,7 @@ return [
         ],
         [
             'text' => 'Matriz de riesgos',
-            'icon' => 'fas fa-chart-pie',
+            'icon' => 'fas fa-times',
             'submenu' => [
                 [
                     'text' => 'Riesgos',
@@ -388,12 +389,14 @@ return [
         [
             'text' => 'Categorías',
             'route' => 'categories.index',
-            'can' => 'admin.categories.index'
+            'can' => 'admin.categories.index',
+            'icon' => 'fas fa-tags'
         ],
         [
             'text' => 'Lista de productos/servicios',
             'route' => 'products.index',
-            'can' => 'admin.products.index'
+            'can' => 'admin.products.index',
+            'icon' => 'fa fa-box'
         ]
     ],
 

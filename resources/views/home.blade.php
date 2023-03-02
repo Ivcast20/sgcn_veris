@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
-                <span class="info-box-icon bg-warning"><i class="far fa-envelope"></i></span>
+                <span class="info-box-icon bg-warning"><i class="fa fa-check-square"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">BIAs</span>
                     <span class="info-box-number">{{ $bias }}</span>
@@ -28,7 +28,7 @@
         </div>
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
-                <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+                <span class="info-box-icon bg-info"><i class="fa fa-box"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Total de productos activos</span>
                     <span class="info-box-number">{{ $products }}</span>
