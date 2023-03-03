@@ -26,10 +26,13 @@ class StoreRiskRequest extends FormRequest
     {
         return [
             'code' => ['required', 'string', 'max:50', Rule::unique('risks','code')],
+            'bia_id' => ['required', 'numeric'],
             'description' => ['required', 'string', 'max:1000', Rule::unique('risks','description')],
+            'source_id' => ['required', 'numeric'],
             'causes' => ['required', 'array'],
             'consecuences' => ['required', 'max:10000'],
-            'risk_owner_id' => ['required', 'numeric'],
+            // 'risk_owner_id' => ['required', 'numeric'],
+            'departments' => ['required', 'array'],
             'existing_controls' => ['required', 'max:1000'],
             'probability' => ['required','numeric'],
             'impact' => ['required', 'numeric'],
@@ -55,11 +58,14 @@ class StoreRiskRequest extends FormRequest
     public function messages()
     {
         return [
+            'bia_id.required' => 'Debe seleccionar un BIA',
             'treatment_plan.required_if' => ':Attribute es obligatorio cuando la opción de tratamiento es modificar',
             'responsable.required_if' => ':Attribute es obligatorio cuando la opción de tratamiento es modificar',
             'resources.required_if' => ':Attribute es obligatorio cuando la opción de tratamiento es modificar',
             'start_date.required_if' => ':Attribute es obligatorio cuando la opción de tratamiento es modificar',
             'end_date.required_if' => ':Attribute es obligatorio cuando la opción de tratamiento es modificar',
+            'departments.required' => 'Debe seleccionar a al menos un dueño de riesgo',
+            'source_id' => 'Debe seleccionar una fuente'
         ];
     }
 }

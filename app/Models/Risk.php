@@ -10,10 +10,12 @@ class Risk extends Model
     use HasFactory;
 
     protected $fillable = [
+        'bia_id',
         'code',
         'description',
+        'source_id',
         'consecuences',
-        'risk_owner_id',
+        // 'risk_owner_id',
         'existing_controls',
         'probability',
         'impact',
@@ -34,9 +36,14 @@ class Risk extends Model
         'status' => 'boolean'
     ];
 
-    public function department()
+    public function bia()
     {
-        return $this->belongsTo(Department::class, 'risk_owner_id', 'id');
+        return $this->belongsTo(BiaProcess::class, 'bia_id', 'id');
+    }
+
+    public function departments()
+    {
+        return $this->belongsToMany(Department::class, 'department_risk', 'risk_id', 'department_id');
     }
 
     public function treatment_option()
@@ -54,8 +61,8 @@ class Risk extends Model
         return $this->belongsToMany(Cause::class,'cause_risk','risk_id', 'cause_id');
     }
 
-    public function sources()
+    public function source()
     {
-        return $this->belongsToMany(Source::class,'risk_source','risk_id','source_id');
+        return $this->belongsTo(Source::class, 'source_id', 'id');
     }
 }

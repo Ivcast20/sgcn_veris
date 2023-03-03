@@ -25,6 +25,34 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+                <!-- bia_id -->
+                <div class="form-group">
+                    <label class="form-label">BIA</label>
+                    <select class="form-control" aria-label="Default select example" name="bia_id" id="bia_id">
+                        <option value="">-- Seleccione una opción --</option>
+                        @foreach ($bias as $bia)
+                            <option value="{{ $bia->id }}" @selected(old('bia_id') == $bia->id)>{{ $bia->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('bia_id')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <!-- source_id -->
+                <div class="form-group">
+                    <label class="form-label">Fuente del riesgo</label>
+                    <select class="form-control" aria-label="Default select example" name="source_id">
+                        <option value="">-- Seleccione una opción --</option>
+                        @foreach ($sources as $source)
+                            <option value="{{ $source->id }}" @selected(old('source_id') == $source->id)>{{ $source->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('source_id')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
                 <!-- description -->
                 <div class="form-group">
                     <label class="form">Descripción</label>
@@ -54,8 +82,8 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <!-- risk_owner_id -->
-                <div class="form-group">
+                <!-- departments -->
+                {{-- <div class="form-group">
                     <label class="form-label">Dueño del riesgo</label>
                     <select class="form-control" aria-label="Default select example" name="risk_owner_id"
                         id="risk_owner_id">
@@ -68,9 +96,23 @@
                     @error('risk_owner_id')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
+                </div> --}}
+                <div class="text-bold">
+                    Dueño(s) del riesgo
                 </div>
+                <select name="departments[]" id="select_multiple" multiple class="form-control">
+                    @foreach ($departments as $department)
+                        <option value="{{ $department->id }}" 
+                            @selected(collect(old('departments'))->contains($department->id))>
+                            {{ $department->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('departments')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
                 <!-- existing_controls -->
-                <div class="form-group">
+                <div class="form-group mt-2">
                     <label class="form">Controles existentes</label>
                     <textarea type="text" name="existing_controls" class="form-control">{{ old('existing_controls') }}</textarea>
                     @error('existing_controls')
@@ -200,8 +242,13 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('#risk_owner_id').select2();
+            $('#bia_id').select2();
             $('#multipleselect').bootstrapDualListbox({
+                infoText: false,
+                infoTextEmpty: false,
+                filterPlaceHolder: 'Buscar'
+            });
+            $('#select_multiple').bootstrapDualListbox({
                 infoText: false,
                 infoTextEmpty: false,
                 filterPlaceHolder: 'Buscar'

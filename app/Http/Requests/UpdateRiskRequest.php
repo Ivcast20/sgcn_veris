@@ -26,10 +26,12 @@ class UpdateRiskRequest extends FormRequest
     {
         return [
             'code' => ['required', 'string', 'max:50', Rule::unique('risks','code')->ignore($this->risk->id)],
-            'description' => ['required', 'string', 'max:1000', Rule::unique('risks','description')->ignore($this->risk->id)],
+            'bia_id' => ['required', 'numeric'],
+            'description' => ['required', 'string', 'max:1000', Rule::unique('risks','description')->where('bia_id', $this->bia_id)->ignore($this->risk->id)],
+            'source_id' => ['required', 'numeric'],
             'causes' => ['required', 'array'],
             'consecuences' => ['required', 'max:10000'],
-            'risk_owner_id' => ['required', 'numeric'],
+            'departments' => ['required', 'array'],
             'existing_controls' => ['required', 'max:1000'],
             'probability' => ['required','numeric'],
             'impact' => ['required', 'numeric'],
@@ -62,6 +64,9 @@ class UpdateRiskRequest extends FormRequest
             'resources.required_if' => ':Attribute es obligatorio cuando la opción de tratamiento es modificar',
             'start_date.required_if' => ':Attribute es obligatorio cuando la opción de tratamiento es modificar',
             'end_date.required_if' => ':Attribute es obligatorio cuando la opción de tratamiento es modificar',
+            'bia_id.required' => 'Debe seleccionar un BIA',
+            'departments.required' => 'Debe seleccionar a al menos un dueño de riesgo',
+            'source_id' => 'Debe seleccionar una fuente'
         ];
     }
 }

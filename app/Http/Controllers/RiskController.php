@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRiskRequest;
 use App\Http\Requests\UpdateRiskRequest;
+use App\Models\BiaProcess;
 use App\Models\Cause;
 use App\Models\Department;
 use App\Models\ImpactLevel;
@@ -40,6 +41,7 @@ class RiskController extends Controller
      */
     public function create()
     {
+        $bias = BiaProcess::where('estado_id', 5)->get();
         $causes = Cause::where('status', true)->select('name','id')->get();
         $sources = Source::where('status', true)->select('name','id')->get();
         $treatment_options = TreatmentOption::where('status', true)->select('strategy', 'id')->get();
@@ -47,7 +49,7 @@ class RiskController extends Controller
         $probability_levels = ProbabilityLevel::where('status', true)->get();
         $impact_levels = ImpactLevel::where('status', true)->get();
         $status_risk = StatusRisk::where('status', true)->pluck('name','id');
-        return view('risks.create', compact('causes', 'sources', 'treatment_options', 'departments', 'probability_levels', 'impact_levels', 'status_risk'));
+        return view('risks.create', compact('bias', 'causes', 'sources', 'treatment_options', 'departments', 'probability_levels', 'impact_levels', 'status_risk'));
     }
 
     /**
@@ -60,6 +62,7 @@ class RiskController extends Controller
     {
         $riesgo = Risk::create($request->validated());
         $riesgo->causes()->attach($request->input('causes', []));
+        $riesgo->departments()->attach($request->input('departments', []));
         return redirect()->route('risks.index')->with(['message' => 'Riesgo guardado exitosamente']);
     }
 
@@ -82,6 +85,14 @@ class RiskController extends Controller
      */
     public function edit(Risk $risk)
     {
+        // $causes = Cause::where('status', true)->select('name','id')->get();
+        // $sources = Source::where('status', true)->select('name','id')->get();
+        // $treatment_options = TreatmentOption::where('status', true)->select('strategy', 'id')->get();
+        // $departments = Department::where('status', true)->get();
+        // $probability_levels = ProbabilityLevel::where('status', true)->get();
+        // $impact_levels = ImpactLevel::where('status', true)->get();
+        // $status_risk = StatusRisk::where('status', true)->pluck('name','id');
+        $bias = BiaProcess::where('estado_id', 5)->get();
         $causes = Cause::where('status', true)->select('name','id')->get();
         $sources = Source::where('status', true)->select('name','id')->get();
         $treatment_options = TreatmentOption::where('status', true)->select('strategy', 'id')->get();
@@ -90,7 +101,7 @@ class RiskController extends Controller
         $impact_levels = ImpactLevel::where('status', true)->get();
         $status_risk = StatusRisk::where('status', true)->pluck('name','id');
 
-        return view('risks.edit', compact('causes', 'sources', 'treatment_options', 'departments', 'probability_levels', 'impact_levels', 'status_risk', 'risk'));
+        return view('risks.edit', compact('bias', 'causes', 'sources', 'treatment_options', 'departments', 'probability_levels', 'impact_levels', 'status_risk', 'risk'));
     }
 
     /**

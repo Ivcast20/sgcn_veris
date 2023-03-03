@@ -18,10 +18,20 @@
                 <label class="form">Código</label>
                 <input type="text" name="code" class="form-control" value="{{ $risk->code }}" readonly>
             </div>
+            <!-- BIA -->
+            <div class="form-group">
+                <label class="form">BIA</label>
+                <input type="text" name="code" class="form-control" value="{{ $risk->bia->name }}" readonly>
+            </div>
             <!-- description -->
             <div class="form-group">
                 <label class="form">Descripción</label>
                 <textarea type="text" name="description" class="form-control" readonly>{{ $risk->description }}</textarea>
+            </div>
+            <!-- Fuente -->
+            <div class="form-group">
+                <label class="form">Fuente</label>
+                <input type="text" name="code" class="form-control" value="{{ $risk->source->name }}" readonly>
             </div>
             <!-- causes -->
             <div class="row">
@@ -46,18 +56,35 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="form-group mt-2">
-                        <label class="form">Concecuencias</label>
-                        <textarea type="text" name="consecuences" class="form-control" style="height: 100%" rows="8">{{ $risk->consecuences }}</textarea>
-                        @error('consecuences')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                        <label class="form">Consecuencias</label>
+                        <textarea type="text" 
+                            name="consecuences" 
+                            class="form-control" 
+                            style="height: 100%" 
+                            rows="8"
+                            readonly>{{ $risk->consecuences }}</textarea>
                     </div>
                 </div>
             </div>
-            <!-- risk_owner-->
-            <div class="form-group">
-                <label class="form">Dueño del riesgo</label>
-                <input type="text" name="code" class="form-control" value="{{ $risk->department->name }}" readonly>
+            <!-- Departamentos -->
+            <div class="py-2">
+                <div class="text-bold">
+                    Dueño de riesgo
+                </div>
+                <table class="table">
+                    <thead class="table-primary">
+                        <th>Id</th>
+                        <th>Dueño de riesgo</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($risk->departments as $depa)
+                            <tr>
+                                <td>{{ $depa->id }}</td>
+                                <td>{{ $depa->name }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
             <!-- existing_controls -->
             <div class="form-group">
@@ -110,7 +137,7 @@
             <!-- resources -->
             <div class="form-group">
                 <label class="form">Recursos</label>
-                <textarea type="text" name="resources" class="form-control">{{ $risk->resources }}</textarea>
+                <textarea type="text" name="resources" class="form-control" readonly>{{ $risk->resources }}</textarea>
             </div>
             <!-- start_date -->
             <div class="form-group">

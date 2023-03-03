@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('risks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('bia_id')->constrained('bia_processes');
             $table->string('code',50)->unique();
             $table->string('description',1000);
+            $table->foreignId('source_id')->constrained('sources');
             $table->text('consecuences');
-            $table->foreignId('risk_owner_id')->constrained('departments');
+            //$table->foreignId('risk_owner_id')->constrained('departments');  ESTO SE CAMBIARÁ POR LA RELACION DE MUCHOS A MUCHOS
             $table->string('existing_controls',1000);
             $table->integer('probability');
             $table->integer('impact');
