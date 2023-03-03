@@ -6,11 +6,13 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 use PHPUnit\Framework\MockObject\Rule\Parameters;
 
-class BiaProcess extends Model
+class BiaProcess extends Model implements Auditable
 {
     use HasFactory;
+    use \OwenIt\Auditing\Auditable;
 
     protected $fillable = [
         'name',
@@ -63,5 +65,10 @@ class BiaProcess extends Model
     public function parameters()
     {
         return $this->hasMany(Parameters::class,'bia_id','id');
+    }
+
+    public function estado()
+    {
+        return $this->belongsTo(BiaEstado::class, 'estado_id', 'id');
     }
 }

@@ -92,4 +92,10 @@ class ReportController extends Controller
         $hora = Carbon::now()->format('H:i');
         return Excel::download(new CriticalProductExport($bia_id), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' productos críticos BIA.xlsx');
     }
+
+    public function reporte_bias()
+    {
+        $bias = BiaProcess::where([['estado_id', 5]])->paginate(10);
+        return view('bias.reportes', compact('bias'));
+    }
 }

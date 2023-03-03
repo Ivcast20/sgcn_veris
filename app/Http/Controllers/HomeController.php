@@ -89,4 +89,9 @@ class HomeController extends Controller
 
         return back()->with("status", "El cambio ha sido exitoso");
     }
+
+    public function ver_auditoria()
+    {
+        return view('auditory.index');
+    }
 }

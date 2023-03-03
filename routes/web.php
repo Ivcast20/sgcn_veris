@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CauseController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImpactLevelController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\ParameterController;
@@ -140,6 +141,8 @@ Route::middleware([
 
     Route::resource('risks', RiskController::class)->names('risks');
 
+    Route::get('auditory', [HomeController::class, 'ver_auditoria'])->name('auditory.index');
+
     //Rutas para reportes
     Route::prefix('report')->group(function () {
         Route::get('rolespdf', [ReportController::class, 'report_roles_pdf'])->name('roles.pdf');
@@ -153,5 +156,8 @@ Route::middleware([
                     [ReportController::class, 'report_critical_products_excel'])
                     ->name('criticalproducts.excel');
         Route::get('actividadescriticas/{id_producto}/excel', [ReportController::class, 'report_actividades_criticas_bia'])->name('actividadescriticas.excel');
+
+        //Ver reportes del BIA
+        Route::get('lista_reportes_bia', [ReportController::class, 'reporte_bias'])->name('bias.reportes');
     });
 });

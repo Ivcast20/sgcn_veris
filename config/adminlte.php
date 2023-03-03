@@ -397,6 +397,15 @@ return [
             'route' => 'products.index',
             'can' => 'admin.products.index',
             'icon' => 'fa fa-box'
+        ],
+        [
+            'text' => 'Logs',
+            'route' => 'auditory.index',
+            'icon' => 'fa fa-box'
+        ],
+        [
+            'text' => 'Reportes',
+            'route' => 'bias.reportes'
         ]
     ],
 
