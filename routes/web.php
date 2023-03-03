@@ -109,7 +109,9 @@ Route::middleware([
     Route::get('activities/{activity}/edit',[ActivityController::class,'edit'])->name('activities.edit');
     //Actualiza los campos de una actividad crítica
     Route::put('activities/{activity}/update',[ActivityController::class,'update'])->name('activities.update');
-
+    //Actualiza el nombre y estado de una actividad
+    Route::get('activities/{activity}/edit2',[ActivityController::class,'edit2'])->name('activities.edit2');
+    Route::put('activities/{activity}/update2',[ActivityController::class,'update2'])->name('activities.update2');
 
     
     //Rutas para gestionar Parametros

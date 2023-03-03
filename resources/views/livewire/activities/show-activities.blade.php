@@ -21,6 +21,7 @@
                                 <th>Es crítico</th>
                                 <th>{{ __('Fecha Creación') }}</th>
                                 <th>{{ __('Fecha Actualización') }}</th>
+                                <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -33,13 +34,18 @@
                                     <td>{{ $activity->is_critical == 1 ? 'Si' : 'No' }}</td>
                                     <td>{{ $activity->created_at->format('d-m-Y') }}</td>
                                     <td>{{ $activity->updated_at->format('d-m-Y') }}</td>
-                                    <td>
-                                        <button 
+                                    <td>{{ $activity->status ? 'Activa' : 'Inactiva' }}</td>
+                                    @can('admin.activities.edit')
+                                        <td>
+                                            {{-- <button 
                                             class="btn btn-success"
                                             wire:click="$emit('cambiar',{{ $activity->id }})">
                                             Cambiar
-                                        </button>
-                                    </td>
+                                        </button> --}}
+                                            <a href="{{ route('activities.edit2', $activity->id) }}"
+                                                class="btn btn-info">Editar</a>
+                                        </td>
+                                    @endcan
                                 </tr>
                             @endforeach
                         </tbody>
@@ -85,7 +91,7 @@
                         'Cambio Exitoso!',
                         'Se ha cambiado el estado crítico de esta actividad',
                         'success'
-                    ).then(function(){
+                    ).then(function() {
                         location.reload();
                     })
                 }

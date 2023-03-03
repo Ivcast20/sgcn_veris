@@ -20,7 +20,8 @@ class ShowCriticalActivities extends Component
         $actividades = Activity::where([
             ['name', 'like', '%' . $this->search . '%'],
             ['critic_product_id', '=', $this->product_id],
-            ['is_critical', '=', true]
+            ['is_critical', '=', true],
+            ['status', true]
         ])->paginate(10);
         return view('livewire.activities.show-critical-activities', compact('actividades'));
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreActivityRequest;
+use App\Http\Requests\UpdateActivityGRequest;
 use App\Http\Requests\UpdateActivityRequest;
 use App\Models\Activity;
 use App\Models\ActivityParameterScore;
@@ -17,7 +18,7 @@ class ActivityController extends Controller
     {
         $this->middleware('can:admin.activities.index')->only('index');
         $this->middleware('can:admin.activities.create')->only('create');
-        $this->middleware('can:admin.activities.edit')->only('edit');
+        $this->middleware('can:admin.activities.edit')->only(['edit','edit2']);
     }
     /**
      * Muestra las actividades de un producto crítico
@@ -93,5 +94,19 @@ class ActivityController extends Controller
             ['bia_id' => $activity->criticproduct->bia_process_id,
             'product_id' => $activity->criticproduct->id
             ])->with(['message' => 'Actividad Guardada', 'typo' => 'success']);
+    }
+
+    public function edit2(Activity $activity)
+    {
+        return view('activities.edit2', compact('activity'));
+    }
+
+    public function update2(UpdateActivityGRequest $request, Activity $activity)
+    {
+        $activity->update($request->validated());
+        return redirect()->route('activities.index',
+            ['bia_id' => $activity->criticproduct->bia_process_id,
+            'product_id' => $activity->criticproduct->id
+            ])->with(['message' => 'Actividad Actualizada', 'typo' => 'success']);
     }
 }
