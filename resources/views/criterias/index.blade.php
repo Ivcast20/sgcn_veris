@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    @can('admin.departments.create')    
+    @can('admin.criterias.create')    
         <div class="d-flex justify-content-end mb-2">
             <a class="btn btn-primary" href="{{ route('criterias.create') }}">Nuevo Criterio</a>
         </div>

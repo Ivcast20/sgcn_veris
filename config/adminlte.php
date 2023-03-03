@@ -306,15 +306,18 @@ return [
                 ],
                 [
                     'text' => 'Parámetros',
-                    'route' => 'parameters.index'
+                    'route' => 'parameters.index',
+                    'can' => 'admin.parameters.index'
                 ],
                 [
                     'text' => 'Niveles',
-                    'route' => 'levels.index'
+                    'route' => 'levels.index',
+                    'can'  => 'admin.levels.index'
                 ],
                 [
                     'text' => 'Criterios',
-                    'route' => 'criterias.index'
+                    'route' => 'criterias.index',
+                    'can' => 'admin.criterias.index'
                 ]
             ]
         ],

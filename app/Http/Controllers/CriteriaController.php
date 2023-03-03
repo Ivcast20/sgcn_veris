@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class CriteriaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.criterias.index')->only('index');
+        $this->middleware('can:admin.criterias.create')->only('create');
+        $this->middleware('can:admin.criterias.edit')->only('edit');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -29,6 +29,9 @@ class ParameterTable extends DataTableComponent
 
     public function columns(): array
     {
+        $usuario = Auth::user();
+        $puede_editar = $usuario->hasPermissionTo('admin.parameters.edit');
+
         $columnas = [
             Column::make("Id", "id")
                 ->sortable(),
@@ -50,15 +53,19 @@ class ParameterTable extends DataTableComponent
                 ->sortable(),
         ];
 
-        $columnas = array_merge(
-            $columnas,
-            [LinkColumn::make('Acciones')
-                ->title(fn ($row) => 'Editar')
-                ->location(fn ($row) => route('parameters.edit', $row->id))
-                ->attributes(function ($row) {
-                    return ['class' => 'btn btn-success'];
-                })
-            ]);
+        if ($puede_editar) {
+            $columnas = array_merge(
+                $columnas,
+                [
+                    LinkColumn::make('Acciones')
+                        ->title(fn ($row) => 'Editar')
+                        ->location(fn ($row) => route('parameters.edit', $row->id))
+                        ->attributes(function ($row) {
+                            return ['class' => 'btn btn-success'];
+                        })
+                ]
+            );
+        }
 
         return $columnas;
     }

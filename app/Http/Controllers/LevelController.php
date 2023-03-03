@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class LevelController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.levels.index')->only('index');
+        $this->middleware('can:admin.levels.create')->only('create');
+        $this->middleware('can:admin.levels.edit')->only('edit');
+    }
     /**
      * Display a listing of the resource.
      *

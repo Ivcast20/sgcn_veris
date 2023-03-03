@@ -7,9 +7,11 @@
 @stop
 
 @section('content')
-    <div class="d-flex justify-content-end mb-2">
-        <a class="btn btn-primary" href="{{ route('levels.create') }}">Nuevo Nivel</a>
-    </div>
+    @can('admin.levels.create')
+        <div class="d-flex justify-content-end mb-2">
+            <a class="btn btn-primary" href="{{ route('levels.create') }}">Nuevo Nivel</a>
+        </div>
+    @endcan
     @livewire('level-table')
 @stop
 

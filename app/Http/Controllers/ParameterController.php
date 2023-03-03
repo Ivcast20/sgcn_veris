@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class ParameterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.parameters.index')->only('index');
+        $this->middleware('can:admin.parameters.create')->only('create');
+        $this->middleware('can:admin.parameters.edit')->only('edit');
+    }
     /**
      * Display a listing of the resource.
      *

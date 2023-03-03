@@ -7,9 +7,11 @@
 @stop
 
 @section('content')
-    <div class="d-flex justify-content-end mb-2">
-        <a class="btn btn-primary" href="{{ route('parameters.create') }}">Nuevo Parámetro</a>
-    </div>
+    @can('admin.parameters.create')
+        <div class="d-flex justify-content-end mb-2">
+            <a class="btn btn-primary" href="{{ route('parameters.create') }}">Nuevo Parámetro</a>
+        </div>
+    @endcan
     @livewire('parameter-table')
 @stop
 
