@@ -71,4 +71,9 @@ class BiaProcess extends Model implements Auditable
     {
         return $this->belongsTo(BiaEstado::class, 'estado_id', 'id');
     }
+
+    public function risks()
+    {
+        return $this->hasMany(Risk::class, 'bia_id', 'id');
+    }
 }

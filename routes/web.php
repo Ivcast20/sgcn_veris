@@ -159,5 +159,6 @@ Route::middleware([
 
         //Ver reportes del BIA
         Route::get('lista_reportes_bia', [ReportController::class, 'reporte_bias'])->name('bias.reportes');
+        Route::get('bia/{bia}/reporte_general', [ReportController::class, 'reporte_bia_general'])->name('bias.reportegeneral');
     });
 });

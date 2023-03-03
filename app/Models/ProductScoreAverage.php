@@ -35,4 +35,9 @@ class ProductScoreAverage extends Model
     {
         return $this->hasMany(Activity::class, 'critic_product_id', 'id');
     }
+
+    public function critic_activities()
+    {
+        return $this->activities()->where('is_critical',true);
+    }
 }

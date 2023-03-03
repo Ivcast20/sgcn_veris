@@ -20,13 +20,14 @@ class LogTable extends DataTableComponent
         return [
             Column::make("Id", "id")
                 ->sortable(),
-            Column::make("Name", "name")
+            Column::make("Nombre", "name")
                 ->sortable(),
-            Column::make("Last name", "last_name")
+            Column::make("Apellido", "last_name")
                 ->sortable(),
             Column::make("Accion", "accion")
                 ->sortable(),
-            Column::make("Auditable type", "auditable_type")
+            Column::make("Modelo", "auditable_type")
+                ->searchable()
                 ->sortable(),
             Column::make("Url", "url")
                 ->sortable(),
@@ -36,7 +37,7 @@ class LogTable extends DataTableComponent
                 ->sortable(),
             Column::make("Despues", "despues")
                 ->sortable(),
-            Column::make("Fecha accion", "fecha_accion")
+            Column::make("Fecha acción", "fecha_accion")
                 ->sortable(),
         ];
     }

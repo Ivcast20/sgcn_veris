@@ -405,7 +405,8 @@ return [
         ],
         [
             'text' => 'Reportes',
-            'route' => 'bias.reportes'
+            'route' => 'bias.reportes',
+            'icon' => 'fas fa-clipboard-list'
         ]
     ],
 

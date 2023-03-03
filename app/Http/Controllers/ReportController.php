@@ -46,7 +46,6 @@ class ReportController extends Controller
         $fecha = Carbon::now()->format('d-m-Y');
         $hora = Carbon::now()->format('H:i');
         return Excel::download(new ProductsExport($ids), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Productos.xlsx');
-
     }
 
     public function report_productos_bia_pdf($bia_id)
@@ -63,7 +62,6 @@ class ReportController extends Controller
             fn () => print($pdf),
             $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo Productos.pdf'
         );
-
     }
 
     public function report_actividades_criticas_bia($id_producto)
@@ -97,5 +95,13 @@ class ReportController extends Controller
     {
         $bias = BiaProcess::where([['estado_id', 5]])->paginate(10);
         return view('bias.reportes', compact('bias'));
+    }
+
+    public function reporte_bia_general(BiaProcess $bia)
+    {
+
+        $pdf = Pdf::loadView('pdf.reportegeneral', compact('bia'));
+        return $pdf->download('invoice.pdf');
+        // return view('pdf.reportegeneral', compact('bia'));
     }
 }

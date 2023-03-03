@@ -6,6 +6,7 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\BiaProcess;
 use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class BiaReporteTable extends DataTableComponent
 {
@@ -20,7 +21,7 @@ class BiaReporteTable extends DataTableComponent
         return [
             Column::make("Id", "id")
                 ->sortable(),
-            Column::make("Name", "name")
+            Column::make("Nombre", "name")
                 ->searchable()
                 ->sortable(),
             Column::make("Alcance", "alcance")
@@ -31,10 +32,14 @@ class BiaReporteTable extends DataTableComponent
                 ->sortable(),
             Column::make("Fecha inicio", "fecha_inicio")
                 ->sortable(),
-            Column::make("Created at", "created_at")
-                ->sortable(),
-            Column::make("Updated at", "updated_at")
-                ->sortable(),
+            LinkColumn::make('Acciones')
+                ->title(fn ($row) => 'Descargar')
+                ->location(fn ($row) => route('bias.reportegeneral', $row->id))
+                ->attributes(function ($row) {
+                    return [
+                        'class' => 'btn btn-success'
+                    ];
+                }),
         ];
     }
 
