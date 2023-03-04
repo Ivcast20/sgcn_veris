@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class CauseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.causes.index')->only('index');
+        $this->middleware('can:admin.causes.create')->only('create');
+        $this->middleware('can:admin.causes.edit')->only('edit');
+    }
     /**
      * Display a listing of the resource.
      *

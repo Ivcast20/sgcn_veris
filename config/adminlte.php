@@ -333,30 +333,37 @@ return [
                 [
                     'text' => 'Causas o Amenazas',
                     'route' => 'causes.index',
+                    'can' => 'admin.causes.index'
                 ],
                 [
                     'text' => 'Fuentes',
-                    'route' => 'sources.index'
+                    'route' => 'sources.index',
+                    'can' => 'admin.sources.index'
                 ],
                 [
                     'text' => 'Opciones de tratamiento',
-                    'route' => 'treatmentoptions.index'
+                    'route' => 'treatmentoptions.index',
+                    'can' => 'admin.treatment_options.index'
                 ],
                 [
                     'text' => 'Niveles de Impacto',
-                    'route' => 'impact_levels.index'
+                    'route' => 'impact_levels.index',
+                    'can' => 'admin.impact_levels.index'
                 ],
                 [
                     'text' => 'Niveles de Probabilidad',
-                    'route' => 'probability_levels.index'
+                    'route' => 'probability_levels.index',
+                    'can' => 'admin.probability_levels.index'
                 ],
                 [
                     'text' => 'Niveles de riesgo',
-                    'route' => 'risk_levels.index'
+                    'route' => 'risk_levels.index',
+                    'can' => 'admin.risk_levels.index'
                 ],
                 [
                     'text' => 'Estado de tratamiento',
-                    'route' => 'status_risks.index'
+                    'route' => 'status_risks.index',
+                    'can' => 'admin.risk_treatment_status.index'
                 ],
             ]
         ],

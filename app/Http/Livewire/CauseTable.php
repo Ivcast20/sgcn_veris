@@ -2,11 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\CauseExport;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Cause;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
@@ -18,11 +21,15 @@ class CauseTable extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id');
+        $this->setHideBulkActionsWhenEmptyEnabled();
     }
 
     public function columns(): array
     {
-        return [
+        $usuario = Auth::user();
+        $puede_editar = $usuario->hasPermissionTo('admin.causes.edit');
+
+        $columnas = [
             Column::make("Id", "id")
                 ->sortable(),
             Column::make("Nombre", "name")
@@ -30,7 +37,7 @@ class CauseTable extends DataTableComponent
                 ->sortable(),
             BooleanColumn::make("Estado", "status")
                 ->sortable(),
-                Column::make("Fecha de creación", "created_at")
+            Column::make("Fecha de creación", "created_at")
                 ->format(function ($value) {
                     return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
                 }),
@@ -38,14 +45,24 @@ class CauseTable extends DataTableComponent
                 ->format(function ($value) {
                     return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
                 })
-                ->deselected(),
-            LinkColumn::make('Acciones')
-                ->title(fn ($row) => 'Editar')
-                ->location(fn ($row) => route('causes.edit', $row->id))
-                ->attributes(function ($row) {
-                    return ['class' => 'btn btn-success'];
-                })
+                ->deselected()
         ];
+
+        if ($puede_editar) {
+            $columnas = array_merge(
+                $columnas,
+                [
+                    LinkColumn::make('Acciones')
+                        ->title(fn ($row) => 'Editar')
+                        ->location(fn ($row) => route('causes.edit', $row->id))
+                        ->attributes(function ($row) {
+                            return ['class' => 'btn btn-success'];
+                        })
+                ]
+            );
+        }
+
+        return $columnas;
     }
 
     public function filters(): array
@@ -64,5 +81,22 @@ class CauseTable extends DataTableComponent
                     }
                 }),
         ];
+    }
+
+    public function bulkActions(): array
+    {
+        return [
+            'exportExcel' => 'exportar EXCEL'
+        ];
+    }
+
+    public function exportExcel()
+    {
+        $causas = $this->getSelected();
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->format('H:i');
+        return Excel::download(new CauseExport($causas), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo causas de riesgos.xlsx');
     }
 }

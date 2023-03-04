@@ -7,9 +7,11 @@
 @stop
 
 @section('content')
-    <div class="d-flex justify-content-end mb-2">
-        <a class="btn btn-primary" href="{{ route('probability_levels.create') }}">Nuevo Nivel</a>
-    </div>
+    @can('admin.probability_levels.create')
+        <div class="d-flex justify-content-end mb-2">
+            <a class="btn btn-primary" href="{{ route('probability_levels.create') }}">Nuevo Nivel</a>
+        </div>
+    @endcan
     @livewire('probability-level-table')
 @stop
 

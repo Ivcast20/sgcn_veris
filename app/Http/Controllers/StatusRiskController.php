@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class StatusRiskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.risk_treatment_status.index')->only('index');
+        $this->middleware('can:admin.risk_treatment_status.create')->only('create');
+        $this->middleware('can:admin.risk_treatment_status.edit')->only('edit');
+    }
     /**
      * Display a listing of the resource.
      *

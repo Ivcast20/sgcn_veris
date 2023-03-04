@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class SourceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.sources.index')->only('index');
+        $this->middleware('can:admin.sources.create')->only('create');
+        $this->middleware('can:admin.sources.edit')->only('edit');
+    }
     /**
      * Display a listing of the resource.
      *

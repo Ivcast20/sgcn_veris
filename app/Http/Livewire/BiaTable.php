@@ -105,6 +105,7 @@ class BiaTable extends DataTableComponent
             Column::make("Id", "id")
                 ->sortable(),
             Column::make("Nombre", "name")
+                ->searchable()
                 ->sortable(),
             Column::make("Alcance", "alcance")
                 ->sortable(),

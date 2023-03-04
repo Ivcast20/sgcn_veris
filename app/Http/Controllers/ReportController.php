@@ -99,9 +99,12 @@ class ReportController extends Controller
 
     public function reporte_bia_general(BiaProcess $bia)
     {
-
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->format('H:i');
         $pdf = Pdf::loadView('pdf.reportegeneral', compact('bia'));
-        return $pdf->download('invoice.pdf');
+        return $pdf->download($nombreCompleto . ' ' . $fecha . ' '. $hora . ' Reporte General BIA.pdf');
         // return view('pdf.reportegeneral', compact('bia'));
     }
 }

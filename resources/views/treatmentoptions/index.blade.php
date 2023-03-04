@@ -7,9 +7,11 @@
 @stop
 
 @section('content')
-    <div class="d-flex justify-content-end mb-2">
-        <a class="btn btn-primary" href="{{ route('treatmentoptions.create') }}">Nueva opción de tratamiento</a>
-    </div>
+    @can('admin.treatment_options.create')
+        <div class="d-flex justify-content-end mb-2">
+            <a class="btn btn-primary" href="{{ route('treatmentoptions.create') }}">Nueva opción de tratamiento</a>
+        </div>
+    @endcan
     @livewire('treatment-option-table')
 @stop
 

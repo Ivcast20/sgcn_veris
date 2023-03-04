@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\RiskLevelExport;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\RiskLevel;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
@@ -56,5 +59,22 @@ class RiskLevelTable extends DataTableComponent
         }
 
         return $columnas;
+    }
+
+    public function bulkActions(): array
+    {
+        return [
+            'exportExcel' => 'exportar EXCEL'
+        ];
+    }
+
+    public function exportExcel()
+    {
+        $riesgos_id = $this->getSelected();
+        $usuario = Auth::user();
+        $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
+        $fecha = Carbon::now()->format('d-m-Y');
+        $hora = Carbon::now()->format('H:i');
+        return Excel::download(new RiskLevelExport($riesgos_id), $fecha . ' ' . $hora . ' ' . $nombreCompleto . ' Módulo niveles de riesgos.xlsx');
     }
 }

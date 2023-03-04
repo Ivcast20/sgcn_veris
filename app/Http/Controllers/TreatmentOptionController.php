@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class TreatmentOptionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.treatment_options.index')->only('index');
+        $this->middleware('can:admin.treatment_options.create')->only('create');
+        $this->middleware('can:admin.treatment_options.edit')->only('edit');
+    }
     /**
      * Display a listing of the resource.
      *

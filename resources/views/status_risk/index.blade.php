@@ -7,9 +7,11 @@
 @stop
 
 @section('content')
-    <div class="d-flex justify-content-end mb-2">
-        <a class="btn btn-primary" href="{{ route('status_risks.create') }}">Nuevo estado</a>
-    </div>
+    @can('admin.risk_treatment_status.create')
+        <div class="d-flex justify-content-end mb-2">
+            <a class="btn btn-primary" href="{{ route('status_risks.create') }}">Nuevo estado</a>
+        </div>
+    @endcan
     @livewire('status-risk-table')
 @stop
 

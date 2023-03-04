@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class RiskLevelController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.risk_levels.index')->only('index');
+        $this->middleware('can:admin.risk_levels.create')->only('create');
+        $this->middleware('can:admin.risk_levels.edit')->only('edit');
+    }
     /**
      * Display a listing of the resource.
      *

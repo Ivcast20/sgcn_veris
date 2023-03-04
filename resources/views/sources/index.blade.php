@@ -7,9 +7,11 @@
 @stop
 
 @section('content')
-    <div class="d-flex justify-content-end mb-2">
-        <a class="btn btn-primary" href="{{ route('sources.create') }}">Nueva Fuente</a>
-    </div>
+    @can('admin.sources.create')
+        <div class="d-flex justify-content-end mb-2">
+            <a class="btn btn-primary" href="{{ route('sources.create') }}">Nueva Fuente</a>
+        </div>
+    @endcan
     @livewire('source-table')
 @stop
 

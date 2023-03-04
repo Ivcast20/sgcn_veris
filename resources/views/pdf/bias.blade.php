@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Reporte de categorías</title>
+    <title>Reporte de BIAs</title>
     <style>
         .clearfix:after {
             content: "";
@@ -135,7 +135,7 @@
         </div>
         <div>
             <h1>Módulo</h1>
-            <h2>Categorías</h2>
+            <h2>BIAs</h2>
         </div>
 
         <div id="datosR">

@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class ProbabilityLevelController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.probability_levels.index')->only('index');
+        $this->middleware('can:admin.probability_levels.create')->only('create');
+        $this->middleware('can:admin.probability_levels.edit')->only('edit');
+
+    }
     /**
      * Display a listing of the resource.
      *

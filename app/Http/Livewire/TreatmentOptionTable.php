@@ -26,7 +26,9 @@ class TreatmentOptionTable extends DataTableComponent
 
     public function columns(): array
     {
-        return [
+        $usuario = Auth::user();
+        $puede_editar = $usuario->hasPermissionTo('admin.treatment_options.edit');
+        $columnas = [
             Column::make("Id", "id")
                 ->sortable(),
             Column::make("Estrategia", "strategy")
@@ -44,14 +46,22 @@ class TreatmentOptionTable extends DataTableComponent
                 ->format(function ($value) {
                     return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
                 })
-                ->deselected(),
-            LinkColumn::make('Acciones')
+                ->deselected()
+        ];
+
+        if($puede_editar)
+        {
+            $columnas = array_merge($columnas, [
+                LinkColumn::make('Acciones')
                 ->title(fn ($row) => 'Editar')
                 ->location(fn ($row) => route('treatmentoptions.edit', $row->id))
                 ->attributes(function ($row) {
                     return ['class' => 'btn btn-success'];
                 }),
-        ];
+            ]);
+        }
+
+        return $columnas;
     }
 
     public function filters(): array

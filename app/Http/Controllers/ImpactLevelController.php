@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class ImpactLevelController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.impact_levels.index')->only('index');
+        $this->middleware('can:admin.impact_levels.create')->only('create');
+        $this->middleware('can:admin.impact_levels.edit')->only('edit');
+    }
     /**
      * Display a listing of the resource.
      *

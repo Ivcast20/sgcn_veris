@@ -7,11 +7,11 @@
 @stop
 
 @section('content')
-    {{-- @can('admin.departments.create')     --}}
+    @can('admin.causes.create')
         <div class="d-flex justify-content-end mb-2">
             <a class="btn btn-primary" href="{{ route('causes.create') }}">Nueva Causa</a>
         </div>
-    {{-- @endcan --}}
+    @endcan
     @livewire('cause-table')
 @stop
 

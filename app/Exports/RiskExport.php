@@ -23,9 +23,10 @@ class RiskExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMa
         return [
             'Código',
             'Descripción',
+            'BIA',
             'Causas',
             'Consecuencias',
-            'Dueño del riesgo',
+            'Dueños del riesgo',
             'Controles existentes',
             'Probabilidad',
             'Impacto',
@@ -47,9 +48,10 @@ class RiskExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMa
         return [
             $row->code, //A
             $row->description, //B
+            $row->bia->name,
             $row->causes->pluck('name')->implode(', '), //C
             $row->consecuences, //D
-            $row->department->name, //E
+            $row->departments->pluck('name')->implode(', '), //E
             $row->existing_controls, //F
             $row->probability, //G
             $row->impact, //H
@@ -78,6 +80,6 @@ class RiskExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMa
     */
     public function collection()
     {
-        return Risk::with(['causes','department','treatment_option','treatment_status'])->findMany($this->ids);
+        return Risk::with(['bia','causes','departments','treatment_option','treatment_status'])->findMany($this->ids);
     }
 }
