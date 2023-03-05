@@ -44,7 +44,7 @@
                     <select class="form-control" id="user_asigned" name="user_asigned">
                         <option value="">-- Seleccione --</option>
                         @foreach ($usuarios_responsables as $persona)
-                            <option value="{{ $persona->id }}" @selected(old('user_asigned') == $persona->id)>{{ $persona->name . ' ' . $persona->name }}</option>
+                            <option value="{{ $persona->id }}" @selected(old('user_asigned') == $persona->id)>{{ $persona->last_name . ' ' . $persona->name }}</option>
                         @endforeach
                     </select>
                     @error('user_asigned')
