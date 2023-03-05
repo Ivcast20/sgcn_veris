@@ -31,7 +31,7 @@
                     </h2>
                 </div>
                 <!-- Estado 3 -->
-                <h4 class="card-title">Cerrar calificación Productos/Servicios críticos</h4>
+                <h4 class="card-title">Cerrar calificación Productos/Servicios</h4>
             </div>
         </div>
         <div class="col-lg-3">
