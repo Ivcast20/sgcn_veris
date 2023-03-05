@@ -15,6 +15,9 @@ use App\Models\ProductScore;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Mail\NewBiaMail;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class BiaProcessController extends Controller
 {
@@ -58,6 +61,13 @@ class BiaProcessController extends Controller
     {
         $bia = BiaProcess::create($request->validated());
         $bia->products()->sync($request->input('products', []));
+
+        $usuarios = User::where('status', true)->get();
+        foreach($usuarios as $user)
+        {
+            Mail::to($user)->queue(new NewBiaMail($user, $bia, config('app.url')));
+        }
+
         return view('bias.index')->with(['message' => 'BIA Creado', 'typo' => 'success']);
     }
 
