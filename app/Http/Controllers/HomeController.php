@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\BiaEstado;
 use App\Models\BiaProcess;
+use App\Models\Cause;
 use App\Models\Department;
+use App\Models\Risk;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -48,8 +50,16 @@ class HomeController extends Controller
 
 
         $bia_info_general = BiaProcess::withCount(['products','critical_products'])
-                                // ->select('name','products_count', 'critical_products_count')
                                 ->paginate(5);
+
+        $bia_riesgos = BiaProcess::where('estado_id',5)->withCount(['risks'])->get();
+
+        $causas_x_riesgos = Cause::withCount('risks')
+                                ->orderBy('risks_count','DESC')
+                                ->take(10)
+                                ->pluck('risks_count', 'name');
+        $causas_x_riesgos_lb = $causas_x_riesgos->keys();
+        $causas_x_riesgos_data = $causas_x_riesgos->values();
         
         return view('home', compact(['users',
                                     'bias',
@@ -60,7 +70,10 @@ class HomeController extends Controller
                                     'usr_x_dept_data',
                                     'bia_estados_lb',
                                     'bia_estados_data',
-                                    'bia_info_general'
+                                    'bia_info_general',
+                                    'causas_x_riesgos_lb',
+                                    'causas_x_riesgos_data',
+                                    'bia_riesgos'
                                 ]));
     }
 

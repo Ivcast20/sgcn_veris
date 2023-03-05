@@ -27,7 +27,7 @@ class UpdateActivityRequest extends FormRequest
             'mtpd' =>   ['required', 'string', 'max:50'],
             'rto' =>    ['required', 'string', 'max:50'],
             'rpo' =>    ['required', 'string', 'max:50'],
-            'aceptable_minimun' =>  ['required', 'string', 'max:50'],
+            'aceptable_minimun' =>  ['required', 'string', 'max:500'],
             'priority' =>   ['required', 'numeric', 'min:1', 'max:100'],
             'other_proc_depen' =>   ['required','boolean'],
             'processes' =>  ['required', 'string', 'max:500'],

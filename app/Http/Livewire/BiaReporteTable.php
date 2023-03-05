@@ -6,6 +6,7 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\BiaProcess;
 use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class BiaReporteTable extends DataTableComponent
@@ -28,7 +29,7 @@ class BiaReporteTable extends DataTableComponent
                 ->sortable(),
             Column::make("Estado", "estado.name")
                 ->sortable(),
-            Column::make("Status", "status")
+            BooleanColumn::make("Estado", "status")
                 ->sortable(),
             Column::make("Fecha inicio", "fecha_inicio")
                 ->sortable(),

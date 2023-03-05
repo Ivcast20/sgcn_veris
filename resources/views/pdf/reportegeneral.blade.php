@@ -65,8 +65,9 @@
                                 <tr class="table-success">
                                     <th>Id</th>
                                     <th>Nombre</th>
-                                    <th>Categoría</th>
-                                    <th>Calificación total</th>
+                                    <th>MTPD</th>
+                                    <th>RTO</th>
+                                    <th>RPO</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,6 +78,15 @@
                                         </td>
                                         <td>
                                             {{ $c_activity->name }}
+                                        </td>
+                                        <td>
+                                            {{ $c_activity->mtpd }}
+                                        </td>
+                                        <td>
+                                            {{ $c_activity->rto }}
+                                        </td>
+                                        <td>
+                                            {{ $c_activity->rpo }}
                                         </td>
                                     </tr>
                                 @endforeach

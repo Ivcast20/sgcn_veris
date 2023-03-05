@@ -36,7 +36,6 @@
             </div>
         </div>
     </div>
-
     <div class="row py-2">
         <div class="col-12 col-md-6">
             <div class="card h-100">
@@ -70,6 +69,50 @@
         </div>
         <div class="col-12 col-md-6">
             <canvas id="bias_x_estado" role="img"></canvas>
+        </div>
+    </div>
+
+    <div class="row py-2">
+        <div class="col col-md-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h3 class="card-title pt-1">
+                        Número de riesgos por BIA
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead class="table-success">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre BIA</th>
+                                <th>Número de riesgos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($bia_riesgos as $bia_r)
+                            <tr>
+                                <td>{{ $bia_r->id }}</td>
+                                <td>{{ $bia_r->name }}</td>
+                                <td>{{ $bia_r->risks_count }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title pt-1">
+                        Causas más frecuentes en riesgos
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <canvas id="causes_most" role="img"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -114,6 +157,8 @@
         let usr_x_dept_data = {{ Js::from($usr_x_dept_data) }}
         let bia_x_est_lb = {{ Js::from($bia_estados_lb) }}
         let bia_x_est_data = {{ Js::from($bia_estados_data) }}
+        let causes_x_r_lb = {{ Js::from($causas_x_riesgos_lb) }}
+        let causes_x_r_data = {{ Js::from($causas_x_riesgos_data) }}
 
         const chart_usuarios_x_roles = new Chart(document.getElementById('user_por_rol'), {
             type: 'bar',
@@ -264,5 +309,54 @@
                 }]
             }
         });
+
+        const most_causes = new Chart(document.getElementById('causes_most'), {
+            type : 'bar',
+            options: {
+                responsive: true,
+                aspectRatio: 1,
+                title: {
+                    display: true,
+                    text: 'Causas más presentes en Riesgos',
+                }
+            },
+
+            data: {
+                labels: causes_x_r_lb,
+                datasets: [{
+                    label: 'Número de veces',
+                    data: causes_x_r_data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(201, 203, 207, 0.2)',
+                        'rgba(99, 10, 16, 0.2)',
+                        'rgba(142, 50, 0, 0.2)',
+                        'rgba(96, 150, 180, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 159, 64)',
+                        'rgb(255, 205, 86)',
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)',
+                        'rgb(153, 102, 255)',
+                        'rgb(201, 203, 207)',
+                        'rgb(99, 10, 16)',
+                        'rgb(142, 50, 0)',
+                        'rgb(96, 150, 180, 0.2)'
+                    ],
+                    borderWidth: 1,
+
+                }]
+            }
+
+        })
+
+
     </script>
 @stop
