@@ -72,9 +72,12 @@
                             <th scope="col">Categoría del producto</th>
                             <th scope="col">Calificación total</th>
                             <th scope="col">Crítico</th>
-                            <th scope="col" colspan="2">Persona Asignada</th>
+                            <th scope="col">Persona Asignada</th>
+                            @can('admin.critic_product.asign')
+                                <th scope="col">Asignar</th>
+                            @endcan
                             @can('admin.activities.index')
-                                <th scope="col">Acciones</th>
+                                <th scope="col">Ver Actividades</th>
                             @endcan
                         </tr>
                     </thead>
@@ -88,15 +91,15 @@
                                 <td>{{ $product_critical->is_critical ? 'Si' : 'No' }}</td>
                                 @if ($product_critical->user == null)
                                     <td>Sin asignar</td>
-                                    @can('admin.critic_product.asign')
-                                        <td><a href="{{ route('productcritical.asign', $product_critical->id) }}"
-                                                class="btn btn-success">Asignar</a></td>
-                                    @endcan
                                 @else
-                                    <td colspan="2">
+                                    <td>
                                         {{ $product_critical->user->name . ' ' . $product_critical->user->last_name . ' : ' . $product_critical->user->cargo }}
                                     </td>
                                 @endif
+                                @can('admin.critic_product.asign')
+                                    <td><a href="{{ route('productcritical.asign', $product_critical->id) }}"
+                                            class="btn btn-success">Asignar</a></td>
+                                @endcan
                                 @can('admin.activities.index')
                                     <td><a href="{{ route('activities.index', ['bia_id' => $bia->id, 'product_id' => $product_critical->id]) }}"
                                             class="btn btn-primary">Actividades</a></td>
