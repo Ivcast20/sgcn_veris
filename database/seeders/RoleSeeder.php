@@ -107,6 +107,11 @@ class RoleSeeder extends Seeder
             'name' => 'admin.critic_product.asign',
             'description' => 'Asignar productos críticos'
         ])->syncRoles([$admin, $director]);
+        //Ver todos los productos críticos
+        Permission::create([
+            'name' => 'admin.critic_product.index_general',
+            'description' => 'Ver calificaciones de Productos promediada General'
+        ])->syncRoles([$admin, $director, $auditor]);
 
         //Permisos para gestionar actividades OK
         Permission::create([
@@ -178,7 +183,7 @@ class RoleSeeder extends Seeder
             'description' => 'Editar criterio'
         ])->syncRoles([$admin, $director]);
 
-        //Permisos para gestionar productos/servicios OK
+        //Permisos para gestionar productos/servicios
         Permission::create([
             'name' => 'admin.products.index',
             'description' => 'Ver productos/servicios',
@@ -193,7 +198,7 @@ class RoleSeeder extends Seeder
         ])->syncRoles([$admin, $director]);
 
         //Permisos para Matriz de riegos
-        //Riesgos OK
+        //Riesgos
         Permission::create([
             'name' => 'admin.risks.index',
             'description' => 'Ver riesgos',
@@ -211,7 +216,7 @@ class RoleSeeder extends Seeder
             'description' => 'Ver riesgo'
         ])->syncRoles([$admin, $director, $jefe_de_area]);
         
-        //Causas o Amenazas OK
+        //Causas o Amenazas
         Permission::create([
             'name' => 'admin.causes.index',
             'description' => 'Ver causas',
@@ -225,7 +230,7 @@ class RoleSeeder extends Seeder
             'description' => 'Editar causa'
         ])->syncRoles([$admin, $director, $jefe_de_area]);
 
-        //Fuentes OK
+        //Fuentes
         Permission::create([
             'name' => 'admin.sources.index',
             'description' => 'Ver fuentes de riesgos',
@@ -239,7 +244,7 @@ class RoleSeeder extends Seeder
             'description' => 'Editar fuente de riesgos'
         ])->syncRoles([$admin, $director, $jefe_de_area]);
 
-        //Opciones de tratamiento OK
+        //Opciones de tratamiento
         Permission::create([
             'name' => 'admin.treatment_options.index',
             'description' => 'Ver opciones de tratamiento',
@@ -253,7 +258,7 @@ class RoleSeeder extends Seeder
             'description' => 'Editar opcion de tratamiento'
         ])->syncRoles([$admin, $director, $jefe_de_area]);
 
-        //Niveles de impacto OK
+        //Niveles de impacto
         Permission::create([
             'name' => 'admin.impact_levels.index',
             'description' => 'Ver niveles de impacto',
@@ -267,7 +272,7 @@ class RoleSeeder extends Seeder
             'description' => 'Editar nivel de impacto'
         ])->syncRoles([$admin, $director, $jefe_de_area]);
 
-        //Niveles de probabilidad OK
+        //Niveles de probabilidad
         Permission::create([
             'name' => 'admin.probability_levels.index',
             'description' => 'Ver niveles de probabilidad',
@@ -281,7 +286,7 @@ class RoleSeeder extends Seeder
             'description' => 'Editar nivel de probabilidad'
         ])->syncRoles([$admin, $director, $jefe_de_area]);
 
-        //Niveles de riesgo Ok
+        //Niveles de riesgo
         Permission::create([
             'name' => 'admin.risk_levels.index',
             'description' => 'Ver niveles de riesgo',
