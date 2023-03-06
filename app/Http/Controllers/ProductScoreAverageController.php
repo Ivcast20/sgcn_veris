@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateAverageScoreProduct;
 use App\Http\Requests\UpdateProductStorageAvgRequest;
+use App\Mail\CriticProductAsignedMailable;
 use App\Models\BiaProcess;
 use App\Models\ProductScoreAverage;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ProductScoreAverageController extends Controller
 {
@@ -71,6 +73,12 @@ class ProductScoreAverageController extends Controller
     public function guardar_asignacion(UpdateProductStorageAvgRequest $request, ProductScoreAverage $productoScore)
     {
         $productoScore->update($request->validated());
+        $usuario = User::find($request->safe()->only('user_asigned'))->first();
+        
+        Mail::to($usuario)->queue(new CriticProductAsignedMailable($usuario,
+                                                                $productoScore->product->name,
+                                                                $productoScore->product->category->name,
+                                                                $productoScore->bia->name));
         return redirect()->route('promedios.index',$productoScore->bia_process_id)->with(['message' => 'Se ha asignado un responsable', 'typo' => 'success']);
     }
 }

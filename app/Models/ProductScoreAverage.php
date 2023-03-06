@@ -21,6 +21,11 @@ class ProductScoreAverage extends Model
         'is_critical' => 'boolean'
     ];
 
+    public function bia()
+    {
+        return $this->belongsTo(BiaProcess::class, 'bia_process_id', 'id');
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id', 'id');
