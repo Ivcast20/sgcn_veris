@@ -57,6 +57,8 @@ Route::middleware([
     Route::resource('roles', RoleController::class)->names('roles');
     //Rutas para gestionar Usuarios
     Route::resource('users', UserController::class)->names('users');
+    //Ruta para cambiar contraseña
+    Route::get('users/{user}/change_password', [UserController::class, 'change_password'])->name('users.change_password');
     //Rutas para gestionar categorías de productos/servicios
     Route::resource('categories',CategoryController::class)->names('categories');
     //Rutas para gestionar productos

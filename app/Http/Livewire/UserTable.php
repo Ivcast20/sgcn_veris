@@ -71,6 +71,12 @@ class UserTable extends DataTableComponent
                 ->location(fn ($row) => route('users.edit', $row->id))
                 ->attributes(function ($row) {
                     return ['class' => 'btn btn-success'];
+                }),
+                LinkColumn::make('Contraseña')
+                ->title(fn ($row) => 'Cambiar')
+                ->location(fn ($row) => route('users.change_password', $row->id))
+                ->attributes(function ($row) {
+                    return ['class' => 'btn btn-warning'];
                 })]
             );
         }

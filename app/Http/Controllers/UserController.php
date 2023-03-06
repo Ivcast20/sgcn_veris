@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Mail\ChangePasswordMailable;
 use App\Mail\NewUserMailable;
 use App\Models\Department;
 use App\Models\Role;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -59,5 +61,13 @@ class UserController extends Controller
         $user->update($request->validated());
         $user->syncRoles($request->roles);
         return redirect()->route('users.index')->with(['message' => 'Usuario Actualizado', 'typo' => 'success']);
+    }
+
+    public function change_password(User $user)
+    {
+        $new_password = Str::random(8);
+        $user->update(['password' => Hash::make($new_password)]);
+        Mail::to($user)->queue(new ChangePasswordMailable($user, $new_password));
+        return redirect()->route('users.index')->with(['message' => 'Se ha reseteado la contraseña de este usuario', 'typo' => 'success']);
     }
 }
