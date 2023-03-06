@@ -8,6 +8,7 @@ use App\Models\BiaProcess;
 use App\Models\ProductScoreAverage;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductScoreAverageController extends Controller
 {
@@ -39,13 +40,24 @@ class ProductScoreAverageController extends Controller
             ]
         )
             ->where('bia_process_id', $id)->paginate(5);
-        $productos_criticos = ProductScoreAverage::with(
-            [
-                'product:id,name,category_id' => ['category:id,name'],
-                'user:id,name,last_name,cargo'
-            ]
-        )
-            ->where([['bia_process_id', $id],['is_critical',true]])->get();
+        $usuario = Auth::user();
+        if($usuario->hasPermissionTo('admin.critic_product.index_general'))
+        {
+            $productos_criticos = ProductScoreAverage::with(
+                [
+                    'product:id,name,category_id' => ['category:id,name'],
+                    'user:id,name,last_name,cargo'
+                ]
+                )->where([['bia_process_id', $id],['is_critical',true]])->get();
+        }else{
+            $productos_criticos = ProductScoreAverage::with(
+                [
+                    'product:id,name,category_id' => ['category:id,name'],
+                    'user:id,name,last_name,cargo'
+                ]
+                )->where([['bia_process_id', $id],['is_critical',true], ['user_asigned', $usuario->id]])->get();
+        }
+        
         return view('bias.promedios', compact('productos_promediados', 'bia', 'productos_criticos'));
     }
 
