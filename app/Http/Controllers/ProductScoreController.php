@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\BiaEstadoDifException;
+use App\Mail\ScoreProductsMailable;
 use App\Models\BiaProcess;
 use App\Models\Level;
 use App\Models\Parameter;
 use App\Models\ProductScore;
 use App\Models\ProductScoreAverage;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ProductScoreController extends Controller
 {
@@ -107,6 +110,10 @@ class ProductScoreController extends Controller
       if ($estado_BIA == 1) {
          $bia->estado_id = 2;
          $bia->save();
+         $usuarios = User::permission('admin.bia_process.cal_prod')->get();
+         foreach ($usuarios as $usuario) {
+            Mail::to($usuario)->queue(new ScoreProductsMailable($usuario, $bia));
+         }
          return true;
       } else {
          throw new BiaEstadoDifException('<p>Este BIA ya se encuentra en un paso superior, por lo que <strong>no</strong> puede regresar</p>');
