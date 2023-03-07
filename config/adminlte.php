@@ -411,12 +411,14 @@ return [
         [
             'text' => 'Logs',
             'route' => 'auditory.index',
-            'icon' => 'fa fa-box'
+            'icon' => 'fa fa-box',
+            'can' => 'admin.logs.index'
         ],
         [
             'text' => 'Reportes',
             'route' => 'bias.reportes',
-            'icon' => 'fas fa-clipboard-list'
+            'icon' => 'fas fa-clipboard-list',
+            'can' => 'admin.reports.index'
         ]
     ],
 

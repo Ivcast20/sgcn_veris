@@ -7648,145 +7648,145 @@ class RespuestasBia extends Seeder
             ]
         ]);
 
-        $cal_11_13 = ProductScore::create(
-            [
-                'bia_id' => 1,
-                'user_id' => 11,
-                'product_id' => 13,
-                'total_score' => 10
-            ]
-        );
+        // $cal_11_13 = ProductScore::create(
+        //     [
+        //         'bia_id' => 1,
+        //         'user_id' => 11,
+        //         'product_id' => 13,
+        //         'total_score' => 10
+        //     ]
+        // );
 
-        ParameterScore::insert([
-            [
-                'parameter_id' => 1,
-                'product_score_id' => $cal_11_13->id,
-                'score' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'parameter_id' => 2,
-                'product_score_id' => $cal_11_13->id,
-                'score' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'parameter_id' => 3,
-                'product_score_id' => $cal_11_13->id,
-                'score' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'parameter_id' => 4,
-                'product_score_id' => $cal_11_13->id,
-                'score' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'parameter_id' => 5,
-                'product_score_id' => $cal_11_13->id,
-                'score' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]
-        ]);
+        // ParameterScore::insert([
+        //     [
+        //         'parameter_id' => 1,
+        //         'product_score_id' => $cal_11_13->id,
+        //         'score' => 3,
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        //     [
+        //         'parameter_id' => 2,
+        //         'product_score_id' => $cal_11_13->id,
+        //         'score' => 2,
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        //     [
+        //         'parameter_id' => 3,
+        //         'product_score_id' => $cal_11_13->id,
+        //         'score' => 1,
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        //     [
+        //         'parameter_id' => 4,
+        //         'product_score_id' => $cal_11_13->id,
+        //         'score' => 2,
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        //     [
+        //         'parameter_id' => 5,
+        //         'product_score_id' => $cal_11_13->id,
+        //         'score' => 2,
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ]
+        // ]);
 
-        $cal_11_14 = ProductScore::create(
-            [
-                'bia_id' => 1,
-                'user_id' => 11,
-                'product_id' => 14,
-                'total_score' => 10
-            ]
-        );
+        // $cal_11_14 = ProductScore::create(
+        //     [
+        //         'bia_id' => 1,
+        //         'user_id' => 11,
+        //         'product_id' => 14,
+        //         'total_score' => 10
+        //     ]
+        // );
 
-        ParameterScore::insert([
-            [
-                'parameter_id' => 1,
-                'product_score_id' => $cal_11_14->id,
-                'score' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'parameter_id' => 2,
-                'product_score_id' => $cal_11_14->id,
-                'score' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'parameter_id' => 3,
-                'product_score_id' => $cal_11_14->id,
-                'score' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'parameter_id' => 4,
-                'product_score_id' => $cal_11_14->id,
-                'score' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'parameter_id' => 5,
-                'product_score_id' => $cal_11_14->id,
-                'score' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]
-        ]);
+        // ParameterScore::insert([
+        //     [
+        //         'parameter_id' => 1,
+        //         'product_score_id' => $cal_11_14->id,
+        //         'score' => 2,
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        //     [
+        //         'parameter_id' => 2,
+        //         'product_score_id' => $cal_11_14->id,
+        //         'score' => 3,
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        //     [
+        //         'parameter_id' => 3,
+        //         'product_score_id' => $cal_11_14->id,
+        //         'score' => 1,
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        //     [
+        //         'parameter_id' => 4,
+        //         'product_score_id' => $cal_11_14->id,
+        //         'score' => 2,
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        //     [
+        //         'parameter_id' => 5,
+        //         'product_score_id' => $cal_11_14->id,
+        //         'score' => 2,
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ]
+        // ]);
 
-        $cal_11_15 = ProductScore::create(
-            [
-                'bia_id' => 1,
-                'user_id' => 11,
-                'product_id' => 15,
-                'total_score' => 11
-            ]
-        );
+        // $cal_11_15 = ProductScore::create(
+        //     [
+        //         'bia_id' => 1,
+        //         'user_id' => 11,
+        //         'product_id' => 15,
+        //         'total_score' => 11
+        //     ]
+        // );
 
-        ParameterScore::insert([
-            [
-                'parameter_id' => 1,
-                'product_score_id' => $cal_11_15->id,
-                'score' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'parameter_id' => 2,
-                'product_score_id' => $cal_11_15->id,
-                'score' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'parameter_id' => 3,
-                'product_score_id' => $cal_11_15->id,
-                'score' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'parameter_id' => 4,
-                'product_score_id' => $cal_11_15->id,
-                'score' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'parameter_id' => 5,
-                'product_score_id' => $cal_11_15->id,
-                'score' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]
-        ]);
+        // ParameterScore::insert([
+        //     [
+        //         'parameter_id' => 1,
+        //         'product_score_id' => $cal_11_15->id,
+        //         'score' => 3,
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        //     [
+        //         'parameter_id' => 2,
+        //         'product_score_id' => $cal_11_15->id,
+        //         'score' => 3,
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        //     [
+        //         'parameter_id' => 3,
+        //         'product_score_id' => $cal_11_15->id,
+        //         'score' => 1,
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        //     [
+        //         'parameter_id' => 4,
+        //         'product_score_id' => $cal_11_15->id,
+        //         'score' => 2,
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        //     [
+        //         'parameter_id' => 5,
+        //         'product_score_id' => $cal_11_15->id,
+        //         'score' => 2,
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ]
+        // ]);
     }
 }

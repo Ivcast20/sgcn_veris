@@ -313,5 +313,16 @@ class RoleSeeder extends Seeder
             'name' => 'admin.risk_treatment_status.edit',
             'description' => 'Editar estado de tratamiento'
         ])->syncRoles([$admin, $director, $jefe_de_area]);
+
+        //Permiso para ver logs
+        Permission::create([
+            'name' => 'admin.logs.index',
+            'description' => 'Ver Logs'
+        ])->syncRoles([$admin, $director]);
+        //Permiso para ver reportes
+        Permission::create([
+            'name' => 'admin.reports.index',
+            'description' => 'Ver reporte general'
+        ])->syncRoles([$admin, $director]);
     }
 }
