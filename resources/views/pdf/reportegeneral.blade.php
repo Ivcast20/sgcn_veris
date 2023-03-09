@@ -59,7 +59,7 @@
                     <p><strong>Categoría: </strong> {{ $c_product->product->category->name }}</p>
                     <p><strong>Calificación total: </strong>{{ $c_product->total_score }}</p>
                     @if ($c_product->critic_activities->count())
-                        <h5 class="text-center">Categorías críticas</h5>
+                        <h5 class="text-center">Actividades críticas</h5>
                         <table class="table">
                             <thead>
                                 <tr class="table-success">
