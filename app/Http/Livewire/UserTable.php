@@ -24,7 +24,6 @@ class UserTable extends DataTableComponent
         $this->setPrimaryKey('id');
         $this->setHideBulkActionsWhenEmptyEnabled();
         $this->setFilterLayout('slide-down');
-        $this->setDefaultSort('id', 'desc');
     }
 
     public function bulkActions(): array
