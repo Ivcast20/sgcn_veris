@@ -106,8 +106,8 @@ class LevelTable extends DataTableComponent
     public function bulkActions(): array
     {
         return [
-            'exportPDF' => 'exportar PDF',
-            'exportExcel' => 'exportar EXCEL'
+            'exportPDF' => 'Exportar PDF',
+            'exportExcel' => 'Exportar EXCEL'
         ];
     }
 

@@ -82,7 +82,7 @@ class ImpactLevelTable extends DataTableComponent
     public function bulkActions(): array
     {
         return [
-            'exportExcel' => 'exportar EXCEL'
+            'exportExcel' => 'Exportar EXCEL'
         ];
     }
 
