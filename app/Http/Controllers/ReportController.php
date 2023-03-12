@@ -103,7 +103,7 @@ class ReportController extends Controller
         $nombreCompleto = $usuario->last_name . ' ' . $usuario->name;
         $fecha = Carbon::now()->format('d-m-Y');
         $hora = Carbon::now()->format('H:i');
-        $pdf = Pdf::loadView('pdf.reportegeneral', compact('bia'));
+        $pdf = Pdf::loadView('pdf.reportegeneral', compact('nombreCompleto', 'bia', 'fecha', 'hora'));
         return $pdf->download($nombreCompleto . ' ' . $fecha . ' '. $hora . ' Reporte General BIA.pdf');
         // return view('pdf.reportegeneral', compact('bia'));
     }

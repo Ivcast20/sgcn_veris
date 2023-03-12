@@ -2,6 +2,9 @@
 
 @section('content')
     <h3 class="text-center">Reporte General de "{{ $bia->name }}"</h3>
+    <p><strong>Usuario:</strong> {{ $nombreCompleto }}</p>
+    <p><strong>Fecha:</strong> {{ $fecha }}</p>
+    <p><strong>Hora: </strong> {{ $hora }}</p>
     <table class="table">
         <tbody>
             <tr>
