@@ -25,7 +25,7 @@ class StoreRiskRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => ['required', 'string', 'max:50', Rule::unique('risks','code')],
+            // 'code' => ['required', 'string', 'max:50', Rule::unique('risks','code')],
             'bia_id' => ['required', 'numeric'],
             'description' => ['required', 'string', 'max:1000', Rule::unique('risks','description')],
             'source_id' => ['required', 'numeric'],

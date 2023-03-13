@@ -21,7 +21,7 @@
                 <!-- code -->
                 <div class="form-group">
                     <label class="form">Código</label>
-                    <input type="text" name="code" class="form-control" value="{{ old('code', $risk->code) }}">
+                    <input type="text" name="code" class="form-control" value="{{ old('code', $risk->code) }}" readonly>
                     @error('code')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror

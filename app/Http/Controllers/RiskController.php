@@ -60,7 +60,16 @@ class RiskController extends Controller
      */
     public function store(StoreRiskRequest $request)
     {
-        $riesgo = Risk::create($request->validated());
+        $datos_validados = $request->validated();
+        $ultimo_riesgo = Risk::orderBy('created_at', 'DESC')->first();
+        $codigo_ultimo = 1;
+        if($ultimo_riesgo)
+        {
+            $codigo_ultimo = $ultimo_riesgo->id + 1;     
+        }
+        $codigo = 'CN-' . sprintf("%02d", $codigo_ultimo);
+        $datos = array_merge($datos_validados, ['code' => $codigo]);
+        $riesgo = Risk::create($datos);
         $riesgo->causes()->attach($request->input('causes', []));
         $riesgo->departments()->attach($request->input('departments', []));
         return redirect()->route('risks.index')->with(['message' => 'Riesgo guardado exitosamente']);

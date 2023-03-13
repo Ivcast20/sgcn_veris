@@ -18,13 +18,13 @@
             <form action="{{ route('risks.store') }}" method="POST">
                 @csrf
                 <!-- code -->
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label class="form">Código</label>
                     <input type="text" name="code" class="form-control" value="{{ old('code') }}">
                     @error('code')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
-                </div>
+                </div> --}}
                 <!-- bia_id -->
                 <div class="form-group">
                     <label class="form-label">BIA</label>
