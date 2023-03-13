@@ -49,6 +49,8 @@ class UserTable extends DataTableComponent
                 ->searchable(),
             Column::make(__('Email'), "email")
                 ->sortable(),
+            Column::make('Roles')
+            ->label(fn($row) => $row->roles->pluck('name')->implode(' - ')),
             Column::make("Fecha de creación", "created_at")
                 ->format(function ($value) {
                     return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y');
