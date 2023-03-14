@@ -27,9 +27,9 @@ class StoreProductRequest extends FormRequest
         $nombre = $this->name;
         $categoria = $this->category_id;
         return [
-            'name' => ['required','string','max:255', /*Rule::unique('products')->where(function($query) use ($nombre,$categoria){
+            'name' => ['required','string','max:255', Rule::unique('products')->where(function($query) use ($nombre,$categoria){
                 return $query->where([['name',$nombre],['category_id',$categoria]]);
-            })*/ 'unique:products'],
+            })],
             'category_id' => ['required','integer'],
         ];
     }
@@ -37,7 +37,7 @@ class StoreProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.unique' => 'Ya existe un producto con este nombre',
+            'name.unique' => 'Ya existe un producto con este nombre en esta categoría',
             'category_id.required' => 'El campo categoría es obligatorio'
         ];
     }
