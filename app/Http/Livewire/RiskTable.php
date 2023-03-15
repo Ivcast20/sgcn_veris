@@ -21,6 +21,8 @@ class RiskTable extends DataTableComponent
         $this->setPrimaryKey('id');
         $this->setHideBulkActionsWhenEmptyEnabled();
         $this->setFilterLayout('slide-down');
+        $this->setPerPageAccepted([3, 10, 20, 50]);
+        $this->setPerPage(3);
     }
 
     public function columns(): array

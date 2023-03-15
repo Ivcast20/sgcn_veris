@@ -291,7 +291,7 @@ return [
 
     'menu' => [
         [
-            'text' => 'Dashboard',
+            'text' => 'Resumen',
             'url'  => 'dashboard',
             'icon' => 'fas fa-chart-pie'
         ],
