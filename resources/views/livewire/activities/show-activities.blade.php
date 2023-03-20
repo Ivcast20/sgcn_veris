@@ -12,8 +12,8 @@
         @if ($actividades->count())
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead class="table-primary">
+                    <table class="table table-fixed">
+                        <thead class="table-primary theadc">
                             <tr class="text-center">
                                 <th>{{ __('ID') }}</th>
                                 <th>{{ __('Nombre') }}</th>
@@ -25,7 +25,7 @@
                                 <th>Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="tbodyc">
                             @foreach ($actividades as $activity)
                                 <tr class="text-center">
                                     <td>{{ $activity->id }}</td>

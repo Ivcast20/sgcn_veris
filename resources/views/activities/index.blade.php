@@ -29,6 +29,23 @@
 @stop
 
 @section('css')
+{{-- <link rel="stylesheet" href="extensions/sticky-header/bootstrap-table-sticky-header.css">
+<script src="extensions/sticky-header/bootstrap-table-sticky-header.js"></script> --}}
+<style>
+.tbodyc {
+      display:block !important;
+      max-height:500px !important;
+      overflow-y:auto !important;
+}
+.theadc, .tbodyc tr {
+  display:table !important;
+  width:100% !important;
+  table-layout:fixed !important;
+}
+.theadc {
+  width: calc( 100% - 1em ) !important
+}
+</style>
 @stop
 
 @section('js')
