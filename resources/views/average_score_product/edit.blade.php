@@ -61,7 +61,7 @@
                 <div class="d-flex justify-content-center mt-2">
                     <a href="{{ route('promedios.index', $productScoreAverage->bia_process_id) }}"
                         class="btn btn-secondary mr-2">Cancelar</a>
-                    <button type="submit" class="btn btn-success">Asignar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
             </form>
         </div>
